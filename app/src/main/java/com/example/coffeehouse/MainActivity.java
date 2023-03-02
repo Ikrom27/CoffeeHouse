@@ -3,8 +3,12 @@ package com.example.coffeehouse;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 
@@ -12,21 +16,27 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MyLogs";
 
     protected void createToast(String text){
+        /*
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
+        toast.show(); */
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_welcome);
 
         createToast("onCreate");
         Log.i(TAG, "Приложение запущено");
         Log.e(TAG, "Данные не найдены");
+    }
+
+    public void onClick(View view){
+        Intent intent = new Intent(this, SignInActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -42,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         createToast("onResume");
         Log.d(TAG, "onResume");
+
     }
 
     @Override

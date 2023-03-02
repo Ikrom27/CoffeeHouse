@@ -3,10 +3,22 @@
     <string name="welcome_slide_head">Making your days with our coffee.</string>
     <string name="welcome_slide_description">The best grain, the finest roast, the most powerful flavor.</string>
 
-    <string name="sign_in">SIGN IN</string>
-    <string name="sign_up">SIGN UP</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_up">Sign up</string>
     
     <string name="my_cart">My Cart</string>
     <string name="total_price">Total Price</string>
     <string name="price_text">$9.00</string>
+    <string name="greetings">Good morning</string>
+    <string name="profile_name">Ikrom</string>
+    <string name="weclome_back">Welcome back</string>
+    
+    <string name="email_address">Email address</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="new_member">New member?  </string>
+    <string name="user_name">User name</string>
+    <string name="terms">By signing up you agree with our Terms of Use</string>
+    <string name="already_member">Already a member?  </string>
+    <string name="checkout">Checkout</string>
 </resources>

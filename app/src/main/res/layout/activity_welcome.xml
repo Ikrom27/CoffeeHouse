@@ -20,7 +20,7 @@
             android:layout_height="207dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/welcome_screen" />
+            app:srcCompat="@drawable/bg_welcome" />
 
         <TextView
             android:id="@+id/textView"
@@ -51,8 +51,9 @@
         android:id="@+id/bt_wcscreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/arrow_right"
-        android:background="@drawable/button"
+        android:src="@drawable/ic_arrow"
+        android:background="@drawable/btn_forward"
+        android:onClick="onClick"
         tools:ignore="MissingConstraints"
         android:layout_marginEnd="47dp"
         android:layout_marginBottom="47dp"
