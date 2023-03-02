@@ -47,16 +47,16 @@
             android:textSize="14sp"/>
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/bt_next"
-        app:borderWidth="0dp"
+    <ImageButton
+        android:id="@+id/bt_wcscreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/primary"
         android:src="@drawable/arrow_right"
-        app:tint="@android:color/white"
+        android:background="@drawable/button"
+        tools:ignore="MissingConstraints"
         android:layout_marginEnd="47dp"
         android:layout_marginBottom="47dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
