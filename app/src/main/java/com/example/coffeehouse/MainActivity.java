@@ -21,7 +21,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+
         createToast("onCreate");
         Log.i(TAG, "Приложение запущено");
         Log.e(TAG, "Данные не найдены");

@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Coffee house</string>
+    <string name="welcome_slide_head">Making your days with our coffee.</string>
+    <string name="welcome_slide_description">The best grain, the finest roast, the most powerful flavor.</string>
+
+    <string name="sign_in">SIGN IN</string>
+    <string name="sign_up">SIGN UP</string>
+    
+    <string name="my_cart">My Cart</string>
+    <string name="total_price">Total Price</string>
+    <string name="price_text">$9.00</string>
 </resources>
