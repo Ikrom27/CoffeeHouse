@@ -61,6 +61,8 @@
             android:drawableStart="@drawable/ic_profile"
             android:drawablePadding="1dp"
             android:textSize="12sp"
+            android:clickable="true"
+            android:onClick="onClickSignIn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_weclome_back" />
@@ -129,17 +131,19 @@
             android:layout_marginTop="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+            android:focusable="true" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton
-        android:id="@+id/bt_wcscreen"
+        android:id="@+id/bt_forward_signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="41dp"
         android:background="@drawable/btn_forward"
         android:src="@drawable/ic_arrow"
+        android:onClick="onClickForward"
         app:layout_constraintTop_toBottomOf="@+id/layout_main"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -157,13 +161,14 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/layout_main"
-        app:layout_constraintTop_toBottomOf="@+id/bt_wcscreen" />
+        app:layout_constraintTop_toBottomOf="@+id/bt_forward_signup" />
 
     <TextView
         android:id="@+id/btn_sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
+        android:onClick="onClickSignIn"
         android:fontFamily="@font/poppins_medium"
         android:text="@string/sign_in"
         android:textColor="@color/primary"
