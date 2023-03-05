@@ -14,9 +14,15 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signin);
     }
 
-    public void onClick(View view){
+    public void onClickSignUp(View view){
         Log.d(TAG, "Button click handled");
         Intent intent = new Intent(this, SignUpActivity.class);
+        startActivity(intent);
+    }
+
+    public void onClickForward(View View){
+        Log.d(TAG, "Button click handled");
+        Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
     }
 }
