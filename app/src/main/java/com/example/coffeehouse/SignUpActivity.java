@@ -20,6 +20,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void onClickSignIn(View view){
+        // Обработка нажатий на надпись Sign In
         Intent resultIntent = new Intent();
         EditText emailView = findViewById(R.id.editTextTextEmailAddress);
         EditText passwordView = findViewById(R.id.editTextTextPassword);
@@ -30,6 +31,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void onClickForward(View view){
+        // Обработка нажатий на кнопку
         Intent intent = new Intent(this, MenuActivity.class);
         EditText profileView = findViewById(R.id.editText_user_name);
         Log.d("SignUpActivity", profileView.getText().toString());
