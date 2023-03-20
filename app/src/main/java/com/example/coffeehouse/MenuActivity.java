@@ -11,11 +11,13 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        Bundle newName = getIntent().getExtras();
-        String profileName = newName.getString("profile_name");
-        Log.d("menu", profileName);
-        TextView profileNameTextView = findViewById(R.id.profile_name_textview);
-        profileNameTextView.setText(profileName);
+        /*
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true)
+                    .add(R.id.fragment_categories, CategoriesFragment.class, null)
+                    .commit();
+        }*/
     }
 
     @Override
