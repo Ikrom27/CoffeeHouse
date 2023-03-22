@@ -13,4 +13,7 @@
 
     <color name="primary">#324A59</color>
     <color name="placeholder">#C1C7D0</color>
+    
+    <color name="items_background">#F7F8FB</color>
+    <color name="stroke">#D8D8D8</color>
 </resources>
