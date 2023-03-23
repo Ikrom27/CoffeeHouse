@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -17,16 +19,37 @@ import android.widget.Toast;
 import java.util.Objects;
 
 public class CategoriesFragment extends Fragment {
+    private final String TAG = "CategoriesFragment";
+    private final Fragment coffeeFragment = new CategoriesCoffeeFragment();
+    private final Fragment snacksFragment = new CategoriesSnacksFragment();
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_categories, container, false);
-        Button button = (Button) view.findViewById(R.id.btn_snacks);
-        button.setOnClickListener(v->{
-            System.out.println("Hello");
-            System.out.println("Hello");
+        AppCompatButton btnSnacks = (AppCompatButton) view.findViewById(R.id.btn_snacks);
+        AppCompatButton btnCoffee = (AppCompatButton) view.findViewById(R.id.btn_coffee);
+
+        btnSnacks.setOnClickListener(v->{
+            Log.d(TAG, "click handle");
+            setFocus(btnSnacks);
+            deFocus(btnCoffee);
+            if (savedInstanceState == null) {
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fr_categories_container, snacksFragment).commit();
+            }
+        });
+
+        btnCoffee.setOnClickListener(v->{
+            Log.d(TAG, "click handle");
+            setFocus(btnCoffee);
+            deFocus(btnSnacks);
+            if (savedInstanceState == null) {
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fr_categories_container, coffeeFragment).commit();
+            }
         });
         return view;
     }
@@ -36,21 +59,18 @@ public class CategoriesFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null) {
             requireActivity().getSupportFragmentManager().beginTransaction()
-                .setReorderingAllowed(true)
-                .add(R.id.fr_categories_snacks, CategoriesSnacksFragment.class, null)
-                .commit();
+                    .replace(R.id.fr_categories_container, coffeeFragment).commit();
         }
-    }
-
-    @SuppressLint("ResourceType")
-    @Override
-    public void onStart() {
-        super.onStart();
 
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
+    private void setFocus(Button button){
+        button.setBackgroundResource(R.drawable.btn_primary);
+        button.setTextColor(getResources().getColor(R.color.white));
+    }
+
+    private void deFocus(Button button){
+        button.setBackgroundResource(R.drawable.btn_secondary);
+        button.setTextColor(ContextCompat.getColor(requireContext(), R.color.primary_text));
     }
 }

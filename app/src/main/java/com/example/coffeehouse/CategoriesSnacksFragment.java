@@ -9,11 +9,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 import java.util.Objects;
@@ -49,6 +52,32 @@ public class CategoriesSnacksFragment extends Fragment {
 
         recyclerView.setAdapter(recycleViewAdapter);
         recyclerView.setHasFixedSize(true);
+
+        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+                View childView = rv.findChildViewUnder(e.getX(), e.getY());
+                if (childView != null && e.getAction() == MotionEvent.ACTION_UP) {
+                    TextView productName = (TextView) childView.findViewById(R.id.tv_categories_snacks_name);
+                    int position = rv.getChildAdapterPosition(childView);
+                    String message = productName.getText() + " clicked at position " + position;
+                    Log.d("RecyclerView", message);
+                    Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
     }
 
     public static class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.ViewHolder> {

@@ -12,10 +12,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,16 +45,23 @@ public class CategoriesCoffeeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        Log.d(TAG, "onStart");
         ListView itemsList = requireActivity().findViewById(R.id.lv_categories);
+
+        //DELETE
         String[] names = {"Cappuccino", "Americano", "Mocha", "Flat white"};
         ProductsList products = new ProductsList(names);
-        Log.d(TAG, "products created");
+
         CategoriesListAdapter listAdapter = new CategoriesListAdapter(requireActivity(),
                 R.layout.item_categories_coffee, products.createProducts(200));
-        Log.d(TAG, "listAdapter created");
         itemsList.setAdapter(listAdapter);
-        Log.d(TAG, "listAdapter set");
+
+        itemsList.setOnItemClickListener((parent, view, position, id) -> {
+            TextView selectedFromList = (TextView) view.findViewById(R.id.tv_product_name);
+            String itemText = selectedFromList.getText() + " in position " + position;
+
+            Log.d(TAG, itemText);
+            Toast.makeText(getContext(), itemText, Toast.LENGTH_SHORT).show();
+        });
     }
 
     private List<Product> createProducts(int number){
