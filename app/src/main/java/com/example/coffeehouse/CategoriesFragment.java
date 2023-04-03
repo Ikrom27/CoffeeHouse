@@ -29,6 +29,7 @@ public class CategoriesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_categories, container, false);
+
         AppCompatButton btnSnacks = (AppCompatButton) view.findViewById(R.id.btn_snacks);
         AppCompatButton btnCoffee = (AppCompatButton) view.findViewById(R.id.btn_coffee);
 

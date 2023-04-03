@@ -64,20 +64,6 @@ public class CategoriesCoffeeFragment extends Fragment {
         });
     }
 
-    private List<Product> createProducts(int number){
-        Log.d(TAG, "createProducts");
-        String[] names = {"Cappuccino", "Americano", "Mocha", "Flat white"};
-        List<Product> products = new ArrayList<>();
-
-        while (number > 0){
-            Random rand = new Random();
-            Product product = new Product(names[rand.nextInt(names.length)], rand.nextInt(20));
-            products.add(product);
-            number--;
-        }
-        return products;
-    }
-
     @Override
     public void onResume() {
         super.onResume();

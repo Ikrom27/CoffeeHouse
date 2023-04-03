@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/tv_sign_up"
             android:layout_marginTop="10dp"
-            android:text="@string/weclome_back"
+            android:text="@string/welcome_back"
             android:textColor="@color/secondary_text"
             android:textSize="14sp"
             android:fontFamily="@font/poppins"
