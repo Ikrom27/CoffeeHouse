@@ -17,7 +17,7 @@ public class MenuActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
-                    .add(R.id.fr_categories, CategoriesFragment.class, null)
+                    .add(R.id.fragment_container_view, ProfileFragment.class, null)
                     .commit();
         }
     }

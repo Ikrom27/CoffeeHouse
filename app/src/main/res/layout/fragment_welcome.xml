@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.authentication.WelcomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="207dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:src="@drawable/bg_welcome"/>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="280dp"
+                android:layout_height="72dp"
+                android:gravity="center"
+                android:layout_marginTop="50dp"
+
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/primary_text"
+                android:textSize="22sp"
+                android:text="@string/welcome_slide_head"/>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="8dp"
+
+                android:fontFamily="@font/poppins"
+                android:text="@string/welcome_slide_description"
+                android:textColor="@color/secondary_text"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/bt_forward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow"
+            android:background="@drawable/bg_circle"
+            tools:ignore="MissingConstraints"
+            android:layout_marginEnd="47dp"
+            android:layout_marginBottom="47dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
