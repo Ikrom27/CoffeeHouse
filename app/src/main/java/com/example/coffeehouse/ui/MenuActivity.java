@@ -1,5 +1,6 @@
 package com.example.coffeehouse.ui;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
@@ -17,23 +18,14 @@ import com.example.coffeehouse.databinding.ActivityMenuBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MenuActivity extends AppCompatActivity {
-    private ActivityMenuBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        binding = ActivityMenuBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-        setSupportActionBar(binding.toolbar);
-
+        setContentView(R.layout.activity_menu);
         BottomNavigationView navView = findViewById(R.id.bottomNavigationView);
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.menu,
-                R.id.history).build();
         NavController navController = Navigation.findNavController(this,
                 R.id.fragment_main_menu);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(binding.bottomNavigationView, navController);
+        NavigationUI.setupWithNavController(navView, navController);
     }
 
     @Override
