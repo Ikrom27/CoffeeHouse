@@ -4,14 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginHorizontal="8dp"
-    tools:context=".CategoriesCoffeeFragment">
+    tools:context=".ui.CategoriesCoffeeFragment">
 
-    <ListView
-        android:id="@+id/lv_categories"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_coffee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="20dp"
-        />
+        android:scrollbars="vertical"/>
 </FrameLayout>

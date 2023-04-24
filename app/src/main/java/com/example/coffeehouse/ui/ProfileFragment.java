@@ -1,4 +1,4 @@
-package com.example.coffeehouse;
+package com.example.coffeehouse.ui;
 
 import android.os.Bundle;
 
@@ -13,6 +13,9 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.coffeehouse.data.models.ProfileSettings;
+import com.example.coffeehouse.R;
 
 
 public class ProfileFragment extends Fragment {

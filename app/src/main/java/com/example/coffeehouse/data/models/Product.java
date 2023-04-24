@@ -1,4 +1,4 @@
-package com.example.coffeehouse;
+package com.example.coffeehouse.data.models;
 
 public class Product {
     private String name;

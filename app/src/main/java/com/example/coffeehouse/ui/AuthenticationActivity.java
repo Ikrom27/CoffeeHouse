@@ -1,11 +1,10 @@
-package com.example.coffeehouse.ui.authentication;
+package com.example.coffeehouse.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
-import com.example.coffeehouse.ProfileFragment;
 import com.example.coffeehouse.R;
 
 public class AuthenticationActivity extends AppCompatActivity {

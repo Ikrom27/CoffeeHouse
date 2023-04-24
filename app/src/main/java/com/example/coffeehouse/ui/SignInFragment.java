@@ -1,5 +1,6 @@
-package com.example.coffeehouse.ui.authentication;
+package com.example.coffeehouse.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.coffeehouse.R;
@@ -35,6 +37,15 @@ public class SignInFragment extends Fragment {
                 Log.d(TAG, "onClick handle");
                 Navigation.findNavController(view)
                           .navigate(R.id.action_signInFragment_to_signUpFragment);
+            }
+        });
+
+        ImageButton forwardButton = (ImageButton) view.findViewById(R.id.bt_forward);
+        forwardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(requireActivity(), MenuActivity.class);
+                startActivity(intent);
             }
         });
         return view;

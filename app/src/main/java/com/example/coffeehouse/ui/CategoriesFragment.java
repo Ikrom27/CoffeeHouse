@@ -1,7 +1,6 @@
-package com.example.coffeehouse;
+package com.example.coffeehouse.ui;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -14,9 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
-import java.util.Objects;
+import com.example.coffeehouse.R;
 
 public class CategoriesFragment extends Fragment {
     private final String TAG = "CategoriesFragment";
