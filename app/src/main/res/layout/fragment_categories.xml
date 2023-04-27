@@ -11,6 +11,57 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            tools:ignore="MissingConstraints">
+
+            <ImageButton
+                android:id="@+id/bt_buy_light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="18dp"
+                android:background="@drawable/ic_buy"
+                android:backgroundTint="@color/primary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/bt_profile_light"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <ImageButton
+                android:id="@+id/bt_profile_light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_profile"
+                android:backgroundTint="@color/primary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/tv_greening"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/greetings"
+                android:textColor="@color/secondary_text"
+                android:textSize="14sp"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/profile_name_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/profile_name"
+                android:textColor="@color/primary_text"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_greening"
+                tools:ignore="MissingConstraints" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/textView2"

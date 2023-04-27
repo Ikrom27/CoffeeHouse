@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.MenuActivity"
+            android:name=".ui.MainActivity"
             android:exported="true" />
 
         <meta-data

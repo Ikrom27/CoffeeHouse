@@ -44,7 +44,7 @@ public class SignInFragment extends Fragment {
         forwardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(requireActivity(), MenuActivity.class);
+                Intent intent = new Intent(requireActivity(), MainActivity.class);
                 startActivity(intent);
             }
         });
