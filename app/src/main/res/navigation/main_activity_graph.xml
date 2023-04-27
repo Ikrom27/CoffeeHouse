@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_mainFragment_to_coffeeConfigFragment"
             app:destination="@id/coffeeConfigFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/coffeeConfigFragment"
@@ -20,6 +23,15 @@
         tools:layout="@layout/fragment_coffee_config" >
         <action
             android:id="@+id/action_coffeeConfigFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.coffeehouse.ui.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
 </navigation>

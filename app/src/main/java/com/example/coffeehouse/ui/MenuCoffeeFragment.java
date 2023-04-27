@@ -1,7 +1,6 @@
 package com.example.coffeehouse.ui;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,14 +19,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.coffeehouse.data.models.Coffee;
-import com.example.coffeehouse.data.models.Product;
 import com.example.coffeehouse.R;
 import com.example.coffeehouse.ui.state_holder.CoffeeCategoriesViewModel;
 
 import java.util.List;
 
 
-public class CategoriesCoffeeFragment extends Fragment {
+public class MenuCoffeeFragment extends Fragment {
     private final String TAG = "CategoriesCoffeeFragment";
     private RecyclerView recyclerView;
     private CoffeeAdapter coffeeAdapter;
@@ -38,7 +36,7 @@ public class CategoriesCoffeeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView");
-        View view = inflater.inflate(R.layout.fragment_categories_coffee, container,false);
+        View view = inflater.inflate(R.layout.fragment_menu_coffee, container,false);
 
         recyclerView = view.findViewById(R.id.rv_coffee);
         coffeeAdapter = new CoffeeAdapter(coffeeViewModel);
@@ -56,6 +54,8 @@ public class CategoriesCoffeeFragment extends Fragment {
                         Bundle bundle = new Bundle();
                         bundle.putString("coffee_name", coffee.getName());
                         bundle.putString("coffee_price", Double.toString(coffee.getPrice()));
+                        Navigation.findNavController(requireActivity(), R.id.fragment_main_menu)
+                                .navigate(R.id.action_mainFragment_to_coffeeConfigFragment, bundle);
                     }
                 });
 

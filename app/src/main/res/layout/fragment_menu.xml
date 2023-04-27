@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.CategoriesFragment">
+    tools:context=".ui.MenuFragment">
 
     <LinearLayout
         android:id="@+id/categories_layout"
@@ -22,19 +22,7 @@
                 android:id="@+id/bt_buy_light"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="18dp"
                 android:background="@drawable/ic_buy"
-                android:backgroundTint="@color/primary"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/bt_profile_light"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
-
-            <ImageButton
-                android:id="@+id/bt_profile_light"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_profile"
                 android:backgroundTint="@color/primary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

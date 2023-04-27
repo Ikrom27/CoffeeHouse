@@ -42,7 +42,7 @@ public class CoffeeConfigFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(view)
-                          .navigate(R.id.action_coffeeConfigFragment_to_menuFragment);
+                          .navigate(R.id.action_coffeeConfigFragment_to_mainFragment);
             }
         });
         return view;
