@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.SignInFragment">
+    tools:context=".ui.LogInFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -33,19 +33,19 @@
             android:layout_marginEnd="41dp"
             android:layout_marginTop="46dp">
             <TextView
-                android:id="@+id/tv_sign_in"
+                android:id="@+id/text_view_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/sign_in"
+                android:text="@string/login"
                 android:textColor="@color/primary_text"
                 android:textSize="22sp"
                 android:fontFamily="@font/poppins_medium"
                 tools:ignore="MissingConstraints" />
             <TextView
-                android:id="@+id/tv_weclome_back"
+                android:id="@+id/text_view_welcome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/tv_sign_in"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_login"
                 android:layout_marginTop="10dp"
                 android:text="@string/welcome_back"
                 android:textColor="@color/secondary_text"
@@ -54,11 +54,11 @@
                 tools:ignore="MissingConstraints" />
 
             <EditText
-                android:id="@+id/et_sign_in_email"
+                android:id="@+id/edit_text_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="46dp"
-
+                android:textColorHighlight="@color/primary"
                 android:ems="10"
                 android:fontFamily="@font/poppins_medium"
                 android:hint="@string/email_address"
@@ -70,10 +70,10 @@
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_weclome_back" />
+                app:layout_constraintTop_toBottomOf="@+id/text_view_welcome" />
 
             <EditText
-                android:id="@+id/editTextTextPassword"
+                android:id="@+id/edit_text_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
@@ -84,11 +84,11 @@
                 android:drawableStart="@drawable/ic_password"
                 android:drawablePadding="8dp"
 
-                app:layout_constraintTop_toBottomOf="@+id/et_sign_in_email"
+                app:layout_constraintTop_toBottomOf="@+id/edit_text_email"
                 android:layout_marginTop="35dp"/>
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/text_view_forgot_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
@@ -99,7 +99,7 @@
                 android:layout_marginTop="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+                app:layout_constraintTop_toBottomOf="@+id/edit_text_password" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -136,7 +136,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:fontFamily="@font/poppins_medium"
-            android:text="@string/sign_up"
+            android:text="@string/register"
             android:textColor="@color/primary"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView5"

@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/primary</item>
         <!-- Customize your theme here. -->
+        <item name="colorAccent">@color/primary</item>
     </style>
     <style name="Theme.CoffeeHouse.NoActionBar">
         <item name="windowActionBar">false</item>

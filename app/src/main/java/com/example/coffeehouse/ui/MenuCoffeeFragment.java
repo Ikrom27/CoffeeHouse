@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 import com.example.coffeehouse.data.models.Coffee;
 import com.example.coffeehouse.R;
-import com.example.coffeehouse.ui.state_holder.CoffeeCategoriesViewModel;
+import com.example.coffeehouse.ui.view_model.MenuCoffeeViewModel;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class MenuCoffeeFragment extends Fragment {
     private final String TAG = "CategoriesCoffeeFragment";
     private RecyclerView recyclerView;
     private CoffeeAdapter coffeeAdapter;
-    private CoffeeCategoriesViewModel coffeeViewModel;
+    private MenuCoffeeViewModel coffeeViewModel;
 
 
     @Override
@@ -43,7 +43,7 @@ public class MenuCoffeeFragment extends Fragment {
         recyclerView.setAdapter(coffeeAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        coffeeViewModel = new ViewModelProvider(this).get(CoffeeCategoriesViewModel.class);
+        coffeeViewModel = new ViewModelProvider(this).get(MenuCoffeeViewModel.class);
         coffeeViewModel.getCoffeeList().observe(getViewLifecycleOwner(), new Observer<List<Coffee>>() {
             @Override
             public void onChanged(List<Coffee> coffees) {
@@ -86,9 +86,9 @@ public class MenuCoffeeFragment extends Fragment {
         private List<Coffee> coffeeList;
         private OnCoffeeClickListener mListener;
 
-        private CoffeeCategoriesViewModel viewModel;
+        private MenuCoffeeViewModel viewModel;
 
-        public CoffeeAdapter(CoffeeCategoriesViewModel viewModel){
+        public CoffeeAdapter(MenuCoffeeViewModel viewModel){
             this.viewModel = viewModel;
         }
 

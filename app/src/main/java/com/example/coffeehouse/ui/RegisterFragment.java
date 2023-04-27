@@ -14,14 +14,14 @@ import android.widget.ImageButton;
 
 import com.example.coffeehouse.R;
 
-public class SignUpFragment extends Fragment {
+public class RegisterFragment extends Fragment {
     private final String TAG = "SignUpFragment";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
+        View view = inflater.inflate(R.layout.fragment_register, container, false);
         ImageButton buttonForward = (ImageButton) view.findViewById(R.id.bt_forward_signup);
         EditText email = (EditText) view.findViewById(R.id.et_sign_up_email);
         buttonForward.setOnClickListener(new View.OnClickListener(){

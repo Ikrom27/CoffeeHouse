@@ -3,8 +3,8 @@
     <string name="welcome_slide_head">Making your days with our coffee.</string>
     <string name="welcome_slide_description">The best grain, the finest roast, the most powerful flavor.</string>
 
-    <string name="sign_in">Sign in</string>
-    <string name="sign_up">Sign up</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
 
     <string name="my_cart">My Cart</string>
     <string name="total_price">Total Price</string>

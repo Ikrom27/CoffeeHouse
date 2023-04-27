@@ -18,4 +18,5 @@
     <color name="stroke">#D8D8D8</color>
 
     <color name="separator_color">#F4F5F7</color>
+    <color name="error">#ff0000</color>
 </resources>

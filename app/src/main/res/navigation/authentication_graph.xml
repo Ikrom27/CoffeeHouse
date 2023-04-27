@@ -20,9 +20,9 @@
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.example.coffeehouse.ui.SignInFragment"
+        android:name="com.example.coffeehouse.ui.LogInFragment"
         android:label="fragment_sign_in"
-        tools:layout="@layout/fragment_sign_in" >
+        tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_signInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment"
@@ -33,9 +33,9 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.example.coffeehouse.ui.SignUpFragment"
+        android:name="com.example.coffeehouse.ui.RegisterFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" >
+        tools:layout="@layout/fragment_register" >
         <action
             android:id="@+id/action_signUpFragment_to_signInFragment"
             app:destination="@id/signInFragment"
