@@ -111,11 +111,14 @@
                 android:textColor="@color/primary_text"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <FrameLayout
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fr_categories_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="18dp"/>
+            android:layout_marginTop="18dp"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/categories_navigation"/>
     </LinearLayout>
 
 </FrameLayout>

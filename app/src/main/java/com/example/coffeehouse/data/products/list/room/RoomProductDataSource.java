@@ -1,5 +1,8 @@
 package com.example.coffeehouse.data.products.list.room;
 
+import android.annotation.SuppressLint;
+import android.os.AsyncTask;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -13,13 +16,25 @@ import java.util.List;
 
 public class RoomProductDataSource implements ProductLocalDataSource {
     private ProductDao productDao;
+
+    public RoomProductDataSource(ProductDao productDao) {
+        this.productDao = productDao;
+    }
+
     @Override
-    public List<ProductEntity> loadAllProducts() {
+    public LiveData<List<ProductEntity>> loadAllProducts() {
         return productDao.loadAllProducts();
     }
 
+    @SuppressLint("StaticFieldLeak")
     public void addProduct(Product product){
-        ProductEntity entity = new ProductEntity(product.getName(), product.getPrice());
-        productDao.insert(entity);
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                ProductEntity entity = new ProductEntity(product.getName(), product.getPrice());
+                productDao.insert(entity);
+                return null;
+            }
+        }.execute();
     }
 }

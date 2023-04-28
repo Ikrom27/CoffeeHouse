@@ -44,23 +44,17 @@ public class MenuCoffeeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         coffeeViewModel = new ViewModelProvider(this).get(MenuCoffeeViewModel.class);
-        coffeeViewModel.getCoffeeList().observe(getViewLifecycleOwner(), new Observer<List<Coffee>>() {
-            @Override
-            public void onChanged(List<Coffee> coffees) {
-                coffeeAdapter.onItemClickListener(new OnCoffeeClickListener() {
-                    @Override
-                    public void onClick(Coffee coffee, int position) {
-                        Log.d(TAG, "Item click handle");
-                        Bundle bundle = new Bundle();
-                        bundle.putString("coffee_name", coffee.getName());
-                        bundle.putString("coffee_price", Double.toString(coffee.getPrice()));
-                        Navigation.findNavController(requireActivity(), R.id.fragment_main_menu)
-                                .navigate(R.id.action_mainFragment_to_coffeeConfigFragment, bundle);
-                    }
-                });
+        coffeeViewModel.getCoffeeList().observe(getViewLifecycleOwner(), coffees -> {
+            coffeeAdapter.onItemClickListener((coffee, position) -> {
+                Log.d(TAG, "Item click handle");
+                Bundle bundle = new Bundle();
+                bundle.putString("coffee_name", coffee.getName());
+                bundle.putString("coffee_price", Double.toString(coffee.getPrice()));
+                Navigation.findNavController(requireActivity(), R.id.fragment_main_menu)
+                        .navigate(R.id.action_mainFragment_to_coffeeConfigFragment, bundle);
+            });
 
-                coffeeAdapter.setCoffeeList(coffees);
-            }
+            coffeeAdapter.setCoffeeList(coffees);
         });
 
         return view;

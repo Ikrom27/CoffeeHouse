@@ -11,11 +11,12 @@ import com.example.coffeehouse.data.products.list.room.dao.ProductDao;
 import com.example.coffeehouse.data.products.list.room.dao.ProductEntity;
 
 @Database(entities = {ProductEntity.class}, version = 1)
-abstract class ProductRoomDataBase extends RoomDatabase {
-    abstract ProductDao productDao();
+public abstract class ProductRoomDataBase extends RoomDatabase {
+
+    public abstract ProductDao productDao();
     private static volatile ProductRoomDataBase INSTANCE;
 
-    public ProductRoomDataBase getRoomDataBase(Context context){
+    public static ProductRoomDataBase getRoomDataBase(Context context){
         if (INSTANCE == null) {
             synchronized (ProductRoomDataBase.class) {
                 if (INSTANCE == null) {

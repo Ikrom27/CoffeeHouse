@@ -7,5 +7,5 @@ import com.example.coffeehouse.data.products.list.room.dao.ProductEntity;
 import java.util.List;
 
 public interface ProductLocalDataSource {
-    List<ProductEntity> loadAllProducts();
+    LiveData<List<ProductEntity>> loadAllProducts();
 }
