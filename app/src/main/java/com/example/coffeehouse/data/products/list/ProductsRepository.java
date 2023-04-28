@@ -14,16 +14,23 @@ import java.util.List;
 
 public class ProductsRepository {
     private RoomProductDataSource roomProductDataSource;
+    private ProductRoomDataBase dataBase;
 
     public ProductsRepository(Context context){
-        ProductRoomDataBase db = ProductRoomDataBase.getRoomDataBase(context);
-        roomProductDataSource = new RoomProductDataSource(db.productDao());
+        this.dataBase = ProductRoomDataBase.getRoomDataBase(context);
+        roomProductDataSource = new RoomProductDataSource(dataBase.productDao());
     }
     public LiveData<List<ProductEntity>> getProductList(){
         return roomProductDataSource.loadAllProducts();
     }
 
+    public LiveData<ProductEntity> getProduct(String name){
+        return roomProductDataSource.getProduct(name);
+    }
+
     public void addProduct(Product product){
-        roomProductDataSource.addProduct(product);
+        dataBase.getQueryExecutor().execute(() -> {
+            roomProductDataSource.addProduct(product);
+        });
     }
 }

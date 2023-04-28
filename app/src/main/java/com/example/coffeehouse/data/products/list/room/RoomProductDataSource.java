@@ -28,13 +28,11 @@ public class RoomProductDataSource implements ProductLocalDataSource {
 
     @SuppressLint("StaticFieldLeak")
     public void addProduct(Product product){
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                ProductEntity entity = new ProductEntity(product.getName(), product.getPrice());
-                productDao.insert(entity);
-                return null;
-            }
-        }.execute();
+        ProductEntity entity = new ProductEntity(product.getName(), product.getPrice());
+        productDao.insert(entity);
+    }
+
+    public LiveData<ProductEntity> getProduct(String name){
+        return productDao.getProduct(name);
     }
 }

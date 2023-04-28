@@ -19,12 +19,14 @@ public class UserRepository {
     }
 
     public void saveUser(User user) {
+        //WRITE
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(USER_KEY, new Gson().toJson(user));
         editor.apply();
     }
 
     public User getUser() {
+        //READ
         String userJson = sharedPreferences.getString(USER_KEY, "");
         if (!TextUtils.isEmpty(userJson)) {
             return new Gson().fromJson(userJson, User.class);
