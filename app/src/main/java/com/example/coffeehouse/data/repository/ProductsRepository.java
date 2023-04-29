@@ -1,4 +1,4 @@
-package com.example.coffeehouse.data.products.list;
+package com.example.coffeehouse.data.repository;
 
 import android.content.Context;
 

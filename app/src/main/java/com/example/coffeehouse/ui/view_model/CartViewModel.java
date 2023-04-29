@@ -1,21 +1,23 @@
 package com.example.coffeehouse.ui.view_model;
 
+import android.app.Application;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.coffeehouse.data.models.Product;
-import com.example.coffeehouse.data.products.list.ProductsRepository;
+import com.example.coffeehouse.data.repository.ProductsRepository;
 import com.example.coffeehouse.data.products.list.room.dao.ProductEntity;
-import com.example.coffeehouse.data.repository.UserRepository;
 
 import java.util.List;
 
-public class CartViewModel extends ViewModel {
-    private ProductsRepository productsRepository;
+public class CartViewModel extends AndroidViewModel {
+    private final ProductsRepository productsRepository;
 
-    public void setProductsRepository(ProductsRepository productsRepository){
-        this.productsRepository = productsRepository;
+    public CartViewModel(@NonNull Application application) {
+        super(application);
+        this.productsRepository = new ProductsRepository(application.getApplicationContext());
     }
 
     public void setProduct(String name, String price){

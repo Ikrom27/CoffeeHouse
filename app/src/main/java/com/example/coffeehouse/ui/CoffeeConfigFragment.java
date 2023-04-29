@@ -12,13 +12,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.coffeehouse.R;
-import com.example.coffeehouse.data.products.list.ProductsRepository;
+import com.example.coffeehouse.data.repository.ProductsRepository;
 import com.example.coffeehouse.ui.view_model.CartViewModel;
 
 public class CoffeeConfigFragment extends Fragment {
@@ -36,7 +35,6 @@ public class CoffeeConfigFragment extends Fragment {
 
         productsRepository = new ProductsRepository(getContext());
         cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
-        cartViewModel.setProductsRepository(productsRepository);
 
         TextView tvTitle = view.findViewById(R.id.tv_product_title);
         TextView tvPrice = view.findViewById(R.id.tv_total_price_value);
