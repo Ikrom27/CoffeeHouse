@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,7 +36,7 @@ public class MenuCoffeeFragment extends Fragment {
         coffeeAdapter = new CoffeeAdapter(coffeeViewModel);
 
         recyclerView.setAdapter(coffeeAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
         this.coffeeViewModel = new ViewModelProvider(this).get(MenuCoffeeViewModel.class);
         coffeeViewModel.getCoffeeList().observe(getViewLifecycleOwner(), coffees -> {

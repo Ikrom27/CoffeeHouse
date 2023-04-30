@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coffeehouse.R;
 import com.example.coffeehouse.data.models.Coffee;
-import com.example.coffeehouse.ui.main.menu.MenuCoffeeFragment;
 import com.example.coffeehouse.ui.state_holder.MenuCoffeeViewModel;
 
 import java.util.List;
@@ -30,7 +29,7 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeeView
     @Override
     public CoffeeAdapter.CoffeeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_categories_coffee, parent, false);
+                .inflate(R.layout.item_menu_product, parent, false);
         return new CoffeeViewHolder(view);
     }
 
@@ -41,7 +40,7 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeeView
     public void onBindViewHolder(@NonNull CoffeeAdapter.CoffeeViewHolder holder, int position) {
         Coffee coffee = coffeeList.get(position);
         holder.tvCoffeeName.setText(coffee.getName());
-        holder.tvCoffeePrice.setText(Double.toString(coffee.getPrice()));
+        holder.tvCoffeePrice.setText("$ " + Double.toString(coffee.getPrice()));
         holder.itemView.setOnClickListener(v -> {
             if (mListener != null) {
                 mListener.onClick(coffee, position);
