@@ -6,7 +6,7 @@
     app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.coffeehouse.ui.MainFragment"
+        android:name="com.example.coffeehouse.ui.main.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/coffeeConfigFragment"
-        android:name="com.example.coffeehouse.ui.CoffeeConfigFragment"
+        android:name="com.example.coffeehouse.ui.main.menu.CoffeeConfigFragment"
         android:label="fragment_coffee_config"
         tools:layout="@layout/fragment_coffee_config" >
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/cartFragment"
-        android:name="com.example.coffeehouse.ui.CartFragment"
+        android:name="com.example.coffeehouse.ui.main.menu.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" >
         <action

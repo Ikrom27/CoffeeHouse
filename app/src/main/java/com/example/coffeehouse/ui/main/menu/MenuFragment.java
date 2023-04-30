@@ -1,4 +1,4 @@
-package com.example.coffeehouse.ui;
+package com.example.coffeehouse.ui.main.menu;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;

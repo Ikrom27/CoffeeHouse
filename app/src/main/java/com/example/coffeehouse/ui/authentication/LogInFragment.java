@@ -1,12 +1,10 @@
-package com.example.coffeehouse.ui;
+package com.example.coffeehouse.ui.authentication;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
@@ -19,8 +17,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.coffeehouse.R;
-import com.example.coffeehouse.data.repository.UserRepository;
-import com.example.coffeehouse.ui.view_model.LoginViewModel;
+import com.example.coffeehouse.data.products.remote.repository.UserRepository;
+import com.example.coffeehouse.ui.main.MainActivity;
+import com.example.coffeehouse.ui.state_holder.LoginViewModel;
 
 public class LogInFragment extends Fragment {
     private final String TAG = "SignInFragment";

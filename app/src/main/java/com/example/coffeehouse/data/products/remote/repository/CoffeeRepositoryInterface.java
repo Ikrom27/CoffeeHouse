@@ -1,4 +1,4 @@
-package com.example.coffeehouse.data.repository;
+package com.example.coffeehouse.data.products.remote.repository;
 
 import androidx.lifecycle.LiveData;
 

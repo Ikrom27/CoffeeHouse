@@ -17,19 +17,24 @@ public class ProductEntity {
 
     @SerializedName("productPrice")
     private
-    int productPrice;
+    double productPrice;
 
     @SerializedName("productDescription")
     private
     String productDescription;
     static final String TABLE_NAME = "product_list_table";
 
-    public ProductEntity(String productName, int productPrice){
+    public ProductEntity(String productName, double productPrice){
         this.productName = productName;
-        this.setProductPrice(productPrice);
+        this.productPrice = productPrice;
     }
 
-    public int getProductPrice() {
+    @NonNull
+    public String getProductName() {
+        return productName;
+    }
+
+    public double getProductPrice() {
         return productPrice;
     }
 

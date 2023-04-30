@@ -23,7 +23,7 @@ public abstract class ProductRoomDataBase extends RoomDatabase {
                     INSTANCE = Room.databaseBuilder(
                             context.getApplicationContext(),
                             ProductRoomDataBase.class,
-                            "hackathon_database")
+                            "cart_database")
                             .build();
                 }
             }

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.example.coffeehouse.ui.WelcomeFragment"
+        android:name="com.example.coffeehouse.ui.authentication.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.example.coffeehouse.ui.LogInFragment"
+        android:name="com.example.coffeehouse.ui.authentication.LogInFragment"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_login" >
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.example.coffeehouse.ui.RegisterFragment"
+        android:name="com.example.coffeehouse.ui.authentication.RegisterFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_register" >
         <action

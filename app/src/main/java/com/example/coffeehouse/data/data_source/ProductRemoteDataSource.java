@@ -1,4 +1,4 @@
-package com.example.coffeehouse.data.products.list;
+package com.example.coffeehouse.data.data_source;
 
 import com.example.coffeehouse.data.models.Product;
 

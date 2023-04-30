@@ -1,4 +1,4 @@
-package com.example.coffeehouse.ui;
+package com.example.coffeehouse.ui.authentication;
 
 import static androidx.navigation.Navigation.findNavController;
 

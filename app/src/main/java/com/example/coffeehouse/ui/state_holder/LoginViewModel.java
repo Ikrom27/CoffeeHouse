@@ -1,10 +1,9 @@
-package com.example.coffeehouse.ui.view_model;
+package com.example.coffeehouse.ui.state_holder;
 
 import androidx.lifecycle.ViewModel;
-import android.content.SharedPreferences;
 
 import com.example.coffeehouse.data.models.User;
-import com.example.coffeehouse.data.repository.UserRepository;
+import com.example.coffeehouse.data.products.remote.repository.UserRepository;
 
 public class LoginViewModel extends ViewModel {
     private UserRepository userRepository;

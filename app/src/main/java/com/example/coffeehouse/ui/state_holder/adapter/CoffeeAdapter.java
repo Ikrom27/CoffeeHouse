@@ -1,4 +1,4 @@
-package com.example.coffeehouse.ui.view_model;
+package com.example.coffeehouse.ui.state_holder.adapter;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -11,13 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coffeehouse.R;
 import com.example.coffeehouse.data.models.Coffee;
-import com.example.coffeehouse.ui.MenuCoffeeFragment;
+import com.example.coffeehouse.ui.main.menu.MenuCoffeeFragment;
+import com.example.coffeehouse.ui.state_holder.MenuCoffeeViewModel;
 
 import java.util.List;
 
 public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeeViewHolder>{
     private List<Coffee> coffeeList;
-    private MenuCoffeeFragment.OnCoffeeClickListener mListener;
+    private OnCoffeeClickListener mListener;
 
     private MenuCoffeeViewModel viewModel;
 
@@ -30,7 +31,7 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeeView
     public CoffeeAdapter.CoffeeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_categories_coffee, parent, false);
-        return new CoffeeAdapter.CoffeeViewHolder(view);
+        return new CoffeeViewHolder(view);
     }
 
 
@@ -48,7 +49,11 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeeView
         });
     }
 
-    public void onItemClickListener(MenuCoffeeFragment.OnCoffeeClickListener listener){
+    public interface OnCoffeeClickListener{
+        void onClick(Coffee coffee, int position);
+    }
+
+    public void onItemClickListener(OnCoffeeClickListener listener){
         mListener = listener;
     }
 
@@ -63,7 +68,7 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeeView
         notifyDataSetChanged();
     }
 
-    class CoffeeViewHolder extends RecyclerView.ViewHolder {
+    static class CoffeeViewHolder extends RecyclerView.ViewHolder {
         public TextView tvCoffeeName;
         public TextView tvCoffeePrice;
 
@@ -72,8 +77,5 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeeView
             tvCoffeeName = itemView.findViewById(R.id.tv_product_name);
             tvCoffeePrice = itemView.findViewById(R.id.tv_product_price);
         }
-    }
-    public interface OnCoffeeClickListener{
-        void onClick(Coffee coffee, int position);
     }
 }

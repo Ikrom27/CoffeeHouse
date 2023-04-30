@@ -15,7 +15,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.coffeehouse.ui.MainActivity;
+import com.example.coffeehouse.ui.main.MainActivity;
 
 public class OrderStatusService extends Service {
     public OrderStatusService() {
