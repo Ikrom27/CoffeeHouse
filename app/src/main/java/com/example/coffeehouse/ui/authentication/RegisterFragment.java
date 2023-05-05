@@ -1,7 +1,10 @@
 package com.example.coffeehouse.ui.authentication;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -36,5 +39,23 @@ public class RegisterFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        EditText etEmail = view.findViewById(R.id.et_sign_up_email);
+        Intent intent = requireActivity().getIntent();
+
+        if (intent != null) {
+            String action = intent.getAction();
+            String type = intent.getType();
+            if (Intent.ACTION_SEND.equals(action) && type != null){
+                if (type.equalsIgnoreCase("text/plain")) {
+                    String emailText = intent.getStringExtra(Intent.EXTRA_TEXT);
+                    etEmail.setText(emailText);
+                }
+            }
+        }
     }
 }

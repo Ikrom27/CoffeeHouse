@@ -12,6 +12,7 @@ import com.example.coffeehouse.data.products.list.room.dao.ProductDao;
 import com.example.coffeehouse.data.products.list.room.dao.ProductEntity;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 
 public class RoomProductDataSource implements ProductLocalDataSource {
     private final ProductDao productDao;
@@ -27,7 +28,6 @@ public class RoomProductDataSource implements ProductLocalDataSource {
         return productDao.loadAllProducts();
     }
 
-    @SuppressLint("StaticFieldLeak")
     public void addProduct(Product product){
         productRoomDataBase.getQueryExecutor().execute(() -> {
             ProductEntity entity = new ProductEntity(product.getName(), product.getPrice());

@@ -1,29 +1,30 @@
 package com.example.coffeehouse.data.products.remote.repository;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.text.TextUtils;
 
-import com.example.coffeehouse.data.data_source.UserDataSource;
-import com.google.gson.Gson;
+import com.example.coffeehouse.data.data_source.UserLocalDataSourceImpl;
 
 
+import com.example.coffeehouse.data.data_source.UserRemoteDataSource;
 import com.example.coffeehouse.data.models.User;
 
 public class UserRepository {
-    private UserDataSource userDataSource;
+    private UserLocalDataSourceImpl userLocalDataSource;
+    private UserRemoteDataSource userRemoteDataSource;
+    private User user;
 
     public UserRepository(Context context) {
-        userDataSource = new UserDataSource(context);
+        userLocalDataSource = new UserLocalDataSourceImpl(context);
+    }
+
+    public void sync() {
     }
 
     public void saveUser(User user) {
-        //WRITE
-        userDataSource.saveUser(user);
+        userLocalDataSource.saveUser(user);
     }
 
     public User getUser() {
-        //READ
-        return userDataSource.getUser();
+        return userLocalDataSource.getUser();
     }
 }
