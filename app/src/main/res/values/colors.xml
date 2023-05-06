@@ -10,11 +10,12 @@
 
     <color name="primary_text">#181D2D</color>
     <color name="secondary_text">#AAAAAA</color>
+    <color name="dark_text">#001833</color>
 
     <color name="primary">#324A59</color>
     <color name="placeholder">#C1C7D0</color>
     
-    <color name="items_background">#F7F8FB</color>
+    <color name="items_background">#f8f9fa</color>
     <color name="stroke">#D8D8D8</color>
 
     <color name="separator_color">#F4F5F7</color>

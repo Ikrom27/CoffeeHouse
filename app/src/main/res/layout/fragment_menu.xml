@@ -5,11 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.menu.MenuFragment">
-
     <LinearLayout
         android:id="@+id/categories_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
@@ -62,63 +61,21 @@
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_buttons"
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tl_menu_tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/textView2"
-            android:layout_marginTop="18dp"
-            android:paddingVertical="2dp">
+            app:tabTextAppearance="@style/TabSelectedText"
+            app:tabIndicatorColor="@color/primary"
+            app:tabTextColor="@color/secondary_text"
+            app:tabSelectedTextColor="@color/primary"/>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_coffee"
-                android:layout_width="90dp"
-                android:layout_height="36dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="@string/coffee"
-                android:textSize="14sp"
-                android:background="@drawable/btn_primary"
-                android:textColor="@color/white"
-                style="@style/stdButton"/>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_snacks"
-                android:layout_width="90dp"
-                android:layout_height="36dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btn_dessert"
-                app:layout_constraintStart_toEndOf="@+id/btn_coffee"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/stdButton"
-                android:text="@string/Snacks"
-                android:textSize="14sp"
-                android:background="@drawable/btn_secondary"
-                android:textColor="@color/primary_text"/>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_dessert"
-                android:layout_width="92dp"
-                android:layout_height="36dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="@string/Dessert"
-                android:textSize="14sp"
-                style="@style/stdButton"
-                android:background="@drawable/btn_secondary"
-                android:textColor="@color/primary_text"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fr_categories_container"
+        <androidx.viewpager2.widget.ViewPager2
+            android:layout_marginTop="16dp"
+            android:id="@+id/vp2_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="18dp"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/categories_navigation"/>
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </FrameLayout>

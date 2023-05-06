@@ -4,4 +4,10 @@
         <item name="colorAccent">@color/error</item>
         <item name="colorControlActivated">@color/error</item>
     </style>
+
+    <style name="TabSelectedText" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>

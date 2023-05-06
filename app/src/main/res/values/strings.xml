@@ -25,8 +25,8 @@
 
     <string name="categories">Categories</string>
     <string name="coffee">Coffee</string>
-    <string name="Snacks">Snacks</string>
-    <string name="Dessert">Dessert</string>
+    <string name="snacks">Snacks</string>
+    <string name="dessert">Dessert</string>
 
     <string name="my_order">My Order</string>
     <string name="on_going">On going</string>
