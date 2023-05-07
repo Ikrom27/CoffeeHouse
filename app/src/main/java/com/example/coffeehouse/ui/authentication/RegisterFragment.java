@@ -28,6 +28,7 @@ public class RegisterFragment extends Fragment {
     private EditText userPhone;
     private EditText userEmail;
     private EditText userPassword;
+    private EditText userConfirm;
 
 
     @SuppressLint("MissingInflatedId")
@@ -39,6 +40,7 @@ public class RegisterFragment extends Fragment {
         userPhone = view.findViewById(R.id.et_phone_number);
         userEmail = view.findViewById(R.id.et_email);
         userPassword = view.findViewById(R.id.et_password);
+        userConfirm = view.findViewById(R.id.et_password_confirm);
         registerViewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
         return view;
     }
@@ -75,16 +77,22 @@ public class RegisterFragment extends Fragment {
             }
         });
 
+        registerViewModel.getIsValidConfirm().observe(getViewLifecycleOwner(), validConfirm -> {
+            if (!validConfirm){
+                String errorText = requireContext().getString(R.string.confirm_error);
+                userConfirm.setError(errorText);
+            }
+        });
 
         //FORWARD BUTTON
         ImageButton buttonForward = (ImageButton) view.findViewById(R.id.bt_forward_signup);
-        EditText email = (EditText) view.findViewById(R.id.et_email);
         buttonForward.setOnClickListener(view1 -> {
             Log.d(TAG, "onClick handle");
             registerViewModel.setUserName(userName.getText().toString());
             registerViewModel.setUserPhone(userPhone.getText().toString());
             registerViewModel.setUserEmail(userEmail.getText().toString());
             registerViewModel.setUserPassword(userPassword.getText().toString());
+            registerViewModel.setPasswordConfirm(userConfirm.getText().toString());
             if (registerViewModel.registerUser()){
                 Navigation.findNavController(view1)
                         .navigate(R.id.action_signUpFragment_to_signInFragment);

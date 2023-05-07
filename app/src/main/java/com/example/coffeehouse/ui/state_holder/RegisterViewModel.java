@@ -10,6 +10,7 @@ import com.example.coffeehouse.data.models.User;
 import com.example.coffeehouse.data.repository.UserRepository;
 import com.example.coffeehouse.data.repository.impl.UserRepositoryImpl;
 
+import java.util.Objects;
 import java.util.concurrent.Executors;
 
 public class RegisterViewModel extends AndroidViewModel {
@@ -19,6 +20,7 @@ public class RegisterViewModel extends AndroidViewModel {
     private MutableLiveData<Boolean> isValidPhone;
     private MutableLiveData<Boolean> isValidEmail;
     private MutableLiveData<Boolean> isValidPassword;
+    private MutableLiveData<Boolean> isValidConfirm;
     private final String VALID_NAME = "[A-Z][a-z]+";
     private final String VALID_PHONE = "^\\+\\d{10,15}$";
     private final String VALID_EMAIL = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
@@ -28,11 +30,12 @@ public class RegisterViewModel extends AndroidViewModel {
     public RegisterViewModel(@NonNull Application application) {
         super(application);
         userRepository = new UserRepositoryImpl(application);
-        user = userRepository.getUser();
+        user = new MutableLiveData<>(new User());
         isValidName = new MutableLiveData<>(true);
         isValidPhone = new MutableLiveData<>(true);
         isValidEmail = new MutableLiveData<>(true);
         isValidPassword = new MutableLiveData<>(true);
+        isValidConfirm = new MutableLiveData<>(true);
     }
 
     public void setUserName(String userName){
@@ -63,37 +66,42 @@ public class RegisterViewModel extends AndroidViewModel {
         }
     }
 
+    public void setPasswordConfirm(String password){
+        checkConfirmPassword(password);
+    }
+
     public boolean registerUser(){
-        if (isValidName.getValue() && isValidPhone.getValue() &&
-            isValidEmail.getValue() && isValidPassword.getValue()){
-            Executors.newSingleThreadExecutor().execute(() -> userRepository.setUser(user.getValue()));
+        if (Boolean.TRUE.equals(isValidName.getValue()) &&
+            Boolean.TRUE.equals(isValidPhone.getValue()) &&
+            Boolean.TRUE.equals(isValidEmail.getValue()) &&
+            Boolean.TRUE.equals(isValidPassword.getValue()) &&
+            Boolean.TRUE.equals(isValidConfirm.getValue())){
+            userRepository.setUser(user.getValue());
             return true;
         }
         return false;
     }
 
     private void checkValidName(String name) {
-        // Имя должно состоять только из букв и начинаться с заглавной буквы
         getIsValidName().setValue(name.matches(VALID_NAME));
     }
 
     private void checkValidPhone(String phone) {
-        // Номер телефона должен начинаться с + и содержать от 10 до 15 цифр
         getIsValidPhone().setValue(phone.matches(VALID_PHONE));
     }
 
     private void checkValidEmail(String email) {
-        // Адрес электронной почты должен соответствовать стандарту RFC 5322
-        // https://emailregex.com/
         getIsValidEmail().setValue(email
                 .matches(VALID_EMAIL));
     }
 
     private void checkValidPassword(String password) {
-        // Пароль должен содержать не менее 8 символов, включая хотя бы одну заглавную букву,
-        // одну строчную букву и одну цифру
         getIsValidPassword().setValue(password
                 .matches(VALID_PASSWORD));
+    }
+
+    private void checkConfirmPassword(String password){
+        getIsValidConfirm().setValue(Objects.equals(password, user.getValue().getPassword()));
     }
 
     public MutableLiveData<Boolean> getIsValidName() {
@@ -110,5 +118,8 @@ public class RegisterViewModel extends AndroidViewModel {
 
     public MutableLiveData<Boolean> getIsValidPassword() {
         return isValidPassword;
+    }
+    public MutableLiveData<Boolean> getIsValidConfirm() {
+        return isValidConfirm;
     }
 }

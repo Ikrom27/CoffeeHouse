@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_bold"
-        android:text="@string/profile_name"
+        android:text="@string/add_title"
         android:textColor="@color/primary_text"
         android:textSize="14sp"
         android:layout_marginTop="20dp"/>

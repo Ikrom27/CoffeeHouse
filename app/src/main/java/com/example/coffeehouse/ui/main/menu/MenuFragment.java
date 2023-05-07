@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.coffeehouse.R;
 import com.example.coffeehouse.ui.state_holder.MenuViewModel;
@@ -21,42 +23,51 @@ import com.example.coffeehouse.ui.state_holder.adapter.MenuFragmentStateAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MenuFragment extends Fragment {
     private final String TAG = "CategoriesFragment";
-    private final Fragment coffeeFragment = new MenuCoffeeFragment();
 
     private TabLayout tabLayout;
     private ViewPager2 viewPager2;
+    private TextView tvUserName;
+    private MenuViewModel menuViewModel;
 
-    @SuppressLint("ResourceAsColor")
+    private String[] TAB_TITLES;
+    private final List<Fragment> FRAGMENTS = new ArrayList<Fragment>() {{
+        add(new MenuCoffeeFragment());
+        add(new SnackFragment());
+        add(new DessertFragment());
+    }};
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
 
+        TAB_TITLES = new String[]{getString(R.string.coffee), getString(R.string.snacks), getString(R.string.dessert)};
+
+        //SET TABS
         tabLayout = view.findViewById(R.id.tl_menu_tabs);
         viewPager2 = view.findViewById(R.id.vp2_container);
-
         MenuFragmentStateAdapter adapter = new MenuFragmentStateAdapter(this);
-        MenuViewModel viewModel = new ViewModelProvider(this).get(MenuViewModel.class);
-        adapter.setFragments(viewModel.getFragments());
+        adapter.setFragments(FRAGMENTS);
         viewPager2.setAdapter(adapter);
-
         new TabLayoutMediator(tabLayout, viewPager2,
-                (tab, position) -> {
-                    switch (position) {
-                        case 0:
-                            tab.setText(getString(R.string.coffee));
-                            break;
-                        case 1:
-                            tab.setText(getString(R.string.snacks));
-                            break;
-                        case 2:
-                            tab.setText(getString(R.string.dessert));
-                            break;
-                    }
-                }).attach();
+                (tab, position) -> tab.setText(TAB_TITLES[position])).attach();
 
+        //SET PROFILE NAME
+        tvUserName = view.findViewById(R.id.tv_profile_name);
+        menuViewModel = new ViewModelProvider(this).get(MenuViewModel.class);
+        menuViewModel.getUser().observe(getViewLifecycleOwner(), user -> {
+            if (user == null){
+                requireActivity().finish();
+            }
+            else{
+                tvUserName.setText(user.getName());
+            }
+        });
 
         return view;
     }

@@ -11,7 +11,6 @@ import java.util.List;
 
 public class MenuCoffeeViewModel extends ViewModel {
     private final CoffeeRepository coffeeRepository;
-    private LiveData<List<Coffee>> coffeeList;
 
     public MenuCoffeeViewModel() {
         coffeeRepository = new CoffeeRepositoryImpl();
