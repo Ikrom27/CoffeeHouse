@@ -11,9 +11,9 @@
         tools:layout="@layout/fragment_menu" />
     <fragment
         android:id="@+id/history"
-        android:name="com.example.coffeehouse.ui.main.history.HistoryFragment"
+        android:name="com.example.coffeehouse.ui.main.orders.OrderFragment"
         android:label="fragment_history"
-        tools:layout="@layout/fragment_history" />
+        tools:layout="@layout/fragment_order" />
     <fragment
         android:id="@+id/profile"
         android:name="com.example.coffeehouse.ui.main.profile.ProfileFragment"

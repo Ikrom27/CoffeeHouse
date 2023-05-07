@@ -60,4 +60,6 @@
     <string name="confirm_password">Confirm password</string>
     <string name="confirm_error">Password mismatch!</string>
     <string name="user_phone">Phone number</string>
+    <string name="no_order">No orders</string>
+    <string name="no_order_description">You haven\'t had any orders yet, let\'s start shopping!</string>
 </resources>
