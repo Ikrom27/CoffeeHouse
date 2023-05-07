@@ -1,7 +1,7 @@
-package com.example.coffeehouse.data.products.list.room.dao;
+package com.example.coffeehouse.data.base.products.room.dao;
 
 
-import static com.example.coffeehouse.data.products.list.room.dao.ProductEntity.TABLE_NAME;
+import static com.example.coffeehouse.data.base.products.room.dao.ProductEntity.TABLE_NAME;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;

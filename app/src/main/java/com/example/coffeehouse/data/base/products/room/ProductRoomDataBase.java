@@ -1,4 +1,4 @@
-package com.example.coffeehouse.data.base;
+package com.example.coffeehouse.data.base.products.room;
 
 
 import android.content.Context;
@@ -7,8 +7,8 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.coffeehouse.data.products.list.room.dao.ProductDao;
-import com.example.coffeehouse.data.products.list.room.dao.ProductEntity;
+import com.example.coffeehouse.data.base.products.room.dao.ProductDao;
+import com.example.coffeehouse.data.base.products.room.dao.ProductEntity;
 
 @Database(entities = {ProductEntity.class}, version = 1)
 public abstract class ProductRoomDataBase extends RoomDatabase {

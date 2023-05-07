@@ -3,18 +3,18 @@ package com.example.coffeehouse.ui.state_holder;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.coffeehouse.data.products.remote.repository.CoffeeRepository;
-import com.example.coffeehouse.data.products.remote.repository.CoffeeRepositoryInterface;
+import com.example.coffeehouse.data.repository.impl.CoffeeRepositoryImpl;
+import com.example.coffeehouse.data.repository.CoffeeRepository;
 import com.example.coffeehouse.data.models.Coffee;
 
 import java.util.List;
 
 public class MenuCoffeeViewModel extends ViewModel {
-    private final CoffeeRepositoryInterface coffeeRepository;
+    private final CoffeeRepository coffeeRepository;
     private LiveData<List<Coffee>> coffeeList;
 
     public MenuCoffeeViewModel() {
-        coffeeRepository = new CoffeeRepository();
+        coffeeRepository = new CoffeeRepositoryImpl();
     }
 
     public LiveData<List<Coffee>> getCoffeeList() {

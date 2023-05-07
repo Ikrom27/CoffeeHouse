@@ -18,7 +18,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.coffeehouse.R;
-import com.example.coffeehouse.data.products.remote.repository.UserRepository;
 import com.example.coffeehouse.ui.main.MainActivity;
 import com.example.coffeehouse.ui.state_holder.LoginViewModel;
 
@@ -29,9 +28,7 @@ public class LogInFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        UserRepository userRepository = new UserRepository(requireActivity());
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
-        loginViewModel.setUserRepository(userRepository);
 
     }
     @Override
@@ -40,10 +37,8 @@ public class LogInFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
         EditText edEmail = view.findViewById(R.id.edit_text_email);
-        EditText edPassword = view.findViewById(R.id.edit_text_password);
+        EditText edPassword = view.findViewById(R.id.et_password);
 
-        edEmail.setText(loginViewModel.getEmail());
-        edPassword.setText(loginViewModel.getPassword());
 
         ImageButton forwardButton = view.findViewById(R.id.bt_forward);
         forwardButton.setOnClickListener(view1 -> {
@@ -54,7 +49,6 @@ public class LogInFragment extends Fragment {
                 return;
             }
             Log.d(TAG, email + " " + password);
-            loginViewModel.setUser(email, password);
 
             Intent intent = new Intent(requireActivity(), MainActivity.class);
             startActivity(intent);

@@ -73,7 +73,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/text_view_welcome" />
 
             <EditText
-                android:id="@+id/edit_text_password"
+                android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
@@ -99,7 +99,7 @@
                 android:layout_marginTop="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edit_text_password" />
+                app:layout_constraintTop_toBottomOf="@+id/et_password" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

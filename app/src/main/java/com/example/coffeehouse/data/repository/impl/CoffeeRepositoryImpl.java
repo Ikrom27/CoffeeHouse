@@ -1,17 +1,18 @@
-package com.example.coffeehouse.data.products.remote.repository;
+package com.example.coffeehouse.data.repository.impl;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.coffeehouse.data.data_source.CoffeeArrayDataSource;
+import com.example.coffeehouse.data.data_source.impl.CoffeeArrayDataSource;
 import com.example.coffeehouse.data.models.Coffee;
+import com.example.coffeehouse.data.repository.CoffeeRepository;
 
 import java.util.List;
 
-public class CoffeeRepository implements CoffeeRepositoryInterface {
+public class CoffeeRepositoryImpl implements CoffeeRepository {
     private final CoffeeArrayDataSource coffeeArrayDataSource;
 
-    public CoffeeRepository() {
+    public CoffeeRepositoryImpl() {
         coffeeArrayDataSource = CoffeeArrayDataSource.getInstance();
     }
 

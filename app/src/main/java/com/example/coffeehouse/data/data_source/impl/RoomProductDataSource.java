@@ -1,18 +1,16 @@
-package com.example.coffeehouse.data.data_source;
+package com.example.coffeehouse.data.data_source.impl;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.coffeehouse.data.base.ProductRoomDataBase;
-import com.example.coffeehouse.data.models.Product;
+import com.example.coffeehouse.data.base.products.room.ProductRoomDataBase;
 import com.example.coffeehouse.data.data_source.ProductLocalDataSource;
-import com.example.coffeehouse.data.products.list.room.dao.ProductDao;
-import com.example.coffeehouse.data.products.list.room.dao.ProductEntity;
+import com.example.coffeehouse.data.models.Product;
+import com.example.coffeehouse.data.base.products.room.dao.ProductDao;
+import com.example.coffeehouse.data.base.products.room.dao.ProductEntity;
 
 import java.util.List;
-import java.util.concurrent.ExecutorService;
 
 public class RoomProductDataSource implements ProductLocalDataSource {
     private final ProductDao productDao;

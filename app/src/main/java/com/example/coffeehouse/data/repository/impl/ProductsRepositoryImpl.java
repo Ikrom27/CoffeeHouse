@@ -1,19 +1,19 @@
-package com.example.coffeehouse.data.products.remote.repository;
+package com.example.coffeehouse.data.repository.impl;
 
 import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
 import com.example.coffeehouse.data.models.Product;
-import com.example.coffeehouse.data.data_source.RoomProductDataSource;
-import com.example.coffeehouse.data.products.list.room.dao.ProductEntity;
+import com.example.coffeehouse.data.data_source.impl.RoomProductDataSource;
+import com.example.coffeehouse.data.base.products.room.dao.ProductEntity;
 
 import java.util.List;
 
-public class ProductsRepository {
+public class ProductsRepositoryImpl {
     private final RoomProductDataSource roomProductDataSource;
 
-    public ProductsRepository(Context context){
+    public ProductsRepositoryImpl(Context context){
         this.roomProductDataSource = new RoomProductDataSource(context);
     }
     public LiveData<List<ProductEntity>> getProductList(){
