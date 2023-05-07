@@ -68,5 +68,8 @@ public class LogInFragment extends Fragment {
                 edPassword.setError(wrongPassword);
             }
         });
+        ImageButton btnBackward = view.findViewById(R.id.bt_back_light);
+        btnBackward.setOnClickListener(view12 -> Navigation.findNavController(view12)
+                .navigateUp());
     }
 }

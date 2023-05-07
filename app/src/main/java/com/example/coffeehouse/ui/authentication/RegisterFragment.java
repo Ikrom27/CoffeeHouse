@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -95,8 +96,11 @@ public class RegisterFragment extends Fragment {
             registerViewModel.setPasswordConfirm(userConfirm.getText().toString());
             if (registerViewModel.registerUser()){
                 Navigation.findNavController(view1)
-                        .navigate(R.id.action_signUpFragment_to_signInFragment);
+                        .navigate(R.id.action_signUpFragment_to_mainActivity);
             }
         });
+
+        ImageButton btnBackward = view.findViewById(R.id.bt_back_light);
+        btnBackward.setOnClickListener(view1 -> Navigation.findNavController(view1).navigateUp());
     }
 }
