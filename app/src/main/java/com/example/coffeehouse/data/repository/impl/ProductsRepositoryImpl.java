@@ -27,4 +27,8 @@ public class ProductsRepositoryImpl {
     public void addProduct(Product product){
         roomProductDataSource.addProduct(product);
     }
+
+    public void clear(){
+        roomProductDataSource.deleteAllProducts();
+    }
 }

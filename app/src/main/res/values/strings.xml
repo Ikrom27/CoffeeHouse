@@ -62,4 +62,7 @@
     <string name="user_phone">Phone number</string>
     <string name="no_order">No orders</string>
     <string name="no_order_description">You haven\'t had any orders yet, let\'s start shopping!</string>
+    <string name="oops">Ooops...</string>
+    <string name="region_eror">Sorry, this feature is not available in your county. Empty your trash and come back later.</string>
+    <string name="clear">clear</string>
 </resources>

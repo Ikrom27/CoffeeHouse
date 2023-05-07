@@ -27,4 +27,8 @@ public class CartViewModel extends AndroidViewModel {
     public LiveData<List<ProductEntity>> getProductList(){
         return productsRepositoryImpl.getProductList();
     }
+
+    public void clear(){
+        productsRepositoryImpl.clear();
+    }
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cart_navigation_graph"
+    app:startDestination="@id/cartRecycleViewFragment">
+
+    <fragment
+        android:id="@+id/cartRecycleViewFragment"
+        android:name="com.example.coffeehouse.ui.main.cart.CartRecycleViewFragment"
+        android:label="fragment_cart_recycle_view"
+        tools:layout="@layout/fragment_cart_recycle_view" >
+        <action
+            android:id="@+id/action_cartRecycleViewFragment_to_oopsFragment"
+            app:destination="@id/oopsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/oopsFragment"
+        android:name="com.example.coffeehouse.ui.main.cart.OopsFragment"
+        android:label="fragment_oops"
+        tools:layout="@layout/fragment_oops" />
+</navigation>

@@ -36,4 +36,8 @@ public class RoomProductDataSource implements ProductLocalDataSource {
     public LiveData<ProductEntity> getProduct(String name){
         return productDao.getProduct(name);
     }
+
+    public void deleteAllProducts(){
+        productRoomDataBase.getQueryExecutor().execute(productDao::deleteAllProducts);
+    }
 }

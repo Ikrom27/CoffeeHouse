@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/no_order_graph"
+    app:startDestination="@id/noOrdersFragment">
+
+    <fragment
+        android:id="@+id/noOrdersFragment"
+        android:name="com.example.coffeehouse.ui.main.cart.NoOrdersFragment"
+        android:label="fragment_no_orders"
+        tools:layout="@layout/fragment_no_orders" />
+</navigation>
