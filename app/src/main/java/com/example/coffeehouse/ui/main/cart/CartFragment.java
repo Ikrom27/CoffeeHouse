@@ -11,6 +11,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.example.coffeehouse.R;
 import com.example.coffeehouse.ui.state_holder.CartViewModel;
@@ -38,5 +39,8 @@ public class CartFragment extends Fragment {
                 Navigation.findNavController(view.findViewById(R.id.fr_cart_container)).setGraph(R.navigation.navgraph_cart);
             }
         });
+
+        ImageButton btnBackward = view.findViewById(R.id.bt_back_light);
+        btnBackward.setOnClickListener(view1 -> Navigation.findNavController(view1).navigateUp());
     }
 }

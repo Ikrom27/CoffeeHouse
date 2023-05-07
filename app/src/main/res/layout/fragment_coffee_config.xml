@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.menu.CoffeeConfigFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginHorizontal="25dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ImageButton

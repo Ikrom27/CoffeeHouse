@@ -35,5 +35,6 @@ public class MainFragment extends Fragment {
         BottomNavigationView navView = view.findViewById(R.id.bottomNavigationView);
         NavController navController = Navigation.findNavController(view.findViewById(R.id.fr_menu));
         NavigationUI.setupWithNavController(navView, navController);
+
     }
 }
