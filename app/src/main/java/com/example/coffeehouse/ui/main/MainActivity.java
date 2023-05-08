@@ -1,6 +1,7 @@
 package com.example.coffeehouse.ui.main;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Database;
@@ -13,6 +14,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toast.makeText(getApplicationContext(),
+                "Server not fount. Offline mod",
+                Toast.LENGTH_SHORT).show();
     }
 
     @Override
