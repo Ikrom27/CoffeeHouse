@@ -29,7 +29,7 @@ public class CartRepositoryImpl {
         roomCartDataSource.addCart(cart);
     }
 
-    public int getTotalPrice(){
+    public LiveData<Integer>  getTotalPrice(){
         return roomCartDataSource.getTotalPrice();
     }
 

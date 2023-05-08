@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,6 +45,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         Cart cart = cartList.get(position);
         holder.tvProductName.setText(cart.getProductName());
         holder.tvProductPrice.setText(Double.toString(cart.getProductPrice()));
+        holder.ivProductImage.setImageResource(Integer.parseInt(cart.getImagePath()));
     }
 
 
@@ -55,9 +57,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     static class CartViewHolder extends RecyclerView.ViewHolder {
         public TextView tvProductName;
         public TextView tvProductPrice;
+        public ImageView ivProductImage;
 
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
+            ivProductImage = itemView.findViewById(R.id.iv_product_image);
             tvProductName = itemView.findViewById(R.id.tv_product_name);
             tvProductPrice = itemView.findViewById(R.id.tv_product_price);
         }

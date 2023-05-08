@@ -3,6 +3,8 @@ package com.example.coffeehouse.data.data_source.impl;
 import android.content.Context;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import com.example.coffeehouse.data.base.products.room.UserCartRoomDataBase;
 import com.example.coffeehouse.data.base.products.room.dao.CartDao;
 import com.example.coffeehouse.data.models.Cart;
@@ -25,8 +27,12 @@ public class RoomCartDataSource {
         return cartDao.getCartList();
     }
 
-    public int getTotalPrice(){
-        return cartDao.getTotalPrice();
+    public MutableLiveData<Integer>  getTotalPrice(){
+        MutableLiveData<Integer> totalPrice = new MutableLiveData<>(0);
+        userCartRoomDataBase.getQueryExecutor().execute(()-> {
+            totalPrice.postValue(cartDao.getTotalPrice());
+        });
+        return totalPrice;
     }
 
     public void clear(){

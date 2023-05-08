@@ -51,4 +51,17 @@ public interface ProductDao {
 
     @Query("SELECT * FROM desserts")
     LiveData<List<Dessert>> getAllDesserts();
+
+    @Query("SELECT * FROM products WHERE name = :productName")
+    LiveData<Product> getProductByName(String productName);
+
+    @Query("SELECT * FROM coffees WHERE name = :productName")
+    LiveData<Coffee> getCoffeeByName(String productName);
+
+    @Query("SELECT * FROM snacks WHERE name = :productName")
+    LiveData<Snack> getSnackByName(String productName);
+
+    @Query("SELECT * FROM desserts WHERE name = :productName")
+    LiveData<Dessert> getDessertByName(String productName);
+
 }

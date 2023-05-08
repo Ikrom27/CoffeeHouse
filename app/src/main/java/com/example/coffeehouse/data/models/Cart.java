@@ -9,17 +9,26 @@ public class Cart {
     @PrimaryKey (autoGenerate = true)
     private int cartId;
     private String productName;
-    private float productPrice;
+    private double productPrice;
     private String productType;
+    private String imagePath;
 
     public Cart(){
-        
+
     }
 
     public Cart(String name, float price,String type){
         this.setProductName(name);
         this.setProductType(type);
         this.setProductPrice(price);
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public int getCartId() {
@@ -46,11 +55,11 @@ public class Cart {
         this.productType = productType;
     }
 
-    public float getProductPrice() {
+    public double getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(float productPrice) {
+    public void setProductPrice(double productPrice) {
         this.productPrice = productPrice;
     }
 }

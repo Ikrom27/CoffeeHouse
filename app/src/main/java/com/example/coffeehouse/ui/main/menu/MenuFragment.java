@@ -1,6 +1,5 @@
 package com.example.coffeehouse.ui.main.menu;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,9 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.coffeehouse.R;
+import com.example.coffeehouse.ui.main.menu.categories.CoffeeFragment;
+import com.example.coffeehouse.ui.main.menu.categories.DessertFragment;
+import com.example.coffeehouse.ui.main.menu.categories.SnackFragment;
 import com.example.coffeehouse.ui.state_holder.MenuViewModel;
 import com.example.coffeehouse.ui.state_holder.adapter.MenuFragmentStateAdapter;
 import com.google.android.material.tabs.TabLayout;
@@ -36,7 +37,7 @@ public class MenuFragment extends Fragment {
 
     private String[] TAB_TITLES;
     private final List<Fragment> FRAGMENTS = new ArrayList<Fragment>() {{
-        add(new MenuCoffeeFragment());
+        add(new CoffeeFragment());
         add(new SnackFragment());
         add(new DessertFragment());
     }};

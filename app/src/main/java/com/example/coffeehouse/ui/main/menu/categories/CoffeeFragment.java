@@ -1,4 +1,4 @@
-package com.example.coffeehouse.ui.main.menu;
+package com.example.coffeehouse.ui.main.menu.categories;
 
 import android.os.Bundle;
 
@@ -18,7 +18,7 @@ import com.example.coffeehouse.ui.state_holder.adapter.CoffeeAdapter;
 import com.example.coffeehouse.ui.state_holder.MenuCoffeeViewModel;
 
 
-public class MenuCoffeeFragment extends Fragment {
+public class CoffeeFragment extends Fragment {
     private final String TAG = "CategoriesCoffeeFragment";
     private RecyclerView recyclerView;
     private CoffeeAdapter productAdapter;
@@ -41,8 +41,10 @@ public class MenuCoffeeFragment extends Fragment {
             productAdapter.onItemClickListener((coffee, position) -> {
                 Log.d(TAG, "Item click handle");
                 Bundle bundle = new Bundle();
-                bundle.putString("coffee_name", coffee.getName());
-                bundle.putString("coffee_price", Double.toString(coffee.getPrice()));
+                bundle.putString("product_name", coffee.getName());
+                bundle.putDouble("product_price", coffee.getPrice());
+                bundle.putString("product_type", "Coffee");
+                bundle.putString("product_image", coffee.getImage());
                 Navigation.findNavController(requireActivity(), R.id.fragment_main_menu)
                         .navigate(R.id.action_mainFragment_to_coffeeConfigFragment, bundle);
             });

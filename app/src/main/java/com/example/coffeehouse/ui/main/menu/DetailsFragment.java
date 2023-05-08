@@ -15,12 +15,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.coffeehouse.R;
 import com.example.coffeehouse.ui.state_holder.CartViewModel;
 
-public class CoffeeConfigFragment extends Fragment {
+public class DetailsFragment extends Fragment {
     private String TAG = "CoffeeConfigFragment";
     private CartViewModel cartViewModel;
 
@@ -33,23 +34,32 @@ public class CoffeeConfigFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_coffee_config, container, false);
 
         cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
-
         TextView tvTitle = view.findViewById(R.id.tv_product_title);
         TextView tvPrice = view.findViewById(R.id.tv_total_price_value);
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            String productName = bundle.getString("coffee_name");
-            String productPrice = bundle.getString("coffee_price");
-            Log.d(TAG, productName + " " + productPrice);
-            tvTitle.setText(productName);
-            tvPrice.setText("$" + productPrice);
-        }
+        ImageView imageView = view.findViewById(R.id.tv_product_image);
 
         Button btToCart = view.findViewById(R.id.button);
-        btToCart.setOnClickListener(view1 -> {
-            assert bundle != null;
-            cartViewModel.addToCart(bundle.getString("coffee_name"), 2.0F, "Coffee");
-        });
+
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            String productName = bundle.getString("product_name");
+            double productPrice = bundle.getDouble("product_price");
+            String productType = bundle.getString("product_type");
+            String productImage = bundle.getString("product_image");
+            Log.d("IC", productImage);
+            Log.d("IC", String.valueOf(R.drawable.ic_snacks));
+            Log.d("IC", String.valueOf(R.drawable.ic_dessert));
+            Log.d("IC", String.valueOf(R.drawable.ic_product));
+            imageView.setImageResource(Integer.parseInt(productImage));
+            tvTitle.setText(productName);
+            tvPrice.setText("$" + productPrice);
+            btToCart.setOnClickListener(view1 -> {
+                cartViewModel.addToCart(productName,
+                                        (float) productPrice,
+                                        productType,
+                                        productImage);
+            });
+        }
         return view;
     }
 

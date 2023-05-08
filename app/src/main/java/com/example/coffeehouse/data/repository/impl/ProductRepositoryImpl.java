@@ -28,7 +28,19 @@ public class ProductRepositoryImpl implements ProductRepository {
     public void refreshData(){
         localDataSource.addCoffeeList(remoteDataSource.getCoffees());
         localDataSource.addSnackList(remoteDataSource.getSnacks());
-        localDataSource.addDesseretList(remoteDataSource.getDesserts());
+        localDataSource.addDessertList(remoteDataSource.getDesserts());
+    }
+
+    public LiveData<Coffee> getCoffeeByName(String name){
+        return localDataSource.getCoffeeByName(name);
+    }
+
+    public LiveData<Snack> getSnackByName(String name){
+        return localDataSource.getSnackByName(name);
+    }
+
+    public LiveData<Dessert> getDessertByName(String name){
+        return localDataSource.getDessertByName(name);
     }
 
     public LiveData<List<Coffee>> getCoffeeList(){

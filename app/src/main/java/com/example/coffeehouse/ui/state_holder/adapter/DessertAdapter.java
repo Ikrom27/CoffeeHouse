@@ -1,9 +1,11 @@
 package com.example.coffeehouse.ui.state_holder.adapter;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,6 +34,8 @@ public class DessertAdapter extends RecyclerView.Adapter<DessertAdapter.DessertV
         Dessert dessert = dessertList.get(position);
         holder.tvProductName.setText(dessert.getName());
         holder.tvProductPrice.setText("$ " + Double.toString(dessert.getPrice()));
+        Log.d("IC", Integer.toString(R.drawable.ic_dessert));
+        holder.imProductImage.setImageResource(R.drawable.ic_dessert);
         holder.itemView.setOnClickListener(v -> {
             if (clickListener != null){
                 clickListener.onClick(dessert, position);
@@ -64,9 +68,11 @@ public class DessertAdapter extends RecyclerView.Adapter<DessertAdapter.DessertV
     public static class DessertViewHolder extends RecyclerView.ViewHolder{
         public TextView tvProductName;
         public TextView tvProductPrice;
+        public ImageView imProductImage;
 
         public DessertViewHolder(@NonNull View itemView) {
             super(itemView);
+            imProductImage = itemView.findViewById(R.id.iv_product_image);
             tvProductName = itemView.findViewById(R.id.tv_product_name);
             tvProductPrice = itemView.findViewById(R.id.tv_product_price);
         }

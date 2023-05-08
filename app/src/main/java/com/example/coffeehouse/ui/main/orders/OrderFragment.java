@@ -10,9 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.coffeehouse.R;
-import com.example.coffeehouse.ui.main.menu.DessertFragment;
-import com.example.coffeehouse.ui.main.menu.MenuCoffeeFragment;
-import com.example.coffeehouse.ui.main.menu.SnackFragment;
 import com.example.coffeehouse.ui.state_holder.adapter.MenuFragmentStateAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;

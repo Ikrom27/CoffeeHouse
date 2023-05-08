@@ -1,4 +1,4 @@
-package com.example.coffeehouse.ui.main.menu;
+package com.example.coffeehouse.ui.main.menu.categories;
 
 import android.os.Bundle;
 
@@ -39,11 +39,14 @@ public class DessertFragment extends Fragment {
 
         dessertViewModel.getDessertList().observe(getViewLifecycleOwner(), snacks ->
                 dessertAdapter.setDessertList(snacks));
-        dessertAdapter.onItemClickListener((coffee, position) -> {
+        dessertAdapter.onItemClickListener((dessert, position) -> {
             Log.d(TAG, "Item click handle");
             Bundle bundle = new Bundle();
-            bundle.putString("coffee_name", coffee.getName());
-            bundle.putString("coffee_price", Double.toString(coffee.getPrice()));
+            bundle.putString("product_name", dessert.getName());
+            bundle.putDouble("product_price", dessert.getPrice());
+            bundle.putString("product_type", "Dessert");
+            Log.d(TAG, dessert.getImage());
+            bundle.putString("product_image", dessert.getImage());
             Navigation.findNavController(requireActivity(), R.id.fragment_main_menu)
                     .navigate(R.id.action_mainFragment_to_coffeeConfigFragment, bundle);
         });

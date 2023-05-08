@@ -10,9 +10,9 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.coffeehouse.data.models.User;
 import com.example.coffeehouse.data.repository.UserRepository;
 import com.example.coffeehouse.data.repository.impl.UserRepositoryImpl;
-import com.example.coffeehouse.ui.main.menu.DessertFragment;
-import com.example.coffeehouse.ui.main.menu.MenuCoffeeFragment;
-import com.example.coffeehouse.ui.main.menu.SnackFragment;
+import com.example.coffeehouse.ui.main.menu.categories.DessertFragment;
+import com.example.coffeehouse.ui.main.menu.categories.CoffeeFragment;
+import com.example.coffeehouse.ui.main.menu.categories.SnackFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class MenuViewModel extends AndroidViewModel {
     public MenuViewModel(@NonNull Application application) {
         super(application);
         userRepository = new UserRepositoryImpl(application);
-        fragments.add(new MenuCoffeeFragment());
+        fragments.add(new CoffeeFragment());
         fragments.add(new SnackFragment());
         fragments.add(new DessertFragment());
     }

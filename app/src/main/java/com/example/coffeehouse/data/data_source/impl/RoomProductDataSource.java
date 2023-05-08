@@ -52,10 +52,22 @@ public class RoomProductDataSource {
         });
     }
 
-    public void addDesseretList(List<Dessert>  desserts){
+    public void addDessertList(List<Dessert>  desserts){
         roomDataBase.getQueryExecutor().execute(() -> {
             productDao.insertAllDesserts(desserts);
         });
+    }
+
+    public LiveData<Coffee> getCoffeeByName(String name){
+        return productDao.getCoffeeByName(name);
+    }
+
+    public LiveData<Snack> getSnackByName(String name){
+        return productDao.getSnackByName(name);
+    }
+
+    public LiveData<Dessert> getDessertByName(String name){
+        return productDao.getDessertByName(name);
     }
 
     public LiveData<List<Coffee>> getCoffees(){

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,7 @@ public class SnacksAdapter extends RecyclerView.Adapter<SnacksAdapter.SnacksView
         Snack snack = snackList.get(position);
         holder.tvProductName.setText(snack.getName());
         holder.tvProductPrice.setText("$ " + Double.toString(snack.getPrice()));
+        holder.ivImage.setImageResource(R.drawable.ic_snacks);
         holder.itemView.setOnClickListener(v -> {
             if (clickListener != null){
                 clickListener.onClick(snack, position);
@@ -64,9 +66,11 @@ public class SnacksAdapter extends RecyclerView.Adapter<SnacksAdapter.SnacksView
     public static class SnacksViewHolder extends RecyclerView.ViewHolder{
         public TextView tvProductName;
         public TextView tvProductPrice;
+        public ImageView ivImage;
 
         public SnacksViewHolder(@NonNull View itemView) {
             super(itemView);
+            ivImage = itemView.findViewById(R.id.iv_product_image);
             tvProductName = itemView.findViewById(R.id.tv_product_name);
             tvProductPrice = itemView.findViewById(R.id.tv_product_price);
         }
