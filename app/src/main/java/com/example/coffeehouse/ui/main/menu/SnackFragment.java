@@ -3,64 +3,52 @@ package com.example.coffeehouse.ui.main.menu;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.coffeehouse.R;
+import com.example.coffeehouse.ui.state_holder.MenuCoffeeViewModel;
+import com.example.coffeehouse.ui.state_holder.SnacksViewModel;
+import com.example.coffeehouse.ui.state_holder.adapter.CoffeeAdapter;
+import com.example.coffeehouse.ui.state_holder.adapter.SnacksAdapter;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SnackFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class SnackFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public SnackFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SnackFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SnackFragment newInstance(String param1, String param2) {
-        SnackFragment fragment = new SnackFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private SnacksViewModel snacksViewModel;
+    private RecyclerView recyclerView;
+    private SnacksAdapter snacksAdapter;
+    private String TAG = "DessertFragment";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_snack, container, false);
+        Log.d(TAG, "onCreateView");
+        View view = inflater.inflate(R.layout.fragment_menu_coffee, container,false);
+        recyclerView = view.findViewById(R.id.rv_coffee);
+        this.snacksViewModel = new ViewModelProvider(this).get(SnacksViewModel.class);
+
+        snacksAdapter = new SnacksAdapter();
+        snacksAdapter.setSnackList(snacksViewModel.getSnackList().getValue());
+        recyclerView.setAdapter(snacksAdapter);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+
+        snacksViewModel.getSnackList().observe(getViewLifecycleOwner(), snacks -> snacksAdapter.setSnackList(snacks));
+
+        snacksAdapter.onItemClickListener((coffee, position) -> {
+            Log.d(TAG, "Item click handle");
+            Bundle bundle = new Bundle();
+            bundle.putString("coffee_name", coffee.getName());
+            bundle.putString("coffee_price", Double.toString(coffee.getPrice()));
+            Navigation.findNavController(requireActivity(), R.id.fragment_main_menu)
+                    .navigate(R.id.action_mainFragment_to_coffeeConfigFragment, bundle);
+        });
+        return view;
     }
 }

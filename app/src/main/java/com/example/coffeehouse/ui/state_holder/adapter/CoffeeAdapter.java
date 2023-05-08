@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coffeehouse.R;
 import com.example.coffeehouse.data.models.Coffee;
+import com.example.coffeehouse.data.models.Product;
 import com.example.coffeehouse.ui.state_holder.MenuCoffeeViewModel;
 
 import java.util.List;
@@ -18,12 +19,6 @@ import java.util.List;
 public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeeViewHolder>{
     private List<Coffee> coffeeList;
     private OnCoffeeClickListener mListener;
-
-    private MenuCoffeeViewModel viewModel;
-
-    public CoffeeAdapter(MenuCoffeeViewModel viewModel){
-        this.viewModel = viewModel;
-    }
 
     @NonNull
     @Override
@@ -58,6 +53,9 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeeView
 
     @Override
     public int getItemCount() {
+        if (coffeeList == null){
+            return 0;
+        }
         return coffeeList.size();
     }
 

@@ -5,30 +5,34 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
+import com.example.coffeehouse.data.models.Cart;
+import com.example.coffeehouse.data.models.Coffee;
+import com.example.coffeehouse.data.models.Dessert;
 import com.example.coffeehouse.data.models.Product;
-import com.example.coffeehouse.data.repository.impl.ProductsRepositoryImpl;
-import com.example.coffeehouse.data.base.products.room.dao.ProductEntity;
+import com.example.coffeehouse.data.models.Snack;
+import com.example.coffeehouse.data.repository.impl.CartRepositoryImpl;
 
 import java.util.List;
 
 public class CartViewModel extends AndroidViewModel {
-    private final ProductsRepositoryImpl productsRepositoryImpl;
+    private final CartRepositoryImpl cartRepositoryImpl;
 
     public CartViewModel(@NonNull Application application) {
         super(application);
-        this.productsRepositoryImpl = new ProductsRepositoryImpl(application.getApplicationContext());
+        this.cartRepositoryImpl = new CartRepositoryImpl(application.getApplicationContext());
     }
 
-    public void setProduct(String name, String price){
-        productsRepositoryImpl.addProduct(new Product(name, Integer.parseInt(price)));
+    public void addToCart(String name, float price, String type){
+        cartRepositoryImpl.addToCart(new Cart(name, price, type));
     }
 
-    public LiveData<List<ProductEntity>> getProductList(){
-        return productsRepositoryImpl.getProductList();
+    public LiveData<List<Cart>> getCartList(){
+        return cartRepositoryImpl.getCartList();
     }
 
     public void clear(){
-        productsRepositoryImpl.clear();
+        cartRepositoryImpl.clear();
     }
 }

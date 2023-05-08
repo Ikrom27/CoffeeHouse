@@ -31,7 +31,7 @@ public class CartFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        cartViewModel.getProductList().observe(getViewLifecycleOwner(), productEntities -> {
+        cartViewModel.getCartList().observe(getViewLifecycleOwner(), productEntities -> {
             if (productEntities.isEmpty()){
                 Navigation.findNavController(view.findViewById(R.id.fr_cart_container)).setGraph(R.navigation.navgraph_no_order);
             }

@@ -32,11 +32,11 @@ public class CartRecycleViewFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_cart_recycle_view, container, false);
+        recyclerView = view.findViewById(R.id.rv_container);
 
         this.cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
-        cartViewModel.getProductList().observe(getViewLifecycleOwner(), productEntities -> {
-            recyclerView = view.findViewById(R.id.rv_container);
-            cartAdapter = new CartAdapter(productEntities);
+        cartViewModel.getCartList().observe(getViewLifecycleOwner(), products -> {
+            cartAdapter = new CartAdapter(products);
             recyclerView.setAdapter(cartAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         });

@@ -48,8 +48,7 @@ public class CoffeeConfigFragment extends Fragment {
         Button btToCart = view.findViewById(R.id.button);
         btToCart.setOnClickListener(view1 -> {
             assert bundle != null;
-            cartViewModel.setProduct(bundle.getString("coffee_name"),
-                                     "1");
+            cartViewModel.addToCart(bundle.getString("coffee_name"), 2.0F, "Coffee");
         });
         return view;
     }
@@ -57,7 +56,6 @@ public class CoffeeConfigFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         ImageButton btnBackward = view.findViewById(R.id.bt_back_light);
         btnBackward.setOnClickListener(view1 -> Navigation.findNavController(view1).navigateUp());
     }

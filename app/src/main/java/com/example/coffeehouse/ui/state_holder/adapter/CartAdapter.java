@@ -10,22 +10,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coffeehouse.R;
-import com.example.coffeehouse.data.base.products.room.dao.ProductEntity;
+import com.example.coffeehouse.data.models.Cart;
+import com.example.coffeehouse.data.models.Product;
 import com.example.coffeehouse.ui.state_holder.CartViewModel;
 
 import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
-    private List<ProductEntity> productList;
+    private List<Cart> cartList;
     private CartViewModel cartViewModel;
 
-    public CartAdapter(List<ProductEntity> productList){
-        this.productList = productList;
+    public CartAdapter(List<Cart> cartList){
+        this.cartList = cartList;
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setProductList(List<ProductEntity> productList) {
-        this.productList = productList;
+    public void setProductList(List<Cart>  productList) {
+        this.cartList = productList;
         notifyDataSetChanged();
     }
 
@@ -40,15 +41,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-        ProductEntity product = productList.get(position);
-        holder.tvProductName.setText(product.getProductName());
-        holder.tvProductPrice.setText(Double.toString(product.getProductPrice()));
+        Cart cart = cartList.get(position);
+        holder.tvProductName.setText(cart.getProductName());
+        holder.tvProductPrice.setText(Double.toString(cart.getProductPrice()));
     }
 
 
     @Override
     public int getItemCount() {
-        return productList.size();
+        return cartList.size();
     }
 
     static class CartViewHolder extends RecyclerView.ViewHolder {

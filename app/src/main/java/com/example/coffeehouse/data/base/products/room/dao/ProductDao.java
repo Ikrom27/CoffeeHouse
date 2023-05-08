@@ -6,24 +6,49 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
+
+
+import com.example.coffeehouse.data.models.Coffee;
+import com.example.coffeehouse.data.models.Dessert;
+import com.example.coffeehouse.data.models.Product;
+import com.example.coffeehouse.data.models.Snack;
 
 import java.util.List;
 
 @Dao
 public interface ProductDao {
-
-    @Query("SELECT * FROM product_list_table")
-    LiveData<List<ProductEntity>> loadAllProducts();
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertProduct(Product product);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(ProductEntity productEntity);
+    void insertAllCoffees(List<Coffee> productList);
 
-    @Query("SELECT * FROM product_list_table WHERE :name LIKE productName")
-    LiveData<ProductEntity> getProduct(String name);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAllSnacks(List<Snack> productList);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAllDesserts(List<Dessert> productList);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAllProducts(List<Product> productList);
+
+    @Update
+    void updateProduct(Product product);
 
     @Delete
-    void delete(ProductEntity productEntity);
+    void deleteProduct(Product product);
 
-    @Query("DELETE FROM product_list_table")
-    void deleteAllProducts();
+    @Query("SELECT * FROM products")
+    LiveData<List<Product>> getAllProducts();
+
+    @Query("SELECT * FROM coffees")
+    LiveData<List<Coffee>> getAllCoffees();
+
+
+    @Query("SELECT * FROM snacks")
+    LiveData<List<Snack>> getAllSnacks();
+
+    @Query("SELECT * FROM desserts")
+    LiveData<List<Dessert>> getAllDesserts();
 }
