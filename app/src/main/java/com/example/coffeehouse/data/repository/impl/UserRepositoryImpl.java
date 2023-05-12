@@ -6,7 +6,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.coffeehouse.data.data_source.UserLocalDataSource;
+import com.example.coffeehouse.data.data_source.UserRemoteDataSource;
 import com.example.coffeehouse.data.data_source.impl.UserLocalDataSourceImpl;
+import com.example.coffeehouse.data.data_source.impl.UserRemoteDataSourceImpl;
 import com.example.coffeehouse.data.models.User;
 import com.example.coffeehouse.data.repository.UserRepository;
 
@@ -14,10 +16,12 @@ import java.util.Objects;
 import java.util.concurrent.Executors;
 
 public class UserRepositoryImpl implements UserRepository {
-    UserLocalDataSource userLocalDataSource;
+    private UserLocalDataSource userLocalDataSource;
+    private UserRemoteDataSource userRemoteDataSource;
 
     public UserRepositoryImpl(Context context){
         userLocalDataSource = new UserLocalDataSourceImpl(context);
+        userRemoteDataSource = new UserRemoteDataSourceImpl();
     }
 
     @Override
@@ -32,6 +36,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public void setUser(User user) {
         Executors.newSingleThreadExecutor().execute(() -> userLocalDataSource.setUser(user));
+        userRemoteDataSource.pushUser(user);
     }
 
     @Override

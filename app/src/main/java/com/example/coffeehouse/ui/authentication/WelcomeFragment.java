@@ -3,6 +3,7 @@ package com.example.coffeehouse.ui.authentication;
 import static androidx.navigation.Navigation.findNavController;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.example.coffeehouse.R;
 import com.example.coffeehouse.ui.main.MainActivity;
@@ -24,11 +26,24 @@ import com.example.coffeehouse.ui.state_holder.WelcomeViewModel;
 public class WelcomeFragment extends Fragment {
     private final String TAG = "WelcomeFragment";
     private WelcomeViewModel welcomeViewModel;
+    private AnimationDrawable coffeeAnimation;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_welcome, container, false);
+        View view = inflater.inflate(R.layout.fragment_welcome, container, false);
+
+        ImageView rocketImage = (ImageView) view.findViewById(R.id.imageView2);
+        rocketImage.setBackgroundResource(R.drawable.image_animation);
+        coffeeAnimation = (AnimationDrawable) rocketImage.getBackground();
+        rocketImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                coffeeAnimation.start();
+            }
+        });
+
+        return view;
     }
 
     @Override
