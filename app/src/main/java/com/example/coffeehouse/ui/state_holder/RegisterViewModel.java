@@ -70,6 +70,14 @@ public class RegisterViewModel extends AndroidViewModel {
         checkConfirmPassword(password);
     }
 
+    /**
+     * Регистрирует пользователя в системе.
+     * @return true, если пользователь успешно зарегистрирован, false - в противном случае.
+     * Пользователь зарегистрируется только если все его данные являются действительными.
+     * Если пользователь зарегистрирован успешно, то его данные сохраняются в репозитории
+     * userRepository.
+     * @see UserRepository
+     */
     public boolean registerUser(){
         if (Boolean.TRUE.equals(isValidName.getValue()) &&
             Boolean.TRUE.equals(isValidPhone.getValue()) &&
