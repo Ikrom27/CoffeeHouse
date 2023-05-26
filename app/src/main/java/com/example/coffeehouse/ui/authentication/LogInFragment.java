@@ -23,6 +23,8 @@ import com.example.coffeehouse.ui.main.MainActivity;
 import com.example.coffeehouse.ui.state_holder.LoginViewModel;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.Objects;
+
 public class LogInFragment extends Fragment {
     private final String TAG = "SignInFragment";
     private LoginViewModel loginViewModel;
@@ -59,9 +61,7 @@ public class LogInFragment extends Fragment {
             loginViewModel.setPassword(edPassword.getText().toString());
             if (loginViewModel.toLogin()){
                 Log.d(TAG, "forward handle");
-                Intent intent = new Intent(requireActivity(), MainActivity.class);
-                startActivity(intent);
-                Navigation.findNavController(view).navigate(R.id.action_signInFragment_to_mainActivity);
+                requireActivity().finish();
             }
             else {
                 String wrongPassword = requireContext().getString(R.string.wrong_password);

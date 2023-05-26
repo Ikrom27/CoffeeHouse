@@ -95,8 +95,7 @@ public class RegisterFragment extends Fragment {
             registerViewModel.setUserPassword(userPassword.getText().toString());
             registerViewModel.setPasswordConfirm(userConfirm.getText().toString());
             if (registerViewModel.registerUser()){
-                Navigation.findNavController(view1)
-                        .navigate(R.id.action_signUpFragment_to_mainActivity);
+                requireActivity().finish();
             }
         });
 
