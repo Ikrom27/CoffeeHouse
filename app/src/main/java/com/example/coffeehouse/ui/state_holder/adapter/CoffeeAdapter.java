@@ -1,9 +1,13 @@
 package com.example.coffeehouse.ui.state_holder.adapter;
 
+
 import android.annotation.SuppressLint;
+import com.squareup.picasso.Picasso;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,14 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coffeehouse.R;
 import com.example.coffeehouse.data.models.Coffee;
-import com.example.coffeehouse.data.models.Product;
-import com.example.coffeehouse.ui.state_holder.MenuCoffeeViewModel;
-
 import java.util.List;
 
 public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeeViewHolder>{
     private List<Coffee> coffeeList;
     private OnCoffeeClickListener mListener;
+    private String TAG = "CoffeeAdapter";
 
     @NonNull
     @Override
@@ -34,14 +36,17 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeeView
     @Override
     public void onBindViewHolder(@NonNull CoffeeAdapter.CoffeeViewHolder holder, int position) {
         Coffee coffee = coffeeList.get(position);
-        holder.tvCoffeeName.setText(coffee.getName());
-        holder.tvCoffeePrice.setText("$ " + Double.toString(coffee.getPrice()));
+        holder.tvProductName.setText(coffee.getName());
+        holder.tvProductPrice.setText("$ " + Double.toString(coffee.getPrice()));
+        Log.d(TAG, coffee.getImage());
+        Picasso.get().load(coffee.getImage()).into(holder.imProductImage);
         holder.itemView.setOnClickListener(v -> {
             if (mListener != null) {
                 mListener.onClick(coffee, position);
             }
         });
     }
+
 
     public interface OnCoffeeClickListener{
         void onClick(Coffee coffee, int position);
@@ -65,14 +70,16 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeeView
         notifyDataSetChanged();
     }
 
-    static class CoffeeViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvCoffeeName;
-        public TextView tvCoffeePrice;
+    public static class CoffeeViewHolder extends RecyclerView.ViewHolder{
+        public TextView tvProductName;
+        public TextView tvProductPrice;
+        public ImageView imProductImage;
 
         public CoffeeViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvCoffeeName = itemView.findViewById(R.id.tv_product_name);
-            tvCoffeePrice = itemView.findViewById(R.id.tv_product_price);
+            imProductImage = itemView.findViewById(R.id.iv_product_image);
+            tvProductName = itemView.findViewById(R.id.tv_product_name);
+            tvProductPrice = itemView.findViewById(R.id.tv_product_price);
         }
     }
 }

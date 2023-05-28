@@ -18,14 +18,12 @@ public class RetrofitProductDataSourceImpl implements RetrofitProductDataSource 
     @Override
     public List<Coffee> getCoffees() {
         String[] coffeeNames = {"Espresso", "Cappuccino", "Latte", "Americano", "Mocha",
-                "Macchiato", "Flat White", "Affogato", "Turkish Coffee", "Irish Coffee",
-                "Vietnamese Coffee", "Colombian Coffee", "Ethiopian Coffee", "Brazilian Coffee",
-                "Costa Rican Coffee", "Guatemalan Coffee", "Jamaican Coffee", "Mexican Coffee",
-                "Panamanian Coffee", "Hawaiian Coffee"};
+                "Macchiato", "Flat White", "Affogato", "Mexican"};
         List<Coffee> coffees = new ArrayList<>();
         for (String name: coffeeNames){
             Random random = new Random();
-            coffees.add(new Coffee(name, random.nextInt(15 - 1) + 1));
+            Coffee coffee = new Coffee(name, random.nextInt(15 - 1) + 1);
+            coffees.add(coffee);
         }
         return coffees;
     }

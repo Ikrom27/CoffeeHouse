@@ -1,6 +1,5 @@
 package com.example.coffeehouse.ui.authentication;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,14 +15,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.coffeehouse.R;
-import com.example.coffeehouse.ui.main.MainActivity;
 import com.example.coffeehouse.ui.state_holder.LoginViewModel;
-import com.google.android.material.snackbar.Snackbar;
-
-import java.util.Objects;
 
 public class LogInFragment extends Fragment {
     private final String TAG = "SignInFragment";
@@ -48,26 +42,29 @@ public class LogInFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TextView buttonLogin = view.findViewById(R.id.btn_sign_up);
-        buttonLogin.setOnClickListener(view1 -> {
+
+        //REGISTER BUTTON
+        TextView buttonRegister = view.findViewById(R.id.btn_sign_up);
+        buttonRegister.setOnClickListener(view1 -> {
             Log.d(TAG, "buttonLogin handle");
             Navigation.findNavController(view)
                     .navigate(R.id.action_signInFragment_to_signUpFragment);
         });
 
+        //FORWARD BUTTON
         ImageButton btnForward = view.findViewById(R.id.bt_forward);
         btnForward.setOnClickListener(view2 -> {
             loginViewModel.setEmail(edEmail.getText().toString());
             loginViewModel.setPassword(edPassword.getText().toString());
-            if (loginViewModel.toLogin()){
-                Log.d(TAG, "forward handle");
-                requireActivity().finish();
-            }
-            else {
-                String wrongPassword = requireContext().getString(R.string.wrong_password);
-                edPassword.setError(wrongPassword);
-            }
+            loginViewModel.getUserByEmail().observe(getViewLifecycleOwner(), user -> {
+                if (user != null){
+                    Log.d(TAG, "Forward handle");
+                    Navigation.findNavController(view).navigate(R.id.action_signInFragment_to_mainActivity);
+                }
+            });
         });
+
+        //BACKWARD BUTTON
         ImageButton btnBackward = view.findViewById(R.id.bt_back_light);
         btnBackward.setOnClickListener(view12 -> Navigation.findNavController(view12)
                 .navigateUp());

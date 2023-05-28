@@ -11,7 +11,6 @@ import com.example.coffeehouse.data.repository.UserRepository;
 import com.example.coffeehouse.data.repository.impl.UserRepositoryImpl;
 
 import java.util.Objects;
-import java.util.concurrent.Executors;
 
 public class RegisterViewModel extends AndroidViewModel {
     private final UserRepository userRepository;
@@ -48,7 +47,7 @@ public class RegisterViewModel extends AndroidViewModel {
     public void setUserPhone(String userPhone){
         checkValidPhone(userPhone);
         if (Boolean.TRUE.equals(getIsValidPhone().getValue())){
-            user.getValue().setPhone(userPhone);
+            user.getValue().setPhoneNumber(userPhone);
         }
     }
 

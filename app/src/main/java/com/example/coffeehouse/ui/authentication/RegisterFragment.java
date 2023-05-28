@@ -42,6 +42,11 @@ public class RegisterFragment extends Fragment {
         userEmail = view.findViewById(R.id.et_email);
         userPassword = view.findViewById(R.id.et_password);
         userConfirm = view.findViewById(R.id.et_password_confirm);
+        userName.setText("Admin");
+        userPhone.setText("+79763845967");
+        userEmail.setText("admin@mail.ru");
+        userPassword.setText("Admin2023");
+        userConfirm.setText("Admin2023");
         registerViewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
         return view;
     }

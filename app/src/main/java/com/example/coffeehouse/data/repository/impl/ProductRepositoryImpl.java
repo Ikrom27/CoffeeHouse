@@ -26,6 +26,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     public void refreshData(){
+        List<Coffee> remoteCoffees = remoteDataSource.getCoffees();
         localDataSource.addCoffeeList(remoteDataSource.getCoffees());
         localDataSource.addSnackList(remoteDataSource.getSnacks());
         localDataSource.addDessertList(remoteDataSource.getDesserts());
