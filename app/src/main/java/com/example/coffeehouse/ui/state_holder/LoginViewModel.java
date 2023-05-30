@@ -1,17 +1,15 @@
 package com.example.coffeehouse.ui.state_holder;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.coffeehouse.data.models.LoginForm;
 import com.example.coffeehouse.data.models.User;
 import com.example.coffeehouse.data.repository.UserRepository;
 import com.example.coffeehouse.data.repository.impl.UserRepositoryImpl;
-
-import java.util.Objects;
 
 public class LoginViewModel extends AndroidViewModel {
     private String TAG = "LoginViewModel";
@@ -33,16 +31,9 @@ public class LoginViewModel extends AndroidViewModel {
         userPassword = password;
     }
 
-    public boolean toLogin(){
-        MutableLiveData<User> user = userRepository.getUserByEmail(userEmail);
-        if (user == null){
-            Log.d(TAG, "Wrong email");
-            return false;
-        }
-        else{
-            Log.d(TAG, "real password^ " + Objects.requireNonNull(user.getValue()).getPassword());
-            return Objects.equals(user.getValue().getPassword(), userPassword);
-        }
+    public MutableLiveData<User> getUserByEmail(){
+        LoginForm loginForm = new LoginForm(userEmail, userPassword);
+        return userRepository.getUserByEmail(loginForm);
     }
 }
 

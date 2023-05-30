@@ -42,7 +42,6 @@ public class WelcomeFragment extends Fragment {
                 coffeeAnimation.start();
             }
         });
-
         return view;
     }
 

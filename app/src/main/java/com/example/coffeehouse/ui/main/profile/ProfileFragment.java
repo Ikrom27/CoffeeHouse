@@ -38,7 +38,7 @@ public class ProfileFragment extends Fragment {
         profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
         profileViewModel.getUser().observe(getViewLifecycleOwner(), user -> {
             tvProfileName.setText(user.getName());
-            tvProfilePhone.setText(user.getPhone());
+            tvProfilePhone.setText(user.getPhoneNumber());
             tvProfileEmail.setText(user.getEmail());
         });
         return view;

@@ -23,7 +23,7 @@ public class SnacksAdapter extends RecyclerView.Adapter<SnacksAdapter.SnacksView
     @Override
     public SnacksAdapter.SnacksViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_menu_product, parent, false);
+                .inflate(R.layout.item_products_grid, parent, false);
         return new SnacksViewHolder(view);
     }
 

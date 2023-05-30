@@ -1,15 +1,8 @@
 package com.example.coffeehouse.data.models;
 
-import android.util.Base64;
-
-import java.security.MessageDigest;
-
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
-
 public class User {
     private String name;
-    private String phone;
+    private String phoneNumber;
     private String email;
     private String password;
 
@@ -21,12 +14,12 @@ public class User {
         this.name = name;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {

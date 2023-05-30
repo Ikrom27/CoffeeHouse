@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.example.coffeehouse.R;
 import com.example.coffeehouse.ui.state_holder.CartViewModel;
+import com.squareup.picasso.Picasso;
 
 public class DetailsFragment extends Fragment {
     private String TAG = "CoffeeConfigFragment";
@@ -46,11 +47,7 @@ public class DetailsFragment extends Fragment {
             double productPrice = bundle.getDouble("product_price");
             String productType = bundle.getString("product_type");
             String productImage = bundle.getString("product_image");
-            Log.d("IC", productImage);
-            Log.d("IC", String.valueOf(R.drawable.ic_snacks));
-            Log.d("IC", String.valueOf(R.drawable.ic_dessert));
-            Log.d("IC", String.valueOf(R.drawable.ic_product));
-            imageView.setImageResource(Integer.parseInt(productImage));
+            Picasso.get().load(productImage).into(imageView);
             tvTitle.setText(productName);
             tvPrice.setText("$" + productPrice);
             btToCart.setOnClickListener(view1 -> {

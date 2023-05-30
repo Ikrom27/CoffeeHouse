@@ -182,7 +182,10 @@
             android:text="@string/exit"
             android:textColor="@color/red"
             android:textSize="14sp"
-            android:elevation="0dp"/>
+            android:elevation="0dp"
+            android:outlineProvider="none"
+            android:stateListAnimator="@null" />
+
     </LinearLayout>
 
 </FrameLayout>

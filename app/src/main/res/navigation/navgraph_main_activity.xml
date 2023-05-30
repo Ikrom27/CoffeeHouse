@@ -23,6 +23,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_mainFragment_to_authenticationActivity"
+            app:destination="@id/authenticationActivity"/>
     </fragment>
     <fragment
         android:id="@+id/coffeeConfigFragment"
@@ -50,4 +53,9 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
+    <activity
+        android:id="@+id/authenticationActivity"
+        android:name="com.example.coffeehouse.ui.authentication.AuthenticationActivity"
+        android:label="activity_authentication"
+        tools:layout="@layout/activity_authentication" />
 </navigation>

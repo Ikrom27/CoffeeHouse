@@ -5,7 +5,7 @@ import androidx.room.Entity;
 
 @Entity(tableName = "desserts")
 public class Dessert extends Product {
-    private String image = "2131230869";
+    private String image = "2131230872";
 
     public Dessert(String name, float price) {
         super(name, price);

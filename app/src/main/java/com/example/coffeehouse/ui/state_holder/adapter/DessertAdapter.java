@@ -24,7 +24,7 @@ public class DessertAdapter extends RecyclerView.Adapter<DessertAdapter.DessertV
     @Override
     public DessertViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_menu_product, parent, false);
+                .inflate(R.layout.item_products_grid, parent, false);
         return new DessertViewHolder(view);
     }
 

@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coffeehouse.R;
 import com.example.coffeehouse.data.models.Cart;
-import com.example.coffeehouse.data.models.Product;
 import com.example.coffeehouse.ui.state_holder.CartViewModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -35,7 +35,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     @Override
     public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_categories_coffee, parent, false);
+                .inflate(R.layout.item_products_column, parent, false);
         return new CartViewHolder(view);
     }
 
@@ -45,7 +45,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         Cart cart = cartList.get(position);
         holder.tvProductName.setText(cart.getProductName());
         holder.tvProductPrice.setText(Double.toString(cart.getProductPrice()));
-        holder.ivProductImage.setImageResource(Integer.parseInt(cart.getImagePath()));
+        Picasso.get().load(cart.getImagePath()).into(holder.ivProductImage);
     }
 
 

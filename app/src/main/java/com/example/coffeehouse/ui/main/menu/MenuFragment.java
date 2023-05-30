@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,11 +63,13 @@ public class MenuFragment extends Fragment {
         tvUserName = view.findViewById(R.id.tv_profile_name);
         menuViewModel = new ViewModelProvider(this).get(MenuViewModel.class);
         menuViewModel.getUser().observe(getViewLifecycleOwner(), user -> {
-            if (user == null){
-                requireActivity().finish();
-            }
-            else{
+            if (user != null) {
                 tvUserName.setText(user.getName());
+            }
+            else {
+                Log.d(TAG, "start authentication");
+                Navigation.findNavController(requireActivity(), R.id.fragment_main_menu)
+                        .navigate(R.id.action_mainFragment_to_authenticationActivity);
             }
         });
 
