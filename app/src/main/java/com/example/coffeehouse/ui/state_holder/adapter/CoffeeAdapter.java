@@ -39,7 +39,10 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeeView
         holder.tvProductName.setText(coffee.getName());
         holder.tvProductPrice.setText("$ " + Double.toString(coffee.getPrice()));
         Log.d(TAG, coffee.getImage());
-        Picasso.get().load(coffee.getImage()).into(holder.imProductImage);
+        Picasso.get()
+                .load(coffee.getImage())
+                .placeholder(R.drawable.ic_product)
+                .into(holder.imProductImage);
         holder.itemView.setOnClickListener(v -> {
             if (mListener != null) {
                 mListener.onClick(coffee, position);
