@@ -38,13 +38,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product product = productList.get(position);
         holder.tvProductName.setText(product.getName());
-        holder.tvProductPrice.setText("$ " + Double.toString(product.getPrice()));
+        holder.tvProductPrice.setText("$ " + product.getPrice());
         Log.d(TAG, product.getImgUrl());
         Picasso.get()
                 .load(product.getImgUrl())
                 .placeholder(R.drawable.ic_product)
                 .into(holder.imProductImage);
-
         holder.itemView.setOnClickListener(v -> {
             if (mListener != null) {
                 mListener.onClick(product, position);

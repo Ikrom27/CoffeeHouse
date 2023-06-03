@@ -46,6 +46,7 @@ public class DessertFragment extends Fragment {
             bundle.putDouble("product_price", coffee.getPrice());
             bundle.putString("product_type", "Coffee");
             bundle.putString("product_image", coffee.getImgUrl());
+            bundle.putString("product_description", coffee.getDescription());
             Navigation.findNavController(requireActivity(), R.id.fragment_main_menu)
                     .navigate(R.id.action_mainFragment_to_coffeeConfigFragment, bundle);
         });

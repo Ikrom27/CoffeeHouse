@@ -37,6 +37,7 @@ public class DetailsFragment extends Fragment {
         cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
         TextView tvTitle = view.findViewById(R.id.tv_product_title);
         TextView tvPrice = view.findViewById(R.id.tv_total_price_value);
+        TextView tvDescription = view.findViewById(R.id.tv_about_text);
         ImageView imageView = view.findViewById(R.id.tv_product_image);
 
         Button btToCart = view.findViewById(R.id.button);
@@ -47,9 +48,11 @@ public class DetailsFragment extends Fragment {
             double productPrice = bundle.getDouble("product_price");
             String productType = bundle.getString("product_type");
             String productImage = bundle.getString("product_image");
+            String productDescription = bundle.getString("product_description");
             Picasso.get().load(productImage).into(imageView);
             tvTitle.setText(productName);
             tvPrice.setText("$" + productPrice);
+            tvDescription.setText(productDescription);
             btToCart.setOnClickListener(view1 -> {
                 cartViewModel.addToCart(productName,
                                         (float) productPrice,

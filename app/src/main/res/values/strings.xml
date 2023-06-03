@@ -65,4 +65,6 @@
     <string name="oops">Ooops...</string>
     <string name="region_eror">Sorry, this feature is not available in your county. Empty your trash and come back later.</string>
     <string name="clear">clear</string>
+    <string name="about_title">About</string>
+    <string name="about_text">about text</string>
 </resources>
