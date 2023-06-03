@@ -7,9 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.coffeehouse.data.models.Cart;
-import com.example.coffeehouse.data.models.Coffee;
-import com.example.coffeehouse.data.models.Dessert;
-import com.example.coffeehouse.data.models.Snack;
+import com.example.coffeehouse.data.models.Product;
 import com.example.coffeehouse.data.repository.impl.CartRepositoryImpl;
 import com.example.coffeehouse.data.repository.impl.ProductRepositoryImpl;
 
@@ -31,16 +29,8 @@ public class CartViewModel extends AndroidViewModel {
         cartRepositoryImpl.addToCart(cart);
     }
 
-    public Coffee getCoffeeByName(String name){
+    public Product getCoffeeByName(String name){
         return productRepository.getCoffeeByName(name).getValue();
-    }
-
-    public Snack getSnackByName(String name){
-        return productRepository.getSnackByName(name).getValue();
-    }
-
-    public Dessert getDessertByName(String name){
-        return productRepository.getDessertByName(name).getValue();
     }
 
     public LiveData<List<Cart>> getCartList(){

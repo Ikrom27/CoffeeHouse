@@ -15,11 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CoffeeHouse"
         tools:targetApi="31">
-        <service
-            android:name=".OrderStatusService"
-            android:enabled="true"
-            android:exported="true"
-            android:permission="android.permission.SYSTEM_ALERT_WINDOW" />
 
         <activity
             android:name=".ui.authentication.AuthenticationActivity"

@@ -1,10 +1,9 @@
-package com.example.coffeehouse.data.data_source.impl;
+package com.example.coffeehouse.data.data_source.user;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
-import com.example.coffeehouse.data.data_source.UserLocalDataSource;
 import com.example.coffeehouse.data.models.User;
 import com.google.gson.Gson;
 

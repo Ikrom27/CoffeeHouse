@@ -14,39 +14,38 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.coffeehouse.R;
-import com.example.coffeehouse.ui.state_holder.DessertViewModel;
-import com.example.coffeehouse.ui.state_holder.adapter.DessertAdapter;
+import com.example.coffeehouse.ui.state_holder.CategoryViewModel;
+import com.example.coffeehouse.ui.state_holder.adapter.ProductAdapter;
 
 
 public class DessertFragment extends Fragment {
-    private DessertViewModel dessertViewModel;
-    private RecyclerView recyclerView;
-    private DessertAdapter dessertAdapter;
     private String TAG = "DessertFragment";
+    private RecyclerView recyclerView;
+    private ProductAdapter productAdapter;
+    private CategoryViewModel categoryViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView");
-        View view = inflater.inflate(R.layout.fragment_dessert, container,false);
-        recyclerView = view.findViewById(R.id.rv_dessert);
+        View view = inflater.inflate(R.layout.fragment_menu_snack, container,false);
+        recyclerView = view.findViewById(R.id.rv_coffee);
+        categoryViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
 
-        dessertViewModel = new ViewModelProvider(this).get(DessertViewModel.class);
-        dessertAdapter = new DessertAdapter();
+        productAdapter = new ProductAdapter();
+        recyclerView.setAdapter(productAdapter);
 
-        recyclerView.setAdapter(dessertAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-
-        dessertViewModel.getDessertList().observe(getViewLifecycleOwner(), snacks ->
-                dessertAdapter.setDessertList(snacks));
-        dessertAdapter.onItemClickListener((dessert, position) -> {
+        categoryViewModel.getProductList(getString(R.string.dessert)).observe(getViewLifecycleOwner(), coffees -> {
+            productAdapter.setProductList(coffees);
+        });
+        productAdapter.onItemClickListener((coffee, position) -> {
             Log.d(TAG, "Item click handle");
             Bundle bundle = new Bundle();
-            bundle.putString("product_name", dessert.getName());
-            bundle.putDouble("product_price", dessert.getPrice());
-            bundle.putString("product_type", "Dessert");
-            Log.d(TAG, dessert.getImage());
-            bundle.putString("product_image", dessert.getImage());
+            bundle.putString("product_name", coffee.getName());
+            bundle.putDouble("product_price", coffee.getPrice());
+            bundle.putString("product_type", "Coffee");
+            bundle.putString("product_image", coffee.getImage());
             Navigation.findNavController(requireActivity(), R.id.fragment_main_menu)
                     .navigate(R.id.action_mainFragment_to_coffeeConfigFragment, bundle);
         });

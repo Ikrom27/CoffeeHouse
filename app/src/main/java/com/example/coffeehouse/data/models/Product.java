@@ -9,10 +9,10 @@ public class Product {
     @NonNull
     @PrimaryKey
     private String name;
-    private String description;
     private float price;
     private String image;
 
+    private String category;
     public Product(String name, float price) {
         this.name = name;
         this.price = price;
@@ -24,14 +24,6 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public float getPrice() {
@@ -48,6 +40,14 @@ public class Product {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
 

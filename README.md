@@ -66,4 +66,4 @@ git clone https://github.com/Ikrom27/CoffeeHouse.git
 Так же в разработке серверной части приложение учавствует [Иван Рузин](https://github.com/echoeszzz), ИКБО-06-21
 
 ## 🔬 Смотрите так же
-Репозиторий разработки серверной части приложения - [coffee-house-server](https://github.com/echoeszzz/coffee-house-server)
+Репозиторий разработки серверной части приложения - [product-house-server](https://github.com/echoeszzz/product-house-server)

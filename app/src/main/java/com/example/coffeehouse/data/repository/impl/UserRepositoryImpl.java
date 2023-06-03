@@ -4,15 +4,14 @@ import android.content.Context;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.coffeehouse.data.data_source.UserLocalDataSource;
-import com.example.coffeehouse.data.data_source.UserRemoteDataSource;
-import com.example.coffeehouse.data.data_source.impl.UserLocalDataSourceImpl;
-import com.example.coffeehouse.data.data_source.impl.UserRemoteDataSourceImpl;
+import com.example.coffeehouse.data.data_source.user.UserLocalDataSource;
+import com.example.coffeehouse.data.data_source.user.UserRemoteDataSource;
+import com.example.coffeehouse.data.data_source.user.UserLocalDataSourceImpl;
+import com.example.coffeehouse.data.data_source.user.UserRemoteDataSourceImpl;
 import com.example.coffeehouse.data.models.LoginForm;
 import com.example.coffeehouse.data.models.User;
 import com.example.coffeehouse.data.repository.UserRepository;
 
-import java.util.Objects;
 import java.util.concurrent.Executors;
 
 public class UserRepositoryImpl implements UserRepository {

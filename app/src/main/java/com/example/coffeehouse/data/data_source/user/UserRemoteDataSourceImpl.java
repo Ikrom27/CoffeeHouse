@@ -1,17 +1,14 @@
-package com.example.coffeehouse.data.data_source.impl;
+package com.example.coffeehouse.data.data_source.user;
 
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.coffeehouse.data.base.user.retrofit.RetrofitFactory;
-import com.example.coffeehouse.data.base.user.retrofit.UserAPI;
-import com.example.coffeehouse.data.data_source.UserRemoteDataSource;
+import com.example.coffeehouse.data.data_source.user.retrofit.RetrofitFactory;
+import com.example.coffeehouse.data.data_source.user.retrofit.UserAPI;
 import com.example.coffeehouse.data.models.LoginForm;
 import com.example.coffeehouse.data.models.User;
 import com.example.coffeehouse.data.models.UserByID;
-
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;

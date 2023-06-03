@@ -14,15 +14,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.coffeehouse.R;
-import com.example.coffeehouse.ui.state_holder.adapter.CoffeeAdapter;
-import com.example.coffeehouse.ui.state_holder.MenuCoffeeViewModel;
+import com.example.coffeehouse.ui.state_holder.adapter.ProductAdapter;
+import com.example.coffeehouse.ui.state_holder.CategoryViewModel;
 
 
 public class CoffeeFragment extends Fragment {
     private final String TAG = "CategoriesCoffeeFragment";
     private RecyclerView recyclerView;
-    private CoffeeAdapter productAdapter;
-    private MenuCoffeeViewModel coffeeViewModel;
+    private ProductAdapter productAdapter;
+    private CategoryViewModel categoryViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,26 +30,24 @@ public class CoffeeFragment extends Fragment {
         Log.d(TAG, "onCreateView");
         View view = inflater.inflate(R.layout.fragment_menu_coffee, container,false);
         recyclerView = view.findViewById(R.id.rv_coffee);
-        this.coffeeViewModel = new ViewModelProvider(this).get(MenuCoffeeViewModel.class);
+        categoryViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
 
-        productAdapter = new CoffeeAdapter();
-        productAdapter.setCoffeeList(coffeeViewModel.getCoffeeList().getValue());
+        productAdapter = new ProductAdapter();
         recyclerView.setAdapter(productAdapter);
+
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-
-        coffeeViewModel.getCoffeeList().observe(getViewLifecycleOwner(), coffees -> {
-            productAdapter.onItemClickListener((coffee, position) -> {
-                Log.d(TAG, "Item click handle");
-                Bundle bundle = new Bundle();
-                bundle.putString("product_name", coffee.getName());
-                bundle.putDouble("product_price", coffee.getPrice());
-                bundle.putString("product_type", "Coffee");
-                bundle.putString("product_image", coffee.getImage());
-                Navigation.findNavController(requireActivity(), R.id.fragment_main_menu)
-                        .navigate(R.id.action_mainFragment_to_coffeeConfigFragment, bundle);
-            });
-
-            productAdapter.setCoffeeList(coffees);
+        categoryViewModel.getProductList(getString(R.string.coffee)).observe(getViewLifecycleOwner(), coffees -> {
+            productAdapter.setProductList(coffees);
+        });
+        productAdapter.onItemClickListener((coffee, position) -> {
+            Log.d(TAG, "Item click handle");
+            Bundle bundle = new Bundle();
+            bundle.putString("product_name", coffee.getName());
+            bundle.putDouble("product_price", coffee.getPrice());
+            bundle.putString("product_type", "Coffee");
+            bundle.putString("product_image", coffee.getImage());
+            Navigation.findNavController(requireActivity(), R.id.fragment_main_menu)
+                    .navigate(R.id.action_mainFragment_to_coffeeConfigFragment, bundle);
         });
         return view;
     }

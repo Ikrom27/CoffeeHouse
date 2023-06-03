@@ -1,4 +1,4 @@
-package com.example.coffeehouse.data.base.products.room.dao;
+package com.example.coffeehouse.data.data_source.products.room.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
