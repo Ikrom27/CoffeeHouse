@@ -37,7 +37,7 @@ public class SnackFragment extends Fragment {
         recyclerView.setAdapter(productAdapter);
 
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        categoryViewModel.getProductList(getString(R.string.snacks)).observe(getViewLifecycleOwner(), coffees -> {
+        categoryViewModel.getProductList("snack").observe(getViewLifecycleOwner(), coffees -> {
             productAdapter.setProductList(coffees);
         });
         productAdapter.onItemClickListener((coffee, position) -> {
@@ -46,7 +46,7 @@ public class SnackFragment extends Fragment {
             bundle.putString("product_name", coffee.getName());
             bundle.putDouble("product_price", coffee.getPrice());
             bundle.putString("product_type", "Coffee");
-            bundle.putString("product_image", coffee.getImage());
+            bundle.putString("product_image", coffee.getImgUrl());
             Navigation.findNavController(requireActivity(), R.id.fragment_main_menu)
                     .navigate(R.id.action_mainFragment_to_coffeeConfigFragment, bundle);
         });

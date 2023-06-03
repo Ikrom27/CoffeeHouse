@@ -1,6 +1,5 @@
 package com.example.coffeehouse.ui.state_holder.adapter;
 
-
 import android.annotation.SuppressLint;
 
 import com.example.coffeehouse.data.models.Product;
@@ -40,11 +39,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         Product product = productList.get(position);
         holder.tvProductName.setText(product.getName());
         holder.tvProductPrice.setText("$ " + Double.toString(product.getPrice()));
-        Log.d(TAG, product.getImage());
+        Log.d(TAG, product.getImgUrl());
         Picasso.get()
-                .load(product.getImage())
+                .load(product.getImgUrl())
                 .placeholder(R.drawable.ic_product)
                 .into(holder.imProductImage);
+
         holder.itemView.setOnClickListener(v -> {
             if (mListener != null) {
                 mListener.onClick(product, position);

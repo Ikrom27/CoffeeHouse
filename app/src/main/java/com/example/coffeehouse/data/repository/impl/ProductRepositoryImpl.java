@@ -1,11 +1,14 @@
 package com.example.coffeehouse.data.repository.impl;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
 import com.example.coffeehouse.data.data_source.products.LocalProductDataSource;
+import com.example.coffeehouse.data.data_source.products.room.RoomProductDataSource;
 import com.example.coffeehouse.data.models.Product;
 import com.example.coffeehouse.data.data_source.products.RemoteProductDataSource;
 import com.example.coffeehouse.data.data_source.products.retrofit.RemoteProductDataSourceImpl;
@@ -19,15 +22,19 @@ public class ProductRepositoryImpl implements ProductRepository {
     private final LocalProductDataSource localDataSource;
     private final RemoteProductDataSource remoteDataSource;
     private LiveData<List<Product>> productLiveData;
+    private String TAG = "ProductRepositoryImpl";
 
     public ProductRepositoryImpl(Context context){
-        localDataSource = new com.example.coffeehouse.data.data_source.products.room.LocalProductDataSource(context);
+        localDataSource = new RoomProductDataSource(context);
         remoteDataSource = new RemoteProductDataSourceImpl();
         fetchProducts();
     }
 
     public void fetchProducts(){
-        localDataSource.addProductList(remoteDataSource.getProductList());
+        LiveData<List<Product>> products = remoteDataSource.getProductList();
+        products.observeForever(products1 -> {
+            localDataSource.addProductList(products1);
+        });
     }
 
     public LiveData<Product> getCoffeeByName(String name){
