@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.coffeehouse.R;
 import com.example.coffeehouse.data.models.Cart;
 import com.example.coffeehouse.ui.state_holder.CartViewModel;
@@ -44,8 +46,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
         Cart cart = cartList.get(position);
         holder.tvProductName.setText(cart.getProductName());
-        holder.tvProductPrice.setText(Double.toString(cart.getProductPrice()));
-        Picasso.get().load(cart.getImagePath()).into(holder.ivProductImage);
+        holder.tvProductPrice.setText("$ " + cart.getProductPrice());
+        Glide.with(holder.ivProductImage.getContext())
+                .load(
+                        "https://drive.google.com/uc?id=1HUhsuimkzOyKHnSAqGVIHn4apzHLJnUj"
+                )
+                .placeholder(R.drawable.ic_product)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(holder.ivProductImage);
     }
 
 
