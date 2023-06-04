@@ -67,4 +67,6 @@
     <string name="clear">clear</string>
     <string name="about_title">About</string>
     <string name="about_text">about text</string>
+    <string name="no_user">Who are your?</string>
+    <string name="no_user_text">It seems you are not registered yet, join us soon!</string>
 </resources>

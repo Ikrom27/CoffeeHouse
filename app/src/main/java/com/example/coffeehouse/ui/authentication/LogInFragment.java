@@ -61,7 +61,7 @@ public class LogInFragment extends Fragment {
             loginViewModel.getUserByEmail().observe(getViewLifecycleOwner(), user -> {
                 if (user != null){
                     Log.d(TAG, "Forward handle");
-                    Navigation.findNavController(view).navigate(R.id.action_signInFragment_to_mainActivity);
+                    requireActivity().finish();
                 }
             });
         });

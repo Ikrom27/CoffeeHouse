@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,9 +38,15 @@ public class ProfileFragment extends Fragment {
 
         profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
         profileViewModel.getUser().observe(getViewLifecycleOwner(), user -> {
-            tvProfileName.setText(user.getName());
-            tvProfilePhone.setText(user.getPhoneNumber());
-            tvProfileEmail.setText(user.getEmail());
+            if (user != null){
+                tvProfileName.setText(user.getName());
+                tvProfilePhone.setText(user.getPhoneNumber());
+                tvProfileEmail.setText(user.getEmail());
+            }
+            else {
+                Navigation.findNavController(requireActivity(), R.id.fragment_main_menu)
+                        .navigate(R.id.action_mainFragment_to_authenticationActivity);
+            }
         });
         return view;
     }
@@ -50,7 +57,6 @@ public class ProfileFragment extends Fragment {
         btnExit.setOnClickListener(view1 -> {
             profileViewModel.exitUser();
             Toast.makeText(getContext(), "Profile exit", Toast.LENGTH_SHORT).show();
-            requireActivity().finish();
         });
     }
 }

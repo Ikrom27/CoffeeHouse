@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.menu.MenuFragment">
+
     <LinearLayout
         android:id="@+id/categories_layout"
         android:layout_width="match_parent"
@@ -78,5 +79,4 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
-
 </FrameLayout>

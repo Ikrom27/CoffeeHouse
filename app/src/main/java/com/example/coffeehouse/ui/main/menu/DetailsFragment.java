@@ -50,11 +50,13 @@ public class DetailsFragment extends Fragment {
             String productType = bundle.getString("product_type");
             String productImage = bundle.getString("product_image");
             String productDescription = bundle.getString("product_description");
+
             Glide.with(view)
                     .load(productImage)
                     .placeholder(R.drawable.ic_product)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imageView);
+
             tvTitle.setText(productName);
             tvPrice.setText("$" + productPrice);
             tvDescription.setText(productDescription);
@@ -63,6 +65,7 @@ public class DetailsFragment extends Fragment {
                                         (float) productPrice,
                                         productType,
                                         productImage);
+                Navigation.findNavController(view1).navigateUp();
             });
         }
         return view;

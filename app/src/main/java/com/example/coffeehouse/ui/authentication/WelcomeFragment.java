@@ -51,7 +51,7 @@ public class WelcomeFragment extends Fragment {
         welcomeViewModel = new ViewModelProvider(this).get(WelcomeViewModel.class);
         welcomeViewModel.getLocalUser().observe(getViewLifecycleOwner(), user -> {
             if (user != null){
-                findNavController(view).navigate(R.id.action_welcomeFragment_to_mainActivity);
+                requireActivity().finish();
             }
         });
         ImageButton button = (ImageButton) view.findViewById(R.id.bt_forward);

@@ -6,16 +6,19 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.coffeehouse.R;
+import com.example.coffeehouse.ui.state_holder.MenuViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
@@ -35,5 +38,10 @@ public class MainFragment extends Fragment {
         BottomNavigationView navView = view.findViewById(R.id.bottomNavigationView);
         NavController navController = Navigation.findNavController(view.findViewById(R.id.fr_menu));
         NavigationUI.setupWithNavController(navView, navController);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 }

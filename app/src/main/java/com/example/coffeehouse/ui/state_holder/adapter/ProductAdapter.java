@@ -53,9 +53,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         Log.d(TAG, product.getImgUrl());
 
         Glide.with(holder.imProductImage.getContext())
-                .load(
-                        "https://drive.google.com/uc?id=1HUhsuimkzOyKHnSAqGVIHn4apzHLJnUj"
-                )
+                .load(product.getImgUrl())
                 .placeholder(R.drawable.ic_product)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.imProductImage);

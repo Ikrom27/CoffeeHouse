@@ -58,8 +58,7 @@ public class UserRemoteDataSourceImpl implements UserRemoteDataSource {
             @Override
             public void onResponse(Call<UserByID> call, Response<UserByID> response) {
                 if (response.isSuccessful()){
-                    UserByID userByID = response.body();
-                    user.setValue(userByID);
+                    user.setValue(response.body());
                     Log.d(TAG, "User response is successful");
                 }
                 else{
@@ -72,7 +71,6 @@ public class UserRemoteDataSourceImpl implements UserRemoteDataSource {
                 Log.e(TAG, "onFailure error");
             }
         });
-
         return user;
     }
 }

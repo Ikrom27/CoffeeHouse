@@ -72,7 +72,6 @@ public class MenuFragment extends Fragment {
                         .navigate(R.id.action_mainFragment_to_authenticationActivity);
             }
         });
-
         return view;
     }
 
