@@ -28,7 +28,7 @@ public class CoffeeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView");
-        View view = inflater.inflate(R.layout.fragment_menu_coffee, container,false);
+        View view = inflater.inflate(R.layout.fragment_menu_products, container,false);
         recyclerView = view.findViewById(R.id.rv_coffee);
         categoryViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
 
