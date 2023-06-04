@@ -19,7 +19,7 @@ import retrofit2.Retrofit;
 public class UserRemoteDataSourceImpl implements UserRemoteDataSource {
     private Retrofit retrofit;
     private MutableLiveData<User> user;
-    private String URL = "http://77.232.136.84:8080";
+    private String URL = "";
     private String TAG = "UserRemoteDataSourceImpl";
 
     public UserRemoteDataSourceImpl(){
@@ -53,8 +53,17 @@ public class UserRemoteDataSourceImpl implements UserRemoteDataSource {
         userAPI.loginUser(loginForm).enqueue(new Callback<UserByID>() {
             @Override
             public void onResponse(Call<UserByID> call, Response<UserByID> response) {
+                if (response.body() == null){
+                    Log.e(TAG, "response body is null!");
+                }
+                User test = new User();
+                test.setName("Adam");
+                test.setEmail("admin@mail.ru");
+                test.setPhoneNumber("+79374857672");
+                test.setPassword("Admin2023");
+                user.setValue(test);
                 if (response.isSuccessful()) {
-                    user.setValue((User) response.body());
+                    //user.setValue((User) response.body());
                     Log.d(TAG, "Login successful");
                 } else {
                     Log.e(TAG, "Login not successful");
@@ -66,12 +75,7 @@ public class UserRemoteDataSourceImpl implements UserRemoteDataSource {
                 Log.e(TAG, "onFailure error");
             }
         });
-        User test = new User();
-        test.setName("Adam");
-        test.setEmail("admin@mail.ru");
-        test.setPhoneNumber("+79374857672");
-        test.setPassword("Admin2023");
-        user.setValue(test);
+
         return user;
     }
 }

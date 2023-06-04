@@ -1,6 +1,7 @@
 package com.example.coffeehouse.data.repository.impl;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -17,6 +18,7 @@ import java.util.concurrent.Executors;
 public class UserRepositoryImpl implements UserRepository {
     private UserLocalDataSource userLocalDataSource;
     private UserRemoteDataSource userRemoteDataSource;
+    private String TAG = "UserRepositoryImpl";
 
     public UserRepositoryImpl(Context context){
         userLocalDataSource = new UserLocalDataSourceImpl(context);
@@ -26,7 +28,12 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public MutableLiveData<User> getUserByEmail(LoginForm loginForm) {
         MutableLiveData<User> user = userRemoteDataSource.fetchUser(loginForm);
-        userLocalDataSource.setUser(user.getValue());
+        user.observeForever(remoteUser -> {
+            userLocalDataSource.setUser(user.getValue());
+            if (user.getValue() == null) {
+                Log.e(TAG, "Remote user is null");
+            }
+        });
         return user;
     }
 

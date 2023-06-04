@@ -36,6 +36,8 @@ public class LogInFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         edEmail = view.findViewById(R.id.edit_text_email);
         edPassword = view.findViewById(R.id.et_password);
+        edEmail.setText("admin@mail.ru");
+        edPassword.setText("Admin2023");
         return view;
     }
 
