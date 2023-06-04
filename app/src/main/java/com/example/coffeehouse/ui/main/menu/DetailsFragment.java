@@ -18,9 +18,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.coffeehouse.R;
 import com.example.coffeehouse.ui.state_holder.CartViewModel;
-import com.squareup.picasso.Picasso;
 
 public class DetailsFragment extends Fragment {
     private String TAG = "CoffeeConfigFragment";
@@ -32,7 +33,7 @@ public class DetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d(TAG, "CoffeeConfigFragment");
-        View view = inflater.inflate(R.layout.fragment_coffee_config, container, false);
+        View view = inflater.inflate(R.layout.fragment_details, container, false);
 
         cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
         TextView tvTitle = view.findViewById(R.id.tv_product_title);
@@ -49,7 +50,11 @@ public class DetailsFragment extends Fragment {
             String productType = bundle.getString("product_type");
             String productImage = bundle.getString("product_image");
             String productDescription = bundle.getString("product_description");
-            Picasso.get().load(productImage).into(imageView);
+            Glide.with(view)
+                    .load(productImage)
+                    .placeholder(R.drawable.ic_product)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(imageView);
             tvTitle.setText(productName);
             tvPrice.setText("$" + productPrice);
             tvDescription.setText(productDescription);

@@ -31,7 +31,7 @@
         android:id="@+id/coffeeConfigFragment"
         android:name="com.example.coffeehouse.ui.main.menu.DetailsFragment"
         android:label="fragment_coffee_config"
-        tools:layout="@layout/fragment_coffee_config" >
+        tools:layout="@layout/fragment_details" >
         <action
             android:id="@+id/action_coffeeConfigFragment_to_mainFragment"
             app:destination="@id/mainFragment"

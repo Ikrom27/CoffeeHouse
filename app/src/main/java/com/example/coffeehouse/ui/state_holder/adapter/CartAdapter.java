@@ -48,9 +48,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.tvProductName.setText(cart.getProductName());
         holder.tvProductPrice.setText("$ " + cart.getProductPrice());
         Glide.with(holder.ivProductImage.getContext())
-                .load(
-                        "https://drive.google.com/uc?id=1HUhsuimkzOyKHnSAqGVIHn4apzHLJnUj"
-                )
+                .load(cart.getImagePath())
                 .placeholder(R.drawable.ic_product)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.ivProductImage);
