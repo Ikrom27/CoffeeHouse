@@ -10,7 +10,11 @@ import com.example.coffeehouse.data.data_source.user.retrofit.UserAPI;
 import com.example.coffeehouse.data.models.LoginForm;
 import com.example.coffeehouse.data.models.User;
 import com.example.coffeehouse.data.models.UserByID;
+import com.google.gson.Gson;
 
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -53,20 +57,13 @@ public class UserRemoteDataSourceImpl implements UserRemoteDataSource {
         userAPI.loginUser(loginForm).enqueue(new Callback<UserByID>() {
             @Override
             public void onResponse(Call<UserByID> call, Response<UserByID> response) {
-                if (response.body() == null){
-                    Log.e(TAG, "response body is null!");
+                if (response.isSuccessful()){
+                    UserByID userByID = response.body();
+                    user.setValue(userByID);
+                    Log.d(TAG, "User response is successful");
                 }
-                User test = new User();
-                test.setName("Adam");
-                test.setEmail("admin@mail.ru");
-                test.setPhoneNumber("+79374857672");
-                test.setPassword("Admin2023");
-                user.setValue(test);
-                if (response.isSuccessful()) {
-                    //user.setValue((User) response.body());
-                    Log.d(TAG, "Login successful");
-                } else {
-                    Log.e(TAG, "Login not successful");
+                else{
+                    Log.e(TAG, "User response is not successful");
                 }
             }
 
