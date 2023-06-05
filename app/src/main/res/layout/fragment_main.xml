@@ -7,11 +7,10 @@
     tools:context=".ui.main.MainFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingHorizontal="24dp">
 
         <androidx.fragment.app.FragmentContainerView
-
-            android:layout_marginHorizontal="24dp"
             android:id="@+id/fr_menu"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"

@@ -69,4 +69,5 @@
     <string name="about_text">about text</string>
     <string name="no_user">Who are your?</string>
     <string name="no_user_text">It seems you are not registered yet, join us soon!</string>
+    <string name="cart_list_num">0</string>
 </resources>

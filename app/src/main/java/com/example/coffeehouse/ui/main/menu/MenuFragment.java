@@ -1,5 +1,6 @@
 package com.example.coffeehouse.ui.main.menu;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,7 @@ public class MenuFragment extends Fragment {
     private TabLayout tabLayout;
     private ViewPager2 viewPager2;
     private TextView tvUserName;
+    private TextView tvCartNum;
     private MenuViewModel menuViewModel;
 
     private String[] TAB_TITLES;
@@ -43,6 +45,7 @@ public class MenuFragment extends Fragment {
         add(new DessertFragment());
     }};
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -72,6 +75,27 @@ public class MenuFragment extends Fragment {
                         .navigate(R.id.action_mainFragment_to_authenticationActivity);
             }
         });
+
+        tvCartNum = view.findViewById(R.id.tv_cart_num);
+        menuViewModel.getCartList().observe(getViewLifecycleOwner(), carts -> {
+            if (carts != null){
+                if (carts.size() > 0){
+                    if (carts.size() > 99){
+                        tvCartNum.setText("99+");
+                        tvCartNum.setTextSize(10);
+                    }
+                    else{
+                        tvCartNum.setText(Integer.toString(carts.size()));
+                        tvCartNum.setTextSize(14);
+                    }
+                    tvCartNum.setVisibility(View.VISIBLE);
+                }
+                else{
+                    tvCartNum.setVisibility(View.GONE);
+                }
+            }
+        });
+
         return view;
     }
 
