@@ -1,16 +1,19 @@
 package com.example.coffeehouse.data.repository.impl;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
 import com.example.coffeehouse.data.data_source.products.room.RoomCartDataSource;
 import com.example.coffeehouse.data.models.Cart;
+import com.example.coffeehouse.data.repository.CartRepository;
 
 import java.util.List;
 
 public class CartRepositoryImpl implements CartRepository {
     private RoomCartDataSource roomCartDataSource;
+    private String TAG = "CartRepositoryImpl";
 
     public CartRepositoryImpl(Context context){
         roomCartDataSource = new RoomCartDataSource(context);
@@ -19,6 +22,11 @@ public class CartRepositoryImpl implements CartRepository {
     @Override
     public LiveData<List<Cart>> getCartList(){
         return roomCartDataSource.getCartList();
+    }
+
+    @Override
+    public void update(Cart cart) {
+        roomCartDataSource.update(cart);
     }
 
     @Override

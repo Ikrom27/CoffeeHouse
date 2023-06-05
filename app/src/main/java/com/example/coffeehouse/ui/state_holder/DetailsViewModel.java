@@ -6,12 +6,15 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 
 import com.example.coffeehouse.data.models.Cart;
 import com.example.coffeehouse.data.repository.ProductRepository;
-import com.example.coffeehouse.data.repository.impl.CartRepository;
+import com.example.coffeehouse.data.repository.CartRepository;
 import com.example.coffeehouse.data.repository.impl.CartRepositoryImpl;
 import com.example.coffeehouse.data.repository.impl.ProductRepositoryImpl;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class DetailsViewModel extends AndroidViewModel {
     private final CartRepository cartRepository;
@@ -24,21 +27,32 @@ public class DetailsViewModel extends AndroidViewModel {
         productRepository = new ProductRepositoryImpl(application);
     }
 
+    public LiveData<Cart> getOrderByID(int id){
+        return cartRepository.getOrderByID(id);
+    }
+
+    public void update(Cart cart){
+        cartRepository.update(cart);
+    }
+
     public void toCart(String name, double price, String imageUrl, int id){
         Log.d(TAG, "ID = " + id);
-        LiveData<Cart> productOrder = cartRepository.getOrderByID(id);
-        if (productOrder.getValue() == null){
-            Log.d(TAG, "create new order");
-            Cart order = new Cart(name, price, imageUrl,1, id);
-            cartRepository.addToCart(order);
-            Log.d(TAG, "increase order");
-            productOrder.getValue().increaseOrderQuantity();
-            cartRepository.update(order);
-        }
-        else{
-            Log.d(TAG, "increase order");
-            productOrder.increaseOrderQuantity();
-            cartRepository.addToCart(productOrder);
-        }
+        LiveData<Cart> cartLiveData = cartRepository.getOrderByID(id);
+        cartLiveData.observeForever(new Observer<Cart>() {
+            @Override
+            public void onChanged(Cart productOrder) {
+                cartLiveData.removeObserver(this);
+                if (productOrder == null){
+                    Log.d(TAG, "create new order");
+                    productOrder = new Cart(name, price, imageUrl, 1, id);
+                    cartRepository.addToCart(productOrder);
+                }
+                else{
+                    Log.d(TAG, "increase order");
+                    productOrder.increaseOrderQuantity();
+                    cartRepository.update(productOrder);
+                }
+            }
+        });
     }
 }

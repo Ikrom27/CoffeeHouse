@@ -18,6 +18,9 @@ public interface CartDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertCart(Cart cart);
 
+    @Update
+    void updateCart(Cart cart);
+
     @Query("SELECT * FROM cart")
     LiveData<List<Cart>> getCartList();
 

@@ -60,10 +60,9 @@ public class DetailsFragment extends Fragment {
             tvTitle.setText(productName);
             tvPrice.setText("$" + productPrice);
             tvDescription.setText(productDescription);
-
-            detailsViewModel.toCart(productName, productPrice, productImage, productID);
-            btToCart.setOnClickListener(view1 -> detailsViewModel.toCart(productName, productPrice,
-                    productImage, productID));
+            btToCart.setOnClickListener(view1 -> {
+                detailsViewModel.toCart(productName, productPrice, productImage, productID);
+            });
         }
         return view;
     }

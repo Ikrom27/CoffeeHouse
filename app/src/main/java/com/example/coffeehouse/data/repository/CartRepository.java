@@ -1,4 +1,4 @@
-package com.example.coffeehouse.data.repository.impl;
+package com.example.coffeehouse.data.repository;
 
 import androidx.lifecycle.LiveData;
 
@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface CartRepository {
     LiveData<List<Cart>> getCartList();
+    void update(Cart cart);
     void addToCart(Cart cart);
     LiveData<Integer> getTotalPrice();
     LiveData<Cart> getOrderByID(int id);
