@@ -7,10 +7,12 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.coffeehouse.data.models.Cart;
+import com.example.coffeehouse.data.models.OrderItem;
 import com.example.coffeehouse.data.models.Product;
 import com.example.coffeehouse.data.repository.impl.CartRepositoryImpl;
 import com.example.coffeehouse.data.repository.impl.ProductRepositoryImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartViewModel extends AndroidViewModel {
@@ -29,6 +31,9 @@ public class CartViewModel extends AndroidViewModel {
 
     public LiveData<Integer> getTotalPrice(){
         return cartRepositoryImpl.getTotalPrice();
+    }
+    public void push(List<Cart> cartList){
+        cartRepositoryImpl.push(cartList);
     }
 
     public void clear(){

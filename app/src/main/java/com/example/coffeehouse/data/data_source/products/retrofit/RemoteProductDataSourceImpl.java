@@ -50,32 +50,3 @@ public class RemoteProductDataSourceImpl implements RemoteProductDataSource {
         return productList;
     }
 }
-
-
-//        String[] coffeeNames = {"EspressoNato", "Cappuccino", "Latte", "Americano", "Mocha",
-//                "Macchiato", "Flat White", "Affogato", "Mexican"};
-//        List<Product> products = new ArrayList<>();
-//        for (int i = 0; i<coffeeNames.length; i++){
-//            Random random = new Random();
-//            Product product = new Product(coffeeNames[i], random.nextInt(15 - 1) + 1);
-//            product.setImage("https://drive.google.com/uc?export=download&id=11Mc7GWda2YSjg9qZqe9BUgo03lr5x1vv");
-//            product.setCategory("coffee");
-//            products.add(product);
-//        }
-//        String[] snackNames = {"Croissants", "Biscotti", "Mini Muffins", "Cinnamon Rolls", "Fruit Tart lets"};
-//        for (int i = 0; i<snackNames.length; i++){
-//            Random random = new Random();
-//            Product product = new Product(snackNames[i], random.nextInt(15 - 1) + 1);
-//            product.setImage("https://downloader.disk.yandex.ru/preview/");
-//            product.setCategory("snacks");
-//            products.add(product);
-//        }
-//        String[] dessertNames = {"Chocolate brownies", "Vanilla bean panna cotta",
-//                "Almond biscotti", "Apple pie", "tiramisu", "Caramel flan"};
-//        for (int i = 0; i<dessertNames.length; i++){
-//            Random random = new Random();
-//            Product product = new Product(dessertNames[i], random.nextInt(15 - 1) + 1);
-//            product.setImage("https://downloader.disk.yandex.ru/preview/");
-//            product.setCategory("dessert");
-//            products.add(product);
-//        }

@@ -47,7 +47,7 @@ public class CartRecycleViewFragment extends Fragment {
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         });
         cartViewModel.getTotalPrice().observe(getViewLifecycleOwner(), total -> {
-            tvTotalPrice.setText("$ " + Integer.toString(total));
+            tvTotalPrice.setText("$ " + total);
         });
         return view;
     }
@@ -55,6 +55,12 @@ public class CartRecycleViewFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        btnBuy.setOnClickListener(view1 -> Navigation.findNavController(view1).navigate(R.id.action_cartRecycleViewFragment_to_oopsFragment));
+        btnBuy.setOnClickListener(view1 -> {
+            cartViewModel.getCartList().observe(getViewLifecycleOwner(), productList -> {
+                if (productList != null && !productList.isEmpty()) {
+                    cartViewModel.push(productList);
+                }
+            });
+        });
     }
 }
