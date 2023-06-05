@@ -33,8 +33,8 @@ public class RoomProductDataSource implements LocalProductDataSource {
     }
 
     @Override
-    public LiveData<Product> getProductByName(String name){
-        return productDao.getCoffeeByName(name);
+    public LiveData<Product> getProductByID(int id) {
+        return productDao.getProductByID(id);
     }
 
     @Override

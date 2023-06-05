@@ -9,7 +9,6 @@ public class Product {
     @NonNull
     @PrimaryKey
     private int id;
-
     private String name;
     private double price;
     private String imgUrl;

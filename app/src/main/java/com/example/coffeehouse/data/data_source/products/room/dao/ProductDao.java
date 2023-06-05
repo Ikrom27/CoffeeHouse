@@ -20,6 +20,6 @@ public interface ProductDao {
     @Query("SELECT * FROM products")
     LiveData<List<Product>> getAllCoffees();
 
-    @Query("SELECT * FROM products WHERE name = :productName")
-    LiveData<Product> getCoffeeByName(String productName);
+    @Query("SELECT * FROM products WHERE id = :id")
+    LiveData<Product> getProductByID(int id);
 }

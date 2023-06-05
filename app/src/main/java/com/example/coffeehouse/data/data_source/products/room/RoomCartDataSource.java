@@ -23,6 +23,10 @@ public class RoomCartDataSource {
         userCartRoomDataBase.getQueryExecutor().execute(()-> cartDao.insertCart(cart));
     }
 
+    public LiveData<Cart> getOrderByID(int id){
+        return cartDao.getOrderById(id);
+    }
+
     public LiveData<List<Cart>> getCartList(){
         return cartDao.getCartList();
     }

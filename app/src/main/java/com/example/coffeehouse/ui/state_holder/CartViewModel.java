@@ -23,16 +23,6 @@ public class CartViewModel extends AndroidViewModel {
         this.productRepository = new ProductRepositoryImpl(application.getApplicationContext());
     }
 
-    public void addToCart(String name, float price, String type, String productImage){
-        Cart cart = new Cart(name, price, type);
-        cart.setImagePath(productImage);
-        cartRepositoryImpl.addToCart(cart);
-    }
-
-    public Product getCoffeeByName(String name){
-        return productRepository.getCoffeeByName(name).getValue();
-    }
-
     public LiveData<List<Cart>> getCartList(){
         return cartRepositoryImpl.getCartList();
     }

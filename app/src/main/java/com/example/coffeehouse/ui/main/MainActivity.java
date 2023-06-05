@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
-        //getApplicationContext().deleteDatabase("cart_database");
-        //getApplicationContext().deleteDatabase("product_database");
+        getApplicationContext().deleteDatabase("cart_database");
+        getApplicationContext().deleteDatabase("product_database");
     }
 }

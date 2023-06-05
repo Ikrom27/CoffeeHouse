@@ -21,13 +21,13 @@ public interface CartDao {
     @Query("SELECT * FROM cart")
     LiveData<List<Cart>> getCartList();
 
-    @Query("SELECT * FROM cart WHERE cartId = :cartId")
-    LiveData<Cart> getCartById(int cartId);
+    @Query("SELECT * FROM cart WHERE productId = :id")
+    LiveData<Cart> getOrderById(int id);
 
     @Query("SELECT SUM(productPrice) FROM cart;")
     int getTotalPrice();
 
-    @Query("DELETE FROM cart WHERE cartId = :id")
+    @Query("DELETE FROM cart WHERE productId = :id")
     void deleteCartById(int id);
 
     @Query("DELETE FROM cart")

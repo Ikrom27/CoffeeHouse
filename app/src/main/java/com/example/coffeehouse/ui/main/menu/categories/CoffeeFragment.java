@@ -42,11 +42,12 @@ public class CoffeeFragment extends Fragment {
         productAdapter.onItemClickListener((coffee, position) -> {
             Log.d(TAG, "Item click handle");
             Bundle bundle = new Bundle();
-            bundle.putString("product_name", coffee.getName());
+            bundle.putString("productID", coffee.getName());
             bundle.putDouble("product_price", coffee.getPrice());
             bundle.putString("product_type", "Coffee");
             bundle.putString("product_image", coffee.getImgUrl());
             bundle.putString("product_description", coffee.getDescription());
+            bundle.putInt("product_id", coffee.getId());
             Navigation.findNavController(requireActivity(), R.id.fragment_main_menu)
                     .navigate(R.id.action_mainFragment_to_coffeeConfigFragment, bundle);
         });

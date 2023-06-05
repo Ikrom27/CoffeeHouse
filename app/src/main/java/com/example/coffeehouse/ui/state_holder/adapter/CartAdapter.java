@@ -47,6 +47,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         Cart cart = cartList.get(position);
         holder.tvProductName.setText(cart.getProductName());
         holder.tvProductPrice.setText("$ " + cart.getProductPrice());
+        holder.tvProductCounter.setText("X" + cart.getQuantity());
         Glide.with(holder.ivProductImage.getContext())
                 .load(cart.getImagePath())
                 .placeholder(R.drawable.ic_product)
@@ -63,6 +64,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     static class CartViewHolder extends RecyclerView.ViewHolder {
         public TextView tvProductName;
         public TextView tvProductPrice;
+        public TextView tvProductCounter;
         public ImageView ivProductImage;
 
         public CartViewHolder(@NonNull View itemView) {
@@ -70,6 +72,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             ivProductImage = itemView.findViewById(R.id.iv_product_image);
             tvProductName = itemView.findViewById(R.id.tv_product_name);
             tvProductPrice = itemView.findViewById(R.id.tv_product_price);
+            tvProductCounter = itemView.findViewById(R.id.tv_product_description);
         }
     }
 }

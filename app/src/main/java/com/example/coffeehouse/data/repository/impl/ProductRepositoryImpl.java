@@ -22,7 +22,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     private final LocalProductDataSource localDataSource;
     private final RemoteProductDataSource remoteDataSource;
     private LiveData<List<Product>> productLiveData;
-    private String TAG = "ProductRepositoryImpl";
+    private final String TAG = "ProductRepositoryImpl";
 
     public ProductRepositoryImpl(Context context){
         localDataSource = new RoomProductDataSource(context);
@@ -32,13 +32,12 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     public void fetchProducts(){
         LiveData<List<Product>> products = remoteDataSource.getProductList();
-        products.observeForever(products1 -> {
-            localDataSource.addProductList(products1);
-        });
+        products.observeForever(localDataSource::addProductList);
     }
 
-    public LiveData<Product> getCoffeeByName(String name){
-        return localDataSource.getProductByName(name);
+    @Override
+    public LiveData<Product> getProductByID(int id) {
+        return localDataSource.getProductByID(id);
     }
 
     public LiveData<List<Product>> getProductList(String category){

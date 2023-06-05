@@ -9,7 +9,7 @@ import java.util.List;
 public interface LocalProductDataSource {
     void addProductList(List<Product> products);
 
-    LiveData<Product> getProductByName(String name);
+    LiveData<Product> getProductByID(int id);
 
     LiveData<List<Product>> getProductList();
 }

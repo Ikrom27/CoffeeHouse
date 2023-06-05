@@ -22,10 +22,11 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.coffeehouse.R;
 import com.example.coffeehouse.ui.state_holder.CartViewModel;
+import com.example.coffeehouse.ui.state_holder.DetailsViewModel;
 
 public class DetailsFragment extends Fragment {
     private String TAG = "CoffeeConfigFragment";
-    private CartViewModel cartViewModel;
+    private DetailsViewModel detailsViewModel;
 
 
     @SuppressLint("SetTextI18n")
@@ -35,19 +36,18 @@ public class DetailsFragment extends Fragment {
         Log.d(TAG, "CoffeeConfigFragment");
         View view = inflater.inflate(R.layout.fragment_details, container, false);
 
-        cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
+        detailsViewModel = new ViewModelProvider(this).get(DetailsViewModel.class);
         TextView tvTitle = view.findViewById(R.id.tv_product_title);
         TextView tvPrice = view.findViewById(R.id.tv_total_price_value);
         TextView tvDescription = view.findViewById(R.id.tv_about_text);
         ImageView imageView = view.findViewById(R.id.tv_product_image);
 
         Button btToCart = view.findViewById(R.id.button);
-
         Bundle bundle = getArguments();
         if (bundle != null) {
+            int productID = bundle.getInt("product_id");
             String productName = bundle.getString("product_name");
             double productPrice = bundle.getDouble("product_price");
-            String productType = bundle.getString("product_type");
             String productImage = bundle.getString("product_image");
             String productDescription = bundle.getString("product_description");
 
@@ -60,13 +60,10 @@ public class DetailsFragment extends Fragment {
             tvTitle.setText(productName);
             tvPrice.setText("$" + productPrice);
             tvDescription.setText(productDescription);
-            btToCart.setOnClickListener(view1 -> {
-                cartViewModel.addToCart(productName,
-                                        (float) productPrice,
-                                        productType,
-                                        productImage);
-                Navigation.findNavController(view1).navigateUp();
-            });
+
+            detailsViewModel.toCart(productName, productPrice, productImage, productID);
+            btToCart.setOnClickListener(view1 -> detailsViewModel.toCart(productName, productPrice,
+                    productImage, productID));
         }
         return view;
     }

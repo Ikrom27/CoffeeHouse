@@ -5,22 +5,22 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "cart")
-public class Cart {
-    @PrimaryKey (autoGenerate = true)
-    private int cartId;
+public class Cart extends OrderItem{
     private String productName;
     private double productPrice;
     private String productType;
     private String imagePath;
 
-    public Cart(){
-
+    public Cart(){}
+    public Cart(String name, double price,String imagePath, int quantity, int productID){
+        super(quantity, productID);
+        this.setProductName(name);
+        this.setImagePath(imagePath);
+        this.setProductPrice(price);
     }
 
-    public Cart(String name, float price,String type){
-        this.setProductName(name);
-        this.setProductType(type);
-        this.setProductPrice(price);
+    public void increaseOrderQuantity(){
+        increaseQuantity();
     }
 
     public String getImagePath() {
@@ -29,14 +29,6 @@ public class Cart {
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
-    }
-
-    public int getCartId() {
-        return cartId;
-    }
-
-    public void setCartId(int cartId) {
-        this.cartId = cartId;
     }
 
     public String getProductName() {
