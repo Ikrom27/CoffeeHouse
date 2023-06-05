@@ -6,8 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.coffeehouse.data.models.LoginForm;
+import com.example.coffeehouse.data.models.UserRequest;
 import com.example.coffeehouse.data.models.User;
+import com.example.coffeehouse.data.models.UserResponse;
 import com.example.coffeehouse.data.repository.UserRepository;
 import com.example.coffeehouse.data.repository.impl.UserRepositoryImpl;
 
@@ -31,9 +32,9 @@ public class LoginViewModel extends AndroidViewModel {
         userPassword = password;
     }
 
-    public MutableLiveData<User> getUserByEmail(){
-        LoginForm loginForm = new LoginForm(userEmail, userPassword);
-        return userRepository.getUserByEmail(loginForm);
+    public MutableLiveData<UserResponse> getUserByEmail(){
+        UserRequest userRequest = new UserRequest(userEmail, userPassword);
+        return userRepository.loginByEmail(userRequest);
     }
 }
 

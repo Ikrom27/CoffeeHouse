@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 
 import com.example.coffeehouse.data.models.User;
+import com.example.coffeehouse.data.models.UserResponse;
 import com.google.gson.Gson;
 
 public class UserLocalDataSourceImpl implements UserLocalDataSource {
@@ -17,16 +18,16 @@ public class UserLocalDataSourceImpl implements UserLocalDataSource {
     }
 
     @Override
-    public User getUser() {
+    public UserResponse getUser() {
         String userJson = sharedPreferences.getString(USER_KEY, "");
         if (!TextUtils.isEmpty(userJson)){
-            return new Gson().fromJson(userJson, User.class);
+            return new Gson().fromJson(userJson, UserResponse.class);
         }
         return null;
     }
 
     @Override
-    public void setUser(User user) {
+    public void setUser(UserResponse user) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(USER_KEY, new Gson().toJson(user));
         editor.apply();

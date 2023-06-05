@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.coffeehouse.data.models.Cart;
 import com.example.coffeehouse.data.models.User;
+import com.example.coffeehouse.data.models.UserResponse;
 import com.example.coffeehouse.data.repository.UserRepository;
 import com.example.coffeehouse.data.repository.impl.CartRepositoryImpl;
 import com.example.coffeehouse.data.repository.impl.UserRepositoryImpl;
@@ -39,7 +40,7 @@ public class MenuViewModel extends AndroidViewModel {
         return cartRepository.getCartList();
     }
 
-    public MutableLiveData<User> getUser(){
+    public MutableLiveData<UserResponse> getUser(){
         return userRepository.getLocalUser();
     }
 

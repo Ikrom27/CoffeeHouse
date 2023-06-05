@@ -1,9 +1,9 @@
 package com.example.coffeehouse.data.data_source.user;
 
-import com.example.coffeehouse.data.models.User;
+import com.example.coffeehouse.data.models.UserResponse;
 
 public interface UserLocalDataSource {
-    User getUser();
-    void setUser(User user);
+    UserResponse getUser();
+    void setUser(UserResponse user);
     void deleteUser();
 }

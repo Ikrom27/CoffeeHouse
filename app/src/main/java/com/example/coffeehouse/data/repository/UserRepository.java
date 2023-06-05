@@ -2,14 +2,15 @@ package com.example.coffeehouse.data.repository;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.coffeehouse.data.models.LoginForm;
+import com.example.coffeehouse.data.models.UserRequest;
 import com.example.coffeehouse.data.models.User;
+import com.example.coffeehouse.data.models.UserResponse;
 
 public interface UserRepository {
 
-    MutableLiveData<User> getUserByEmail(LoginForm loginForm);
+    MutableLiveData<UserResponse> loginByEmail(UserRequest userRequest);
 
-    void setUser(User user);
-    MutableLiveData<User> getLocalUser();
+    void registerUser(User user);
+    MutableLiveData<UserResponse> getLocalUser();
     void deleteUser();
 }

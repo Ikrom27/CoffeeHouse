@@ -83,7 +83,7 @@ public class RegisterViewModel extends AndroidViewModel {
             Boolean.TRUE.equals(isValidEmail.getValue()) &&
             Boolean.TRUE.equals(isValidPassword.getValue()) &&
             Boolean.TRUE.equals(isValidConfirm.getValue())){
-            userRepository.setUser(user.getValue());
+            userRepository.registerUser(user.getValue());
             return true;
         }
         return false;
