@@ -30,6 +30,7 @@ public class CartRecycleViewFragment extends Fragment {
     private Button btnBuy;
     private TextView tvTotalPrice;
     private View view;
+    private double total = 0;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -46,7 +47,8 @@ public class CartRecycleViewFragment extends Fragment {
             recyclerView.setAdapter(cartAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         });
-        cartViewModel.getTotalPrice().observe(getViewLifecycleOwner(), total -> {
+        cartViewModel.getTotalPrice().observe(getViewLifecycleOwner(), totalPrice -> {
+            this.total = totalPrice;
             tvTotalPrice.setText("$ " + total);
         });
         return view;
@@ -58,8 +60,9 @@ public class CartRecycleViewFragment extends Fragment {
         btnBuy.setOnClickListener(view1 -> {
             cartViewModel.getCartList().observe(getViewLifecycleOwner(), productList -> {
                 if (productList != null && !productList.isEmpty()) {
-                    cartViewModel.push(productList);
+                    cartViewModel.push(productList, total);
                 }
+                cartViewModel.clear();
             });
         });
     }

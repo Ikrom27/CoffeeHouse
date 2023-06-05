@@ -11,8 +11,8 @@ import com.example.coffeehouse.data.models.Cart;
 import com.example.coffeehouse.data.models.OrderItem;
 import com.example.coffeehouse.data.repository.CartRepository;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CartRepositoryImpl implements CartRepository {
     private RoomCartDataSource roomCartDataSource;
@@ -37,15 +37,6 @@ public class CartRepositoryImpl implements CartRepository {
     @Override
     public void addToCart(Cart cart) {
         roomCartDataSource.addCart(cart);
-    }
-
-    public void push(List<Cart> cartList){
-        Log.d(TAG, cartList.size() + "");
-        List<OrderItem> orderItemList = new ArrayList<>();
-        for (Cart cart: cartList){
-            orderItemList.add(new OrderItem(cart.getQuantity(), cart.getProductId()));
-        }
-        retrofitOrderDataSource.push(orderItemList);
     }
 
     @Override

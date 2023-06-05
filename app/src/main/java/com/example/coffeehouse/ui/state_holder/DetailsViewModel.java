@@ -36,7 +36,6 @@ public class DetailsViewModel extends AndroidViewModel {
     }
 
     public void toCart(String name, double price, String imageUrl, int id){
-        Log.d(TAG, "ID = " + id);
         LiveData<Cart> cartLiveData = cartRepository.getOrderByID(id);
         cartLiveData.observeForever(new Observer<Cart>() {
             @Override
@@ -44,12 +43,13 @@ public class DetailsViewModel extends AndroidViewModel {
                 cartLiveData.removeObserver(this);
                 if (productOrder == null){
                     Log.d(TAG, "create new order");
-                    productOrder = new Cart(name, price, imageUrl, 1, id);
+                    productOrder = new Cart(1, id, name, price, imageUrl);
                     cartRepository.addToCart(productOrder);
                 }
                 else{
                     Log.d(TAG, "increase order");
                     productOrder.increaseOrderQuantity();
+                    productOrder.setProductPrice(price * productOrder.getQuantity());
                     cartRepository.update(productOrder);
                 }
             }

@@ -12,7 +12,7 @@ public class Cart extends OrderItem{
     private String imagePath;
 
     public Cart(){}
-    public Cart(String name, double price,String imagePath, int quantity, int productID){
+    public Cart(int quantity, int productID, String name, double price,String imagePath){
         super(quantity, productID);
         this.setProductName(name);
         this.setImagePath(imagePath);

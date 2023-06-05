@@ -21,8 +21,7 @@ public class RetrofitOrderDataSource {
         retrofit = RetrofitFactory.getRetrofit("");
     }
 
-    public void push(List<OrderItem> orderItemList) {
-        OrderReceive orderReceive = new OrderReceive(100, 1, orderItemList);
+    public void push(OrderReceive orderReceive) {
         OrderAPI orderAPI = retrofit.create(OrderAPI.class);
         orderAPI.push(orderReceive).enqueue(new Callback<Integer>() {
             @Override

@@ -10,7 +10,6 @@ import java.util.List;
 public interface CartRepository {
     LiveData<List<Cart>> getCartList();
     void update(Cart cart);
-    void push(List<Cart> cartList);
     void addToCart(Cart cart);
     LiveData<Integer> getTotalPrice();
     LiveData<Cart> getOrderByID(int id);
