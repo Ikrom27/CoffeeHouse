@@ -18,9 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.coffeehouse.R;
-import com.example.coffeehouse.ui.ConfirmOrderFragment;
 import com.example.coffeehouse.ui.state_holder.CartViewModel;
-import com.example.coffeehouse.ui.state_holder.OrderConfirmViewModel;
 import com.example.coffeehouse.ui.state_holder.adapter.CartAdapter;
 
 
@@ -39,16 +37,16 @@ public class CartFilledFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_cart_filled, container, false);
-        recyclerView = view.findViewById(R.id.rv_container);
-        btnBuy = view.findViewById(R.id.btn_pay);
-        tvTotalPrice = view.findViewById(R.id.tv_total_text);
+        this.view = inflater.inflate(R.layout.fragment_cart_filled, container, false);
+        this.recyclerView = view.findViewById(R.id.rv_container);
+        this.btnBuy = view.findViewById(R.id.btn_pay);
+        this.tvTotalPrice = view.findViewById(R.id.tv_total_text);
         this.cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
-        cartAdapter = new CartAdapter();
-        recyclerView.setAdapter(cartAdapter);
+        this.cartAdapter = new CartAdapter();
 
 
         //SHOW RECYCLE VIEW
+        recyclerView.setAdapter(cartAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         cartViewModel.getCartList().observe(getViewLifecycleOwner(), products -> {
             cartAdapter.setProductList(products);
@@ -65,6 +63,8 @@ public class CartFilledFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        //SHOW ORDER CONFIRM
         btnBuy.setOnClickListener(view1 -> {
             Log.d(TAG, "Buy handle");
             ConfirmOrderFragment fragment = new ConfirmOrderFragment();

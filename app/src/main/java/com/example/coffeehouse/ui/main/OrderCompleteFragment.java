@@ -1,4 +1,4 @@
-package com.example.coffeehouse.ui;
+package com.example.coffeehouse.ui.main;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;

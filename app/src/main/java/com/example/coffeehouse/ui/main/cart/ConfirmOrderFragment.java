@@ -1,4 +1,4 @@
-package com.example.coffeehouse.ui;
+package com.example.coffeehouse.ui.main.cart;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -30,11 +30,11 @@ public class ConfirmOrderFragment extends BottomSheetDialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_confirm_order, container, false);
-        tvTotal = view.findViewById(R.id.tv_total_text);
-        btnPay = view.findViewById(R.id.btn_pay);
+        this.tvTotal = view.findViewById(R.id.tv_total_text);
+        this.btnPay = view.findViewById(R.id.btn_pay);
+        this.orderConfirmViewModel = new ViewModelProvider(requireActivity()).get(OrderConfirmViewModel.class);
 
-        orderConfirmViewModel = new ViewModelProvider(requireActivity()).get(OrderConfirmViewModel.class);
-
+        //SHOW TOTAL
         if (getArguments() != null){
             total = getArguments().getDouble("total");
             tvTotal.setText(Double.toString(total));
@@ -45,6 +45,8 @@ public class ConfirmOrderFragment extends BottomSheetDialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        //PUSH ORDER
         btnPay.setOnClickListener(view1 -> orderConfirmViewModel.getOrderList().observe(getViewLifecycleOwner(), productList -> {
         if (productList != null) {
             orderConfirmViewModel.push(productList, total);

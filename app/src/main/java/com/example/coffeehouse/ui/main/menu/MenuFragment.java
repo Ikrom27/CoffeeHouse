@@ -18,8 +18,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.coffeehouse.R;
-import com.example.coffeehouse.ui.ConfirmOrderFragment;
-import com.example.coffeehouse.ui.OrderCompleteFragment;
+import com.example.coffeehouse.ui.main.cart.ConfirmOrderFragment;
+import com.example.coffeehouse.ui.main.OrderCompleteFragment;
 import com.example.coffeehouse.ui.main.menu.categories.CoffeeFragment;
 import com.example.coffeehouse.ui.main.menu.categories.DessertFragment;
 import com.example.coffeehouse.ui.main.menu.categories.SnackFragment;
