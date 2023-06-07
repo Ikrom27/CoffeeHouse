@@ -26,13 +26,16 @@ public class OrderCompleteFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_order_complete, container, false);
+        this.tvTotal = view.findViewById(R.id.tv_order_total);
+        this.tvOrderId = view.findViewById(R.id.tv_order_id);
+
+        //SET BACKGROUND
         if (getDialog() != null && getDialog().getWindow() != null) {
             getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         }
-        tvTotal = view.findViewById(R.id.tv_order_total);
-        tvOrderId = view.findViewById(R.id.tv_order_id);
 
+        //SET TEXT
         if (getArguments() != null){
             double total = getArguments().getDouble("total");
             int id = getArguments().getInt("id");
