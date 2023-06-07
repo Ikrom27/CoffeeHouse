@@ -57,7 +57,7 @@ public class RetrofitOrderDataSource {
             public void onResponse(Call<List<OrderHistoryResponse>> call, Response<List<OrderHistoryResponse>> response) {
                 if (response.isSuccessful()){
                     Log.d(TAG, "getOrderHistory response successful");
-                    Log.d(TAG, "Order date is " + response.body().get(0).getDate());
+                    Log.d(TAG, "Order id is " + response.body().get(0).getOrderID());
                     orderHistory.setValue(response.body());
                 }
                 else{

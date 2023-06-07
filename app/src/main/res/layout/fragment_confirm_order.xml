@@ -60,110 +60,41 @@
     </LinearLayout>
 
     <RadioGroup
+        android:id="@+id/rg_pay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="58dp">
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <RadioButton
+            android:id="@+id/rb_pay_in_shop"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:background="@drawable/bg_product_list"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="16dp"
-            android:orientation="horizontal">
+            android:text="@string/title_pay_in_shop"
+            android:textColor="@color/primary_text"
+            android:textSize="14sp"
+            android:drawableEnd="@drawable/ic_wallet"
+            android:padding="20dp"
+            android:fontFamily="@font/poppins_bold"
+            android:buttonTint="@color/primary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <RadioButton
-                android:id="@+id/rb_pay_in_shop"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_pay_in_shop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_bold"
-                android:text="@string/title_pay_in_shop"
-                android:textColor="@color/primary_text"
-                android:textSize="14sp"
-                android:layout_marginStart="10dp"
-                app:layout_constraintStart_toEndOf="@+id/rb_pay_in_shop"
-                app:layout_constraintTop_toTopOf="@+id/rb_pay_in_shop" />
-
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
-                android:text="@string/pay_in_shop_text"
-                android:textColor="@color/secondary_text"
-                android:textSize="11sp"
-                app:layout_constraintStart_toStartOf="@+id/tv_pay_in_shop"
-                app:layout_constraintTop_toBottomOf="@+id/tv_pay_in_shop" />
-
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_wallet"
-                android:layout_marginBottom="7dp"
-                app:tint="@color/primary"
-                android:background="@drawable/bg_icon_rounded"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <RadioButton
+            android:id="@+id/rb_pay_by_card"
             android:layout_width="match_parent"
             android:layout_height="80dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/bg_product_list"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="16dp"
-            android:layout_marginTop="18dp"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/rb_pay_by_card"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_pay_by_card"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_bold"
-                android:text="@string/title_pay_by_card"
-                android:textColor="@color/primary_text"
-                android:textSize="14sp"
-                android:layout_marginStart="10dp"
-                app:layout_constraintStart_toEndOf="@+id/rb_pay_by_card"
-                app:layout_constraintTop_toTopOf="@+id/rb_pay_by_card" />
-
-            <TextView
-                android:id="@+id/tv_pay_by_card_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
-                android:text="@string/pay_by_card_text"
-                android:textColor="@color/secondary_text"
-                android:textSize="11sp"
-                app:layout_constraintStart_toStartOf="@+id/tv_pay_by_card"
-                app:layout_constraintTop_toBottomOf="@+id/tv_pay_by_card" />
-
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_google_pay"
-                android:layout_marginBottom="7dp"
-                android:background="@drawable/bg_icon_rounded"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            android:text="@string/title_pay_by_card"
+            android:textColor="@color/primary_text"
+            android:textSize="14sp"
+            android:drawableEnd="@drawable/ic_google_pay"
+            android:padding="20dp"
+            android:buttonTint="@color/primary"
+            android:fontFamily="@font/poppins_bold"/>
     </RadioGroup>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
