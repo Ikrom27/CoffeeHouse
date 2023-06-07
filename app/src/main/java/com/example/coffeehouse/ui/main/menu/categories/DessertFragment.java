@@ -2,6 +2,7 @@ package com.example.coffeehouse.ui.main.menu.categories;
 
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -29,8 +30,10 @@ public class DessertFragment extends Fragment {
                              Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView");
         View view = inflater.inflate(R.layout.fragment_menu_products, container,false);
-        recyclerView = view.findViewById(R.id.rv_coffee);
+        recyclerView = view.findViewById(R.id.rv_products);
         categoryViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
+        ConstraintLayout emptyList = view.findViewById(R.id.container_no_order);
+        emptyList.setVisibility(View.GONE);
 
         productAdapter = new ProductAdapter();
         recyclerView.setAdapter(productAdapter);

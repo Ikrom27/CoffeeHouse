@@ -5,7 +5,11 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.coffeehouse.data.data_source.user.retrofit.RetrofitFactory;
+import com.example.coffeehouse.data.models.OrderHistoryResponse;
 import com.example.coffeehouse.data.models.OrderReceive;
+import com.example.coffeehouse.data.models.OrderResponse;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,5 +47,29 @@ public class RetrofitOrderDataSource {
             }
         });
         return orderID;
+    }
+
+    public MutableLiveData<List<OrderHistoryResponse>> getOrderHistory(int id){
+        MutableLiveData<List<OrderHistoryResponse>> orderHistory = new MutableLiveData<>();
+        OrderAPI orderAPI = retrofit.create(OrderAPI.class);
+        orderAPI.getOrderHistory(id).enqueue(new Callback<List<OrderHistoryResponse>>() {
+            @Override
+            public void onResponse(Call<List<OrderHistoryResponse>> call, Response<List<OrderHistoryResponse>> response) {
+                if (response.isSuccessful()){
+                    Log.d(TAG, "getOrderHistory response successful");
+                    Log.d(TAG, "Order date is " + response.body().get(0).getDate());
+                    orderHistory.setValue(response.body());
+                }
+                else{
+                    Log.e(TAG, "getOrderHistory response not successful");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<OrderHistoryResponse>> call, Throwable t) {
+                Log.e(TAG, "getOrderHistory onResponse error");
+            }
+        });
+        return orderHistory;
     }
 }

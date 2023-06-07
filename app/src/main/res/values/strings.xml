@@ -78,4 +78,5 @@
     <string name="pay">Pay now</string>
     <string name="order_complete">Order complete</string>
     <string name="order_id">#404</string>
+    <string name="date_text">00 June | 00:00 PM</string>
 </resources>
