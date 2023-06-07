@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
@@ -14,8 +15,11 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.example.coffeehouse.R;
+import com.example.coffeehouse.data.models.Cart;
 import com.example.coffeehouse.ui.state_holder.CartViewModel;
 import com.example.coffeehouse.ui.state_holder.OrderConfirmViewModel;
+
+import java.util.List;
 
 public class CartFragment extends Fragment {
     private CartViewModel cartViewModel;
@@ -35,6 +39,8 @@ public class CartFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        //NAVIGATE TO CORRECT FRAGMENT
         cartViewModel.getCartList().observe(getViewLifecycleOwner(), productEntities -> {
             if (productEntities.isEmpty()){
                 Navigation.findNavController(view.findViewById(R.id.fr_cart_container)).setGraph(R.navigation.navgraph_no_order);
@@ -44,6 +50,8 @@ public class CartFragment extends Fragment {
             }
         });
 
+
+        //NAVIGATE UP TO PREV
         orderConfirmViewModel.getOrder().observe(getViewLifecycleOwner(), orderResponse -> {
             if (orderResponse != null){
                 cartViewModel.clear();
@@ -51,6 +59,7 @@ public class CartFragment extends Fragment {
             }
         });
 
+        //BUTTON HANDLE
         ImageButton btnBackward = view.findViewById(R.id.bt_back_light);
         btnBackward.setOnClickListener(view1 -> Navigation.findNavController(view1).navigateUp());
 
