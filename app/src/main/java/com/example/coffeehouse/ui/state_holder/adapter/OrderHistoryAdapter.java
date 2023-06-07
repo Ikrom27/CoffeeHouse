@@ -12,8 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.coffeehouse.R;
 import com.example.coffeehouse.data.models.OrderHistoryResponse;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapter.OrderHistoryHolder> {
     private List<OrderHistoryResponse> orderHistoryResponseList = new ArrayList<>();
@@ -32,9 +35,21 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
     @Override
     public void onBindViewHolder(@NonNull OrderHistoryHolder holder, int position) {
         OrderHistoryResponse order = orderHistoryResponseList.get(position);
-        holder.tvDate.setText(order.getDate());
-        holder.tvOrderId.setText("#"+order.getOrderID());
-        holder.tvTotal.setText("$"+order.getTotal());
+
+        // Преобразование строки даты в LocalDateTime
+        LocalDateTime dateTime = LocalDateTime.parse(order.getDate(), DateTimeFormatter.ISO_DATE_TIME);
+
+        // Форматирование даты и времени
+        int day = dateTime.getDayOfMonth();
+        int month = dateTime.getMonthValue();
+        int hour = dateTime.getHour();
+        int minute = dateTime.getMinute();
+
+        String formattedDateTime = String.format("%02d-%02d | %02d:%02d", day, month, hour, minute);
+
+        holder.tvDate.setText(formattedDateTime);
+        holder.tvOrderId.setText("#" + order.getOrderID());
+        holder.tvTotal.setText("$" + order.getTotal());
     }
 
     @SuppressLint("NotifyDataSetChanged")

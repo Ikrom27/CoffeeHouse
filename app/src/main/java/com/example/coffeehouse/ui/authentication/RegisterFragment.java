@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.coffeehouse.R;
 import com.example.coffeehouse.ui.state_holder.RegisterViewModel;
@@ -42,11 +43,6 @@ public class RegisterFragment extends Fragment {
         userEmail = view.findViewById(R.id.et_email);
         userPassword = view.findViewById(R.id.et_password);
         userConfirm = view.findViewById(R.id.et_password_confirm);
-        userName.setText("Admin");
-        userPhone.setText("+79763845967");
-        userEmail.setText("admin@mail.ru");
-        userPassword.setText("Admin2023");
-        userConfirm.setText("Admin2023");
         registerViewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
         return view;
     }
@@ -106,8 +102,10 @@ public class RegisterFragment extends Fragment {
             if (requestState == 200){
                 requireActivity().finish();
             }
-            else {
+            else if (requestState == 500) {
                 userEmail.setError(requireContext().getString(R.string.register_error));
+            } else if (requestState == -1) {
+                Toast.makeText(getContext(), "Server is not responding", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -15,6 +15,7 @@ import java.util.Objects;
 public class RegisterViewModel extends AndroidViewModel {
     private final UserRepository userRepository;
     private MutableLiveData<User> user;
+    private String userPassword;
     private MutableLiveData<Boolean> isValidName;
     private MutableLiveData<Boolean> isValidPhone;
     private MutableLiveData<Boolean> isValidEmail;
@@ -61,7 +62,7 @@ public class RegisterViewModel extends AndroidViewModel {
     public void setUserPassword(String password){
         checkValidPassword(password);
         if(Boolean.TRUE.equals(getIsValidPassword().getValue())){
-            user.getValue().setPassword(password);
+            userPassword = password;
         }
     }
 
@@ -78,6 +79,7 @@ public class RegisterViewModel extends AndroidViewModel {
             Boolean.TRUE.equals(isValidEmail.getValue()) &&
             Boolean.TRUE.equals(isValidPassword.getValue()) &&
             Boolean.TRUE.equals(isValidConfirm.getValue())){
+            user.getValue().setPassword(userPassword);
             userRepository.registerUser(user.getValue());
             return true;
         }
@@ -103,7 +105,7 @@ public class RegisterViewModel extends AndroidViewModel {
     }
 
     private void checkConfirmPassword(String password){
-        getIsValidConfirm().setValue(Objects.equals(password, user.getValue().getPassword()));
+        getIsValidConfirm().setValue(Objects.equals(password, userPassword));
     }
 
     public MutableLiveData<Boolean> getIsValidName() {

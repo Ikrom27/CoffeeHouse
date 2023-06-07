@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.coffeehouse.R;
 import com.example.coffeehouse.ui.state_holder.LoginViewModel;
@@ -36,8 +37,6 @@ public class LogInFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         edEmail = view.findViewById(R.id.edit_text_email);
         edPassword = view.findViewById(R.id.et_password);
-        edEmail.setText("admin@mail.ru");
-        edPassword.setText("Admin2023");
         return view;
     }
 
@@ -74,6 +73,8 @@ public class LogInFragment extends Fragment {
         loginViewModel.getRequestState().observe(getViewLifecycleOwner(), requestState -> {
             if (requestState == 404){
                 edEmail.setError(requireContext().getString(R.string.login_error));
+            }else if (requestState == -1) {
+                Toast.makeText(getContext(), "Server is not responding", Toast.LENGTH_SHORT).show();
             }
         });
     }
