@@ -6,14 +6,14 @@ public class OrderHistoryResponse extends OrderResponse{
     private String date;
     private boolean isReady;
 
-    public OrderHistoryResponse(int orderId,
+    public OrderHistoryResponse(int id,
                                 String date,
                                 double total,
                                 boolean isReady,
                                 int userID,
                                 List<OrderItem> orderItemList)
     {
-        super(total, userID, orderItemList, orderId);
+        super(total, userID, orderItemList, id);
         this.date = date;
         this.isReady = isReady;
     }

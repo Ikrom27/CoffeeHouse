@@ -3,18 +3,18 @@ package com.example.coffeehouse.data.models;
 import java.util.List;
 
 public class OrderResponse extends OrderReceive{
-    private int orderID;
+    private int id;
 
     public OrderResponse(double total, int userID, List<OrderItem> orderItemList, int id) {
         super(total, userID, orderItemList);
-        setOrderID(id);
+        this.id = id;
     }
 
     public int getOrderID() {
-        return orderID;
+        return id;
     }
 
     public void setOrderID(int orderID) {
-        this.orderID = orderID;
+        this.id = orderID;
     }
 }
