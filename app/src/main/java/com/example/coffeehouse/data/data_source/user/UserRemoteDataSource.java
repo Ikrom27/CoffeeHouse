@@ -11,4 +11,5 @@ public interface UserRemoteDataSource {
 
     MutableLiveData<Integer> setUser(User user);
     MutableLiveData<UserResponse> getUser(UserRequest userRequest);
+    MutableLiveData<Integer> getRequestState();
 }

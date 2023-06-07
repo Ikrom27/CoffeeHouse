@@ -19,22 +19,31 @@ import android.view.ViewGroup;
 
 import com.example.coffeehouse.R;
 import com.example.coffeehouse.ui.state_holder.MenuViewModel;
+import com.example.coffeehouse.ui.state_holder.ProfileViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class MainFragment extends Fragment {
     private View view;
+    private ProfileViewModel profileViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view  = inflater.inflate(R.layout.fragment_main, container, false);
+        profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
         return view;
     }
 
     @Override
     public void onStart() {
         super.onStart();
+        profileViewModel.getUser().observe(getViewLifecycleOwner(), userResponse -> {
+            if (userResponse == null){
+                Navigation.findNavController(requireActivity(), R.id.fragment_main_menu)
+                        .navigate(R.id.action_mainFragment_to_authenticationActivity);
+            }
+        });
         BottomNavigationView navView = view.findViewById(R.id.bottomNavigationView);
         NavController navController = Navigation.findNavController(view.findViewById(R.id.fr_menu));
         NavigationUI.setupWithNavController(navView, navController);

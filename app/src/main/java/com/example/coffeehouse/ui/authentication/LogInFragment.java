@@ -70,5 +70,11 @@ public class LogInFragment extends Fragment {
         ImageButton btnBackward = view.findViewById(R.id.bt_back_light);
         btnBackward.setOnClickListener(view12 -> Navigation.findNavController(view12)
                 .navigateUp());
+
+        loginViewModel.getRequestState().observe(getViewLifecycleOwner(), requestState -> {
+            if (requestState == 404){
+                edEmail.setError(requireContext().getString(R.string.login_error));
+            }
+        });
     }
 }

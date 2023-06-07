@@ -57,6 +57,8 @@ public class ProfileFragment extends Fragment {
         btnExit.setOnClickListener(view1 -> {
             profileViewModel.exitUser();
             Toast.makeText(getContext(), "Profile exit", Toast.LENGTH_SHORT).show();
+            Navigation.findNavController(requireActivity(), R.id.fragment_main_menu)
+                    .navigate(R.id.action_mainFragment_to_authenticationActivity);
         });
     }
 }

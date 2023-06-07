@@ -14,4 +14,5 @@ public interface UserRepository {
     MutableLiveData<UserResponse> getLocalUser();
     int getUserId();
     void deleteUser();
+    MutableLiveData<Integer> getRequestState();
 }

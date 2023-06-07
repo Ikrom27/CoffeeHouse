@@ -57,7 +57,13 @@ public class UserRepositoryImpl implements UserRepository {
         return userLocalDataSource.getUser().getId();
     }
 
+    @Override
     public void deleteUser(){
         userLocalDataSource.deleteUser();
+    }
+
+    @Override
+    public MutableLiveData<Integer> getRequestState() {
+        return userRemoteDataSource.getRequestState();
     }
 }

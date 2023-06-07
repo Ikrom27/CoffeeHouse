@@ -36,5 +36,9 @@ public class LoginViewModel extends AndroidViewModel {
         UserRequest userRequest = new UserRequest(userEmail, userPassword);
         return userRepository.loginByEmail(userRequest);
     }
+
+    public MutableLiveData<Integer> getRequestState(){
+        return userRepository.getRequestState();
+    }
 }
 

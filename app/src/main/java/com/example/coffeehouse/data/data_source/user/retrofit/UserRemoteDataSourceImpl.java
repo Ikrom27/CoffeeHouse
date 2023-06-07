@@ -18,10 +18,12 @@ public class UserRemoteDataSourceImpl implements UserRemoteDataSource {
     private Retrofit retrofit;
     private String URL = "";
     private String TAG = "UserRemoteDataSourceImpl";
+    private MutableLiveData<Integer> requestState = new MutableLiveData<>();
 
     public UserRemoteDataSourceImpl(){
         this.retrofit = RetrofitFactory.getRetrofit(URL);
     }
+
 
     public MutableLiveData<Integer> setUser(User user){
         MutableLiveData<Integer> userID = new MutableLiveData<>();
@@ -32,15 +34,18 @@ public class UserRemoteDataSourceImpl implements UserRemoteDataSource {
                 if (response.isSuccessful()){
                     Log.d(TAG, "User id get successful " + response.body());
                     userID.setValue(response.body());
+                    requestState.setValue(response.code());
                 }
                 else{
                     Log.e(TAG, "User id get error");
+                    requestState.setValue(response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<Integer> call, Throwable t) {
                 Log.e(TAG, "onResponse error");
+                requestState.setValue(-1);
             }
         });
         return userID;
@@ -55,18 +60,26 @@ public class UserRemoteDataSourceImpl implements UserRemoteDataSource {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()){
                     userResponse.setValue(response.body());
+                    requestState.setValue(response.code());
                     Log.d(TAG, "User response is successful");
                 }
                 else{
                     Log.e(TAG, "User response is not successful");
+                    requestState.setValue(response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
                 Log.e(TAG, "onFailure error");
+                requestState.setValue(-1);
             }
         });
         return userResponse;
+    }
+
+    @Override
+    public MutableLiveData<Integer> getRequestState() {
+        return requestState;
     }
 }

@@ -56,6 +56,8 @@
     <string name="email_error">The email address must comply with RFC 5322 (https://emailregex.com/)</string>
     <string name="password_error">The password must be at least 8 characters long,
         including at least one uppercase letter, one lowercase letter, and one number</string>
+    <string name="login_error">wrong login or password</string>
+    <string name="register_error">This mail is already registered</string>
     <string name="wrong_password">Wrong password!</string>
     <string name="confirm_password">Confirm password</string>
     <string name="confirm_error">Password mismatch!</string>

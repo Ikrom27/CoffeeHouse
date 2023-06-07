@@ -99,8 +99,15 @@ public class RegisterFragment extends Fragment {
             registerViewModel.setUserEmail(userEmail.getText().toString());
             registerViewModel.setUserPassword(userPassword.getText().toString());
             registerViewModel.setPasswordConfirm(userConfirm.getText().toString());
-            if (registerViewModel.registerUser()){
+            registerViewModel.registerUser();
+        });
+
+        registerViewModel.getRequestState().observe(getViewLifecycleOwner(), requestState -> {
+            if (requestState == 200){
                 requireActivity().finish();
+            }
+            else {
+                userEmail.setError(requireContext().getString(R.string.register_error));
             }
         });
 
