@@ -12,5 +12,6 @@ public interface UserRepository {
 
     void registerUser(User user);
     MutableLiveData<UserResponse> getLocalUser();
+    int getUserId();
     void deleteUser();
 }

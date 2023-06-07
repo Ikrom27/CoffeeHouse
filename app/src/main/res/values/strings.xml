@@ -35,7 +35,7 @@
     <string name="order_day">00 Month | 00:00 TM</string>
 
     <string name="product_name">Product name</string>
-    <string name="address">City, street, house</string>
+    <string name="address">Prospect Vernadskogo, 86</string>
 
     <string name="title_profile">Profile</string>
     <string name="title_name">Name</string>
@@ -70,4 +70,12 @@
     <string name="no_user">Who are your?</string>
     <string name="no_user_text">It seems you are not registered yet, join us soon!</string>
     <string name="cart_list_num">0</string>
+    <string name="in_plate">In the cafeteria</string>
+    <string name="title_pay_in_shop">Pay in shop</string>
+    <string name="pay_in_shop_text">Pay in place by cash or by card</string>
+    <string name="title_pay_by_card">Pay by Card</string>
+    <string name="pay_by_card_text">Pay by card using GooglePay</string>
+    <string name="pay">Pay now</string>
+    <string name="order_complete">Order complete</string>
+    <string name="order_id">#404</string>
 </resources>

@@ -11,6 +11,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.coffeehouse.R;
+import com.example.coffeehouse.ui.ConfirmOrderFragment;
 import com.example.coffeehouse.ui.state_holder.CartViewModel;
+import com.example.coffeehouse.ui.state_holder.OrderViewModel;
 import com.example.coffeehouse.ui.state_holder.adapter.CartAdapter;
 
 
@@ -30,6 +33,8 @@ public class CartRecycleViewFragment extends Fragment {
     private Button btnBuy;
     private TextView tvTotalPrice;
     private View view;
+    private OrderViewModel orderViewModel;
+    private String TAG;
     private double total = 0;
 
     @SuppressLint("SetTextI18n")
@@ -38,8 +43,8 @@ public class CartRecycleViewFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_cart_recycle_view, container, false);
         recyclerView = view.findViewById(R.id.rv_container);
-        btnBuy = view.findViewById(R.id.btn_checkout);
-        tvTotalPrice = view.findViewById(R.id.textView9);
+        btnBuy = view.findViewById(R.id.btn_pay);
+        tvTotalPrice = view.findViewById(R.id.tv_total_text);
 
         this.cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
         cartViewModel.getCartList().observe(getViewLifecycleOwner(), products -> {
@@ -51,6 +56,14 @@ public class CartRecycleViewFragment extends Fragment {
             this.total = totalPrice;
             tvTotalPrice.setText("$ " + total);
         });
+
+
+
+        orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
+        orderViewModel.getOrder().observe(getViewLifecycleOwner(), orderResponse -> {
+            Log.d(TAG, "FUCK");
+        });
+
         return view;
     }
 
@@ -58,12 +71,11 @@ public class CartRecycleViewFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         btnBuy.setOnClickListener(view1 -> {
-            cartViewModel.getCartList().observe(getViewLifecycleOwner(), productList -> {
-                if (productList != null && !productList.isEmpty()) {
-                    cartViewModel.push(productList, total);
-                }
-                cartViewModel.clear();
-            });
+            ConfirmOrderFragment fragment = new ConfirmOrderFragment();
+            Bundle args = new Bundle();
+            args.putDouble("total", total);
+            fragment.setArguments(args);
+            fragment.show(getChildFragmentManager(), ConfirmOrderFragment.TAG);
         });
     }
 }

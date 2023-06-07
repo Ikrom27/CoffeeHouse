@@ -1,4 +1,4 @@
-package com.example.coffeehouse.data.data_source.orders.retrofit;
+package com.example.coffeehouse.data.models;
 
 import com.example.coffeehouse.data.models.OrderItem;
 

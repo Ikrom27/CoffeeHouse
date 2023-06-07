@@ -5,19 +5,26 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.example.coffeehouse.R;
+import com.example.coffeehouse.data.models.OrderResponse;
+import com.example.coffeehouse.ui.ConfirmOrderFragment;
 import com.example.coffeehouse.ui.state_holder.CartViewModel;
+import com.example.coffeehouse.ui.state_holder.OrderViewModel;
 
 public class CartFragment extends Fragment {
     private CartViewModel cartViewModel;
+    private OrderViewModel orderViewModel;
+    private String TAG = "CartFragment";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -25,6 +32,7 @@ public class CartFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
         cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
+        orderViewModel = new ViewModelProvider(requireActivity()).get(OrderViewModel.class);
         return view;
     }
 
@@ -40,7 +48,15 @@ public class CartFragment extends Fragment {
             }
         });
 
+        orderViewModel.getOrder().observe(getViewLifecycleOwner(), orderResponse -> {
+            if (orderResponse != null){
+                cartViewModel.clear();
+                Navigation.findNavController(view).navigateUp();
+            }
+        });
+
         ImageButton btnBackward = view.findViewById(R.id.bt_back_light);
         btnBackward.setOnClickListener(view1 -> Navigation.findNavController(view1).navigateUp());
+
     }
 }

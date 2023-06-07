@@ -18,10 +18,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.coffeehouse.R;
+import com.example.coffeehouse.ui.ConfirmOrderFragment;
+import com.example.coffeehouse.ui.OrderCompleteFragment;
 import com.example.coffeehouse.ui.main.menu.categories.CoffeeFragment;
 import com.example.coffeehouse.ui.main.menu.categories.DessertFragment;
 import com.example.coffeehouse.ui.main.menu.categories.SnackFragment;
 import com.example.coffeehouse.ui.state_holder.MenuViewModel;
+import com.example.coffeehouse.ui.state_holder.OrderViewModel;
 import com.example.coffeehouse.ui.state_holder.adapter.MenuFragmentStateAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -29,7 +32,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuFragment extends Fragment {
+public class MenuFragment extends Fragment{
     private final String TAG = "CategoriesFragment";
 
     private TabLayout tabLayout;
@@ -37,6 +40,7 @@ public class MenuFragment extends Fragment {
     private TextView tvUserName;
     private TextView tvCartNum;
     private MenuViewModel menuViewModel;
+    private OrderViewModel orderResponse;
 
     private String[] TAB_TITLES;
     private final List<Fragment> FRAGMENTS = new ArrayList<Fragment>() {{
@@ -44,6 +48,8 @@ public class MenuFragment extends Fragment {
         add(new SnackFragment());
         add(new DessertFragment());
     }};
+
+
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -64,7 +70,24 @@ public class MenuFragment extends Fragment {
 
         //SET PROFILE NAME
         tvUserName = view.findViewById(R.id.tv_profile_name);
+
+
+        orderResponse = new ViewModelProvider(requireActivity()).get(OrderViewModel.class);
         menuViewModel = new ViewModelProvider(this).get(MenuViewModel.class);
+
+
+        orderResponse.getOrder().observe(getViewLifecycleOwner(), order -> {
+            if (order != null){
+                OrderCompleteFragment fragment = new OrderCompleteFragment();
+                Bundle args = new Bundle();
+                args.putDouble("total", order.getTotal());
+                args.putInt("id", order.getOrderID());
+                fragment.setArguments(args);
+                fragment.show(getChildFragmentManager(), ConfirmOrderFragment.TAG);
+                orderResponse.clearConfirmOrder();
+            }
+        });
+
         menuViewModel.getUser().observe(getViewLifecycleOwner(), user -> {
             if (user != null) {
                 tvUserName.setText(user.getName());
@@ -95,7 +118,6 @@ public class MenuFragment extends Fragment {
                 }
             }
         });
-
         return view;
     }
 

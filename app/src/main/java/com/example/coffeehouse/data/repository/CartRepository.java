@@ -13,5 +13,6 @@ public interface CartRepository {
     void addToCart(Cart cart);
     LiveData<Integer> getTotalPrice();
     LiveData<Cart> getOrderByID(int id);
+
     void clear();
 }

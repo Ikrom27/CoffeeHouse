@@ -4,12 +4,15 @@ import android.content.Context;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.coffeehouse.data.data_source.orders.retrofit.RetrofitOrderDataSource;
 import com.example.coffeehouse.data.data_source.products.room.RoomCartDataSource;
 import com.example.coffeehouse.data.models.Cart;
 import com.example.coffeehouse.data.models.OrderItem;
+import com.example.coffeehouse.data.models.OrderResponse;
 import com.example.coffeehouse.data.repository.CartRepository;
+import com.example.coffeehouse.data.repository.OrderRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +21,7 @@ public class CartRepositoryImpl implements CartRepository {
     private RoomCartDataSource roomCartDataSource;
     private RetrofitOrderDataSource retrofitOrderDataSource;
     private String TAG = "CartRepositoryImpl";
+    private OrderRepository orderRepository;
 
     public CartRepositoryImpl(Context context){
         roomCartDataSource = new RoomCartDataSource(context);
@@ -52,5 +56,9 @@ public class CartRepositoryImpl implements CartRepository {
     @Override
     public void clear(){
         roomCartDataSource.clear();
+    }
+
+    public LiveData<OrderResponse> getOrderConfirm(){
+        return orderRepository.getOrderConfirm();
     }
 }

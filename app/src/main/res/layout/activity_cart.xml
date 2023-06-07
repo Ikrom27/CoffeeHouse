@@ -40,7 +40,7 @@
 
 
         <Button
-            android:id="@+id/btn_checkout"
+            android:id="@+id/btn_pay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/checkout"
@@ -51,7 +51,7 @@
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/btn_checkout"
+            android:layout_above="@+id/btn_pay"
             android:layout_alignParentStart="true"
             android:layout_marginVertical="1dp"
             android:layout_marginStart="0dp"
@@ -61,11 +61,11 @@
             android:textSize="16sp"/>
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/tv_total_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/btn_checkout"
-            android:layout_alignEnd="@+id/btn_checkout"
+            android:layout_above="@+id/btn_pay"
+            android:layout_alignEnd="@+id/btn_pay"
             android:layout_marginVertical="1dp"
             android:layout_marginStart="0dp"
             android:layout_marginBottom="1dp"
