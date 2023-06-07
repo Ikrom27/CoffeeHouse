@@ -62,7 +62,7 @@ public class DetailsFragment extends Fragment {
             tvDescription.setText(productDescription);
             btToCart.setOnClickListener(view1 -> {
                 detailsViewModel.toCart(productName, productPrice, productImage, productID);
-                Navigation.findNavController(view1).navigateUp()
+                Navigation.findNavController(view1).navigateUp();
             });
         }
         return view;
