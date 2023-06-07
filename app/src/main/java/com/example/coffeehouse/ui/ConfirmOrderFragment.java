@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.coffeehouse.R;
-import com.example.coffeehouse.ui.state_holder.OrderViewModel;
+import com.example.coffeehouse.ui.state_holder.OrderConfirmViewModel;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 
@@ -24,7 +23,7 @@ public class ConfirmOrderFragment extends BottomSheetDialogFragment {
     public static String TAG = "ConfirmOrderFragment";
     private TextView tvTotal;
     private AppCompatButton btnPay;
-    private OrderViewModel orderViewModel;
+    private OrderConfirmViewModel orderConfirmViewModel;
     private Double total = (double) -1;
 
     @SuppressLint("SetTextI18n")
@@ -34,7 +33,7 @@ public class ConfirmOrderFragment extends BottomSheetDialogFragment {
         tvTotal = view.findViewById(R.id.tv_total_text);
         btnPay = view.findViewById(R.id.btn_pay);
 
-        orderViewModel = new ViewModelProvider(requireActivity()).get(OrderViewModel.class);
+        orderConfirmViewModel = new ViewModelProvider(requireActivity()).get(OrderConfirmViewModel.class);
 
         if (getArguments() != null){
             total = getArguments().getDouble("total");
@@ -46,9 +45,9 @@ public class ConfirmOrderFragment extends BottomSheetDialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        btnPay.setOnClickListener(view1 -> orderViewModel.getOrderList().observe(getViewLifecycleOwner(), productList -> {
+        btnPay.setOnClickListener(view1 -> orderConfirmViewModel.getOrderList().observe(getViewLifecycleOwner(), productList -> {
         if (productList != null) {
-            orderViewModel.push(productList, total);
+            orderConfirmViewModel.push(productList, total);
         }
     }));
     }

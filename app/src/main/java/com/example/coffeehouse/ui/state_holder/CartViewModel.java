@@ -22,14 +22,10 @@ import java.util.stream.Collectors;
 
 public class CartViewModel extends AndroidViewModel {
     private final CartRepositoryImpl cartRepositoryImpl;
-    private final OrderRepository orderRepository;
-    private final UserRepository userRepository;
 
     public CartViewModel(@NonNull Application application) {
         super(application);
         this.cartRepositoryImpl = new CartRepositoryImpl(application.getApplicationContext());
-        this.orderRepository = new OrderRepositoryImpl(application.getApplicationContext());
-        this.userRepository = new UserRepositoryImpl(application.getApplicationContext());
     }
 
     public LiveData<List<Cart>> getCartList(){
@@ -38,18 +34,6 @@ public class CartViewModel extends AndroidViewModel {
 
     public LiveData<Integer> getTotalPrice(){
         return cartRepositoryImpl.getTotalPrice();
-    }
-    public void push(List<Cart> cartList, double total){
-        List<OrderItem> orderItemList = cartList.stream()
-                .map(cart -> new OrderItem(cart.getQuantity(), cart.getProductId()))
-                .collect(Collectors.toList());
-        orderRepository.pushOrder(new OrderReceive(total,
-        userRepository.getLocalUser().getValue().getId(),
-        orderItemList));
-    }
-
-    public LiveData<OrderResponse> getConfirmOrder(){
-        return orderRepository.getOrderConfirm();
     }
 
     public void clear(){

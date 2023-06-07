@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,7 +20,7 @@ import android.widget.TextView;
 import com.example.coffeehouse.R;
 import com.example.coffeehouse.ui.ConfirmOrderFragment;
 import com.example.coffeehouse.ui.state_holder.CartViewModel;
-import com.example.coffeehouse.ui.state_holder.OrderViewModel;
+import com.example.coffeehouse.ui.state_holder.OrderConfirmViewModel;
 import com.example.coffeehouse.ui.state_holder.adapter.CartAdapter;
 
 
@@ -33,7 +32,7 @@ public class CartRecycleViewFragment extends Fragment {
     private Button btnBuy;
     private TextView tvTotalPrice;
     private View view;
-    private OrderViewModel orderViewModel;
+    private OrderConfirmViewModel orderConfirmViewModel;
     private String TAG;
     private double total = 0;
 
@@ -59,8 +58,8 @@ public class CartRecycleViewFragment extends Fragment {
 
 
 
-        orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
-        orderViewModel.getOrder().observe(getViewLifecycleOwner(), orderResponse -> {
+        orderConfirmViewModel = new ViewModelProvider(this).get(OrderConfirmViewModel.class);
+        orderConfirmViewModel.getOrder().observe(getViewLifecycleOwner(), orderResponse -> {
             Log.d(TAG, "FUCK");
         });
 

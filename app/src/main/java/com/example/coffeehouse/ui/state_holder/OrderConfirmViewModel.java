@@ -6,7 +6,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import com.example.coffeehouse.data.models.Cart;
 import com.example.coffeehouse.data.models.OrderItem;
@@ -19,17 +18,16 @@ import com.example.coffeehouse.data.repository.impl.CartRepositoryImpl;
 import com.example.coffeehouse.data.repository.impl.OrderRepositoryImpl;
 import com.example.coffeehouse.data.repository.impl.UserRepositoryImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class OrderViewModel extends AndroidViewModel {
+public class OrderConfirmViewModel extends AndroidViewModel {
     private final UserRepository userRepository;
     private final CartRepository cartRepository;
     private final OrderRepository orderRepository;
     private String TAG = "OrderViewModel";
 
-    public OrderViewModel(@NonNull Application application) {
+    public OrderConfirmViewModel(@NonNull Application application) {
         super(application);
         this.userRepository = new UserRepositoryImpl(application.getApplicationContext());
         this.cartRepository = new CartRepositoryImpl(application.getApplicationContext());
@@ -45,7 +43,7 @@ public class OrderViewModel extends AndroidViewModel {
         return cartRepository.getCartList();
     }
 
-    public void clearConfirmOrder(){
+    public void deleteCompletedOrder(){
         orderRepository.clearConfirmOrder();
     }
     public void push(List<Cart> cartList, double total){

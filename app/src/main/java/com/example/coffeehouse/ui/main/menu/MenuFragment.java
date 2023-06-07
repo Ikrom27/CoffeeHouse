@@ -24,7 +24,7 @@ import com.example.coffeehouse.ui.main.menu.categories.CoffeeFragment;
 import com.example.coffeehouse.ui.main.menu.categories.DessertFragment;
 import com.example.coffeehouse.ui.main.menu.categories.SnackFragment;
 import com.example.coffeehouse.ui.state_holder.MenuViewModel;
-import com.example.coffeehouse.ui.state_holder.OrderViewModel;
+import com.example.coffeehouse.ui.state_holder.OrderConfirmViewModel;
 import com.example.coffeehouse.ui.state_holder.adapter.MenuFragmentStateAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -34,13 +34,13 @@ import java.util.List;
 
 public class MenuFragment extends Fragment{
     private final String TAG = "CategoriesFragment";
-
     private TabLayout tabLayout;
     private ViewPager2 viewPager2;
     private TextView tvUserName;
     private TextView tvCartNum;
     private MenuViewModel menuViewModel;
-    private OrderViewModel orderResponse;
+    private OrderConfirmViewModel orderConfirmViewModel;
+    private MenuFragmentStateAdapter adapter;
 
     private String[] TAB_TITLES;
     private final List<Fragment> FRAGMENTS = new ArrayList<Fragment>() {{
@@ -56,38 +56,26 @@ public class MenuFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
-
-        TAB_TITLES = new String[]{getString(R.string.coffee), getString(R.string.snacks), getString(R.string.dessert)};
+        //INIT
+        this.orderConfirmViewModel = new ViewModelProvider(requireActivity()).get(OrderConfirmViewModel.class);
+        this.menuViewModel = new ViewModelProvider(requireActivity()).get(MenuViewModel.class);
+        this.tabLayout = view.findViewById(R.id.tl_menu_tabs);
+        this.viewPager2 = view.findViewById(R.id.vp2_container);
+        this.adapter = new MenuFragmentStateAdapter(this);
+        this.tvUserName = view.findViewById(R.id.tv_profile_name);
+        this.tvCartNum = view.findViewById(R.id.tv_cart_num);
+        this.TAB_TITLES = new String[]{getString(R.string.coffee),
+                                        getString(R.string.snacks),
+                                        getString(R.string.dessert)};
 
         //SET TABS
-        tabLayout = view.findViewById(R.id.tl_menu_tabs);
-        viewPager2 = view.findViewById(R.id.vp2_container);
-        MenuFragmentStateAdapter adapter = new MenuFragmentStateAdapter(this);
         adapter.setFragments(FRAGMENTS);
         viewPager2.setAdapter(adapter);
         new TabLayoutMediator(tabLayout, viewPager2,
                 (tab, position) -> tab.setText(TAB_TITLES[position])).attach();
 
-        //SET PROFILE NAME
-        tvUserName = view.findViewById(R.id.tv_profile_name);
 
-
-        orderResponse = new ViewModelProvider(requireActivity()).get(OrderViewModel.class);
-        menuViewModel = new ViewModelProvider(this).get(MenuViewModel.class);
-
-
-        orderResponse.getOrder().observe(getViewLifecycleOwner(), order -> {
-            if (order != null){
-                OrderCompleteFragment fragment = new OrderCompleteFragment();
-                Bundle args = new Bundle();
-                args.putDouble("total", order.getTotal());
-                args.putInt("id", order.getOrderID());
-                fragment.setArguments(args);
-                fragment.show(getChildFragmentManager(), ConfirmOrderFragment.TAG);
-                orderResponse.clearConfirmOrder();
-            }
-        });
-
+        //SHOW USER NAME
         menuViewModel.getUser().observe(getViewLifecycleOwner(), user -> {
             if (user != null) {
                 tvUserName.setText(user.getName());
@@ -99,7 +87,6 @@ public class MenuFragment extends Fragment{
             }
         });
 
-        tvCartNum = view.findViewById(R.id.tv_cart_num);
         menuViewModel.getCartList().observe(getViewLifecycleOwner(), carts -> {
             if (carts != null){
                 if (carts.size() > 0){
@@ -124,8 +111,26 @@ public class MenuFragment extends Fragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        //CART BUTTON HANDLE
         ImageButton cartButton = view.findViewById(R.id.bt_buy_light);
-        cartButton.setOnClickListener(view1 -> Navigation.findNavController(requireActivity(), R.id.fragment_main_menu)
-                .navigate(R.id.action_mainFragment_to_cartFragment));
+        cartButton.setOnClickListener(view1 -> {
+            Navigation.findNavController(requireActivity(), R.id.fragment_main_menu)
+                    .navigate(R.id.action_mainFragment_to_cartFragment);
+            Log.d(TAG, "Cart button handle");
+        });
+
+        //SHOW ORDER COMPLETE
+        orderConfirmViewModel.getOrder().observe(getViewLifecycleOwner(), order -> {
+            if (order != null){
+                OrderCompleteFragment fragment = new OrderCompleteFragment();
+                Bundle args = new Bundle();
+                args.putDouble("total", order.getTotal());
+                args.putInt("id", order.getOrderID());
+                fragment.setArguments(args);
+                fragment.show(getChildFragmentManager(), ConfirmOrderFragment.TAG);
+                orderConfirmViewModel.deleteCompletedOrder();
+            }
+        });
     }
 }
