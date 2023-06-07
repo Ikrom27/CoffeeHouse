@@ -89,7 +89,7 @@
 
         <androidx.viewpager2.widget.ViewPager2
             android:layout_marginTop="16dp"
-            android:layout_marginHorizontal="-8dp"
+            android:layout_marginHorizontal="-38dp"
             android:id="@+id/vp2_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

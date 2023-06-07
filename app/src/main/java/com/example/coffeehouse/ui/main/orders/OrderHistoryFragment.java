@@ -37,7 +37,7 @@ public class OrderHistoryFragment extends Fragment {
 
         recyclerView.setAdapter(orderHistoryAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
-        orderHistoryViewModel.getOrderHistory(false).observe(getViewLifecycleOwner(), orderHistoryResponses -> {
+        orderHistoryViewModel.getOrderHistory(true).observe(getViewLifecycleOwner(), orderHistoryResponses -> {
             if (orderHistoryResponses.size() > 0){
                 emptyList.setVisibility(View.GONE);
                 orderHistoryAdapter.setOrderHistoryResponseList(orderHistoryResponses);

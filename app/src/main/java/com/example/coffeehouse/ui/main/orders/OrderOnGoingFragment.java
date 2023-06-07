@@ -34,7 +34,7 @@ public class OrderOnGoingFragment extends Fragment {
 
         recyclerView.setAdapter(orderOnGoingAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
-        orderHistoryViewModel.getOrderHistory(true).observe(getViewLifecycleOwner(), orderHistoryResponses -> {
+        orderHistoryViewModel.getOrderHistory(false).observe(getViewLifecycleOwner(), orderHistoryResponses -> {
             if (orderHistoryResponses.size() > 0){
                 emptyList.setVisibility(View.GONE);
                 orderOnGoingAdapter.setOrderHistoryResponseList(orderHistoryResponses);
