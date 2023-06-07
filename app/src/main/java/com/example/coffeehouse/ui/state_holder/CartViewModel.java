@@ -32,7 +32,7 @@ public class CartViewModel extends AndroidViewModel {
         return cartRepositoryImpl.getCartList();
     }
 
-    public LiveData<Integer> getTotalPrice(){
+    public LiveData<Double> getTotalPrice(){
         return cartRepositoryImpl.getTotalPrice();
     }
 

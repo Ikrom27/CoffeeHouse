@@ -12,8 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.coffeehouse.R;
 import com.example.coffeehouse.data.models.OrderHistoryResponse;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class OrderOnGoingAdapter extends RecyclerView.Adapter<OrderOnGoingAdapter.OrderOnGoingHolder>{
     private List<OrderHistoryResponse> orderHistoryResponseList = new ArrayList<>();
@@ -30,11 +33,19 @@ public class OrderOnGoingAdapter extends RecyclerView.Adapter<OrderOnGoingAdapte
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull OrderOnGoingAdapter.OrderOnGoingHolder holder, int position) {
+    public void onBindViewHolder(@NonNull OrderOnGoingHolder holder, int position) {
         OrderHistoryResponse order = orderHistoryResponseList.get(position);
-        holder.tvDate.setText(order.getDate());
-        holder.tvOrderId.setText("#"+order.getOrderID());
-        holder.tvTotal.setText("$"+order.getTotal());
+
+        // Преобразование строки даты в LocalDateTime
+        LocalDateTime dateTime = LocalDateTime.parse(order.getDate(), DateTimeFormatter.ISO_DATE_TIME);
+
+        // Форматирование даты и времени
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM | HH:mm", Locale.US);
+        String formattedDateTime = dateTime.format(formatter);
+
+        holder.tvDate.setText(formattedDateTime);
+        holder.tvOrderId.setText("#" + order.getOrderID());
+        holder.tvTotal.setText("$" + order.getTotal());
     }
 
     @SuppressLint("NotifyDataSetChanged")

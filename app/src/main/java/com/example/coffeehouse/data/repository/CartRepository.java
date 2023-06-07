@@ -11,7 +11,7 @@ public interface CartRepository {
     LiveData<List<Cart>> getCartList();
     void update(Cart cart);
     void addToCart(Cart cart);
-    LiveData<Integer> getTotalPrice();
+    LiveData<Double> getTotalPrice();
     LiveData<Cart> getOrderByID(int id);
 
     void clear();

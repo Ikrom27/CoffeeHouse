@@ -44,7 +44,7 @@ public class CartRepositoryImpl implements CartRepository {
     }
 
     @Override
-    public LiveData<Integer>  getTotalPrice(){
+    public LiveData<Double>  getTotalPrice(){
         return roomCartDataSource.getTotalPrice();
     }
 

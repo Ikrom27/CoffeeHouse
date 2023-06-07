@@ -36,10 +36,14 @@ public class RoomCartDataSource {
         return cartDao.getCartList();
     }
 
-    public MutableLiveData<Integer>  getTotalPrice(){
-        MutableLiveData<Integer> totalPrice = new MutableLiveData<>(0);
-        userCartRoomDataBase.getQueryExecutor().execute(()-> {
-            totalPrice.postValue(cartDao.getTotalPrice());
+    public MutableLiveData<Double>  getTotalPrice(){
+        MutableLiveData<Double> totalPrice = new MutableLiveData<>((double)0);
+        cartDao.getCartList().observeForever(carts -> {
+            double total = 0;
+            for (Cart cart: carts){
+                total += cart.getProductPrice();
+            }
+            totalPrice.postValue(total);
         });
         return totalPrice;
     }
