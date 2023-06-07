@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/cartRecycleViewFragment"
-        android:name="com.example.coffeehouse.ui.main.cart.CartRecycleViewFragment"
+        android:name="com.example.coffeehouse.ui.main.cart.CartFilledFragment"
         android:label="fragment_cart_recycle_view"
-        tools:layout="@layout/fragment_cart_recycle_view" >
+        tools:layout="@layout/fragment_cart_filled" >
         <action
             android:id="@+id/action_cartRecycleViewFragment_to_oopsFragment"
             app:destination="@id/oopsFragment"

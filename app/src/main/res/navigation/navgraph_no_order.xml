@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/noOrdersFragment"
-        android:name="com.example.coffeehouse.ui.main.cart.NoOrdersFragment"
+        android:name="com.example.coffeehouse.ui.main.cart.CartEmptyFragment"
         android:label="fragment_no_orders"
-        tools:layout="@layout/fragment_no_orders" />
+        tools:layout="@layout/fragment_empty_orders" />
 </navigation>

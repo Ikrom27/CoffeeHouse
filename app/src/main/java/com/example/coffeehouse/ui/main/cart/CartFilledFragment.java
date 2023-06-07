@@ -24,7 +24,7 @@ import com.example.coffeehouse.ui.state_holder.OrderConfirmViewModel;
 import com.example.coffeehouse.ui.state_holder.adapter.CartAdapter;
 
 
-public class CartRecycleViewFragment extends Fragment {
+public class CartFilledFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private CartAdapter cartAdapter;
@@ -32,37 +32,33 @@ public class CartRecycleViewFragment extends Fragment {
     private Button btnBuy;
     private TextView tvTotalPrice;
     private View view;
-    private OrderConfirmViewModel orderConfirmViewModel;
-    private String TAG;
+    private String TAG = "CartFilledFragment";
     private double total = 0;
 
     @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_cart_recycle_view, container, false);
+        view = inflater.inflate(R.layout.fragment_cart_filled, container, false);
         recyclerView = view.findViewById(R.id.rv_container);
         btnBuy = view.findViewById(R.id.btn_pay);
         tvTotalPrice = view.findViewById(R.id.tv_total_text);
-
         this.cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
+        cartAdapter = new CartAdapter();
+        recyclerView.setAdapter(cartAdapter);
+
+
+        //SHOW RECYCLE VIEW
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         cartViewModel.getCartList().observe(getViewLifecycleOwner(), products -> {
-            cartAdapter = new CartAdapter(products);
-            recyclerView.setAdapter(cartAdapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            cartAdapter.setProductList(products);
         });
+
+        //SHOW TOTAL
         cartViewModel.getTotalPrice().observe(getViewLifecycleOwner(), totalPrice -> {
             this.total = totalPrice;
             tvTotalPrice.setText("$ " + total);
         });
-
-
-
-        orderConfirmViewModel = new ViewModelProvider(this).get(OrderConfirmViewModel.class);
-        orderConfirmViewModel.getOrder().observe(getViewLifecycleOwner(), orderResponse -> {
-            Log.d(TAG, "FUCK");
-        });
-
         return view;
     }
 
@@ -70,6 +66,7 @@ public class CartRecycleViewFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         btnBuy.setOnClickListener(view1 -> {
+            Log.d(TAG, "Buy handle");
             ConfirmOrderFragment fragment = new ConfirmOrderFragment();
             Bundle args = new Bundle();
             args.putDouble("total", total);

@@ -17,15 +17,11 @@ import com.example.coffeehouse.data.models.Cart;
 import com.example.coffeehouse.ui.state_holder.CartViewModel;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
-    private List<Cart> cartList;
-    private CartViewModel cartViewModel;
-
-    public CartAdapter(List<Cart> cartList){
-        this.cartList = cartList;
-    }
+    private List<Cart> cartList = new ArrayList<>();
 
     @SuppressLint("NotifyDataSetChanged")
     public void setProductList(List<Cart>  productList) {
